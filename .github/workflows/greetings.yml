@@ -10,4 +10,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: 'Welkom bij coronakanjers, bedankt voor je bijdrage'' first issue'
-        pr-message: 'Message that will be displayed on users'' first pr'
+        pr-message: 'helloo, jochem is heel erg blij dat je een pull request maakt'' first pr'
