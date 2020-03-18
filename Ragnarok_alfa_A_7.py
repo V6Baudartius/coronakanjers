@@ -3,6 +3,7 @@
   #os wordt gebruikt bij het inladen van images
   #math wordt om keersommen te kunnen doen
   #sys weet ik ook niet, maar kan nog handig zijn
+    #sytze hiero
 import pygame, os, math, sys
 
 
