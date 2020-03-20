@@ -2,9 +2,9 @@
   #pygame is nodig, duh
   #os wordt gebruikt bij het inladen van images
   #math wordt om keersommen te kunnen doen
-  #sys weet ik ook niet, maar kan nog handig zijn
+  #sys weet ik ook niet, maar kan nog handig zijn 
 import pygame, os, math, sys
-
+#test van jochem
 
 
 
@@ -13,7 +13,7 @@ import pygame, os, math, sys
 pygame.init()
 
 #dit een clock om het aantal frames per second te reguleren
-#note, het aantal frames kan we lminder dan dit worden
+#note, het aantal frames kan wel minder dan dit worden
 clock = pygame.time.Clock()
 gamespeed = 3        #aantal frames per second
 
