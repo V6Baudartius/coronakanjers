@@ -2,6 +2,7 @@ import pygame, math, os, sys
 pygame.init()
 pygame.font.init()
 
+#scherm inladen
 screen = pygame.display.set_mode((700,400))
 
 
