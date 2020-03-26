@@ -15,7 +15,7 @@ pygame.init()
 #dit een clock om het aantal frames per second te reguleren
 #note, het aantal frames kan wel minder dan dit worden
 clock = pygame.time.Clock()
-gamespeed = 3        #aantal frames per second
+gamespeed = 60        #aantal frames per second
 
 #hier wordt de window geinitialiseerd
 screenwidth = 1000
@@ -189,7 +189,7 @@ class hero():
         #nu komt de verticale movement
         #deze gaat hetzelfde alleen dan met y, er zijn dus minder comments
         self.wy += self.yspd
-        self.hitbox.x = self.wx
+        self.hitbox.y = self.wy
         grond = False
         #grond is hier hetzelfde als muur in het vorige stuk
         #omdat we hier verticaal bezig zijn heb ik de naam aangepast
@@ -208,7 +208,7 @@ class hero():
                 self.hitbox.bottom = grond.hitbox.top
             if direction == -1:
                 self.hitbox.top = grond.hitbox.bottom
-            self.wx = self.hitbox.x
+            self.wy = self.hitbox.y
             self.yspd = 0
         #einde vmovement
 
@@ -271,6 +271,13 @@ class steen(collision) :
         wijdte = sprite.get_width()
         hoogte = sprite.get_height()
         super().__init__(x, y, wijdte, hoogte, sprite)
+
+class doos(collision):
+    def __init__(self, x, y):
+        sprite = imgload('doos.png')
+        wijdte = sprite.get_width()
+        hoogte = sprite.get_height()
+        super().__init__(x, y, wijdte, hoogte, sprite)
         
  
      
@@ -285,13 +292,23 @@ ragnar = hero(400,300)
 grasblokken = list()
 grasblokken.append( grasblok(0,500) ) #creert een grasblok en voegt het aan de lijst grassblokken toe op plek 0
 grasblokken.append( grasblok(500,500) )
-grasblokken.append( grasblok(1000,500) )
+grasblokken.append( grasblok(5000,500) )
+grasblokken.append( grasblok(5500,500) )
+
 
 stenen = list()
 stenen.append( steen(0,400) )
 stenen.append( steen(800,400) )
 stenen.append( steen(650,400) )
 stenen.append( steen(210,400) )
+
+dozen = list()
+dozen.append( doos( 2000, 500) )
+dozen.append( doos( 1500, 200) )
+dozen.append( doos( 2800, 400) )
+dozen.append( doos( 3500, 400) )
+dozen.append( doos( 3800, 100) )
+dozen.append( doos( 4500, 500) )
 
 print(allCollisionObjects)
 
@@ -311,7 +328,10 @@ while True:
     
     ragnar.movementupdate(keysarray)
 
-    
+    #dit is temporary code om de camera mee te laten bewegen met de hero
+    #sx is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
+    sx = ragnar.wx - 200
+    sy = ragnar.wy - 200
     
     #draw fase
     screen.fill((0,255,255))
