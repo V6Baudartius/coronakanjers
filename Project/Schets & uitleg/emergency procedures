@@ -1,0 +1,13 @@
+1e poging ctrl+c for break
+
+werktniet?:
+
+ps -ef
+
+zoek procesnummer
+kill procesnummer
+
+else
+
+xkill
+klik op venster
