@@ -168,8 +168,8 @@ class hero():
                 muur = each
         
         if muur:
-            print('collision')
-            print(muur)
+            
+            
             #dus als er een object aan muur toegewezen is
             
             #we verplaatsen ons naar de linker of rechterkant van het object
@@ -198,8 +198,7 @@ class hero():
                 grond = each
         
         if grond:
-            print('collision')
-            print(grond)
+            
             
             direction = return1(self.yspd)
             #1 is naar beneden, -1 is omhoog
@@ -280,6 +279,46 @@ class doos(collision):
         super().__init__(x, y, wijdte, hoogte, sprite)
         
  
+class enemy_lopend():
+    def __init__(self, x, y):
+        self.sprite = imgload('enemy.bmp')
+        self.x = x
+        self.y = y
+        width = self.sprite.get_width()
+        height = self.sprite.get_height()
+        self.hitbox = pygame.Rect(x,y,width,height)
+        self.direction = 1
+        self.speed = 4
+        
+    def movementupdate(self):
+
+        self.hitbox.x = self.x                   
+        self.hitbox.y = self.y
+
+
+        if self.direction == 1:
+            test_x = self.hitbox.right + self.speed
+        elif self.direction == -1:    
+            test_x = self.hitbox.left + self.speed*-1
+        
+        test_pos = (test_x, self.y-50)
+        global allCollisionObjects
+        print(test_pos)
+        for each in allCollisionObjects:
+        
+            if each.hitbox.collidepoint(test_pos):
+                self.direction *= -1
+                print('collision')
+
+        self.x += self.speed*self.direction
+        
+        
+        
+    def drawupdate(self):
+        draw(self.sprite, self.x, self.y)
+        
+    
+    
      
     
 
@@ -303,14 +342,19 @@ stenen.append( steen(650,400) )
 stenen.append( steen(210,400) )
 
 dozen = list()
-dozen.append( doos( 2000, 500) )
-dozen.append( doos( 1500, 200) )
-dozen.append( doos( 2800, 400) )
-dozen.append( doos( 3500, 400) )
+dozen.append( doos( 1300, 300) )
+dozen.append( doos( 1300, 400) )
+dozen.append( doos( 3000, 300) )
+dozen.append( doos( 3000, 400) )
 dozen.append( doos( 3800, 100) )
 dozen.append( doos( 4500, 500) )
 
-print(allCollisionObjects)
+
+
+
+enemy1 = enemy_lopend(2000, 400)
+
+
 
 #Hier begint de main loop, dit is wat er elke frame uitgevoerd wordt
 while True:
@@ -327,7 +371,9 @@ while True:
     keysarray = pygame.key.get_pressed()     #input
     
     ragnar.movementupdate(keysarray)
-
+    enemy1.movementupdate()
+    
+    
     #dit is temporary code om de camera mee te laten bewegen met de hero
     #sx is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
     sx = ragnar.wx - 200
@@ -339,6 +385,7 @@ while True:
         each.update()
         
     ragnar.drawupdate()
+    enemy1.drawupdate()
     
     pygame.display.update()
     
