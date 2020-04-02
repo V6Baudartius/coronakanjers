@@ -6,3 +6,4 @@
     -het is dus handig om soms te kijken voor pull-requests.  
 3: een branch dient getiteld te worden als: 'naam-onderwerp'  
 
+ 
