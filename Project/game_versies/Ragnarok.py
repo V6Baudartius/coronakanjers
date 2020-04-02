@@ -11,7 +11,6 @@ import pygame, os, math, sys
 
 
 
-
 #is verplicht voor gebruik pygame, vereist wanneer er afgesloten wordt een pygame.quit
 pygame.init()
 
