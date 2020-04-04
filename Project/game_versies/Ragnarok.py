@@ -439,7 +439,7 @@ class stopwatch():
         #Het rechthoekje met tijd erin kan verschillen door het hebben van uren in de tijd of niet. De breedte van het rechthoekje wordt hier dan gecorigeerd.
         if self.uren:
             breedte = 170    
-        if not self.uren:
+        else self.uren:
             breedte = 105
             
         #De hoogte blijft wel altijd gelijk.    
@@ -456,7 +456,7 @@ class stopwatch():
         if not self.uren:
             #tekst zonder uren
             tijd_tekst = default_font.render(str(minuut).zfill(2) + ' : ' + str(seconde).zfill(2), True, self.kleurtijd)
-        if self.uren:
+        else self.uren:
             #tekst met uren
             tijd_tekst = default_font.render(str(uur).zfill(2) + ' : ' + str(minuut).zfill(2) + ' : ' + str(seconde).zfill(2), True, self.kleurtijd)
         #tekst wordt getekent
