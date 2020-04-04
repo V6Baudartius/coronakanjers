@@ -6,43 +6,48 @@
   #time wordt gebruikt bij het maken van tijdsgerelateerde scripts
 import pygame, os, math, sys, time
 
-
-
-
-
-
-
-#is verplicht voor gebruik pygame, vereist wanneer er afgesloten wordt een pygame.quit
+#pygame init initialiseerd automatisch alle pygame functies die 
+#geinitialiseerd moeten worden
 pygame.init()
 
-#dit een clock om het aantal frames per second te reguleren
-#note, het aantal frames kan wel minder dan dit worden
+#initialisatie van een klok
+#de pygame klok is een wacht script:
+    #als de pc sneller dan de gamespeed frames laad,
+    #voert de klok een wait uit.
+gamespeed = 60 #aantal frames per second
 clock = pygame.time.Clock()
-gamespeed = 60        #aantal frames per second
+       
+#initialisatie van het scherm
+#dit geeft een surface die in Windows een venster opent
+def scherminitialisatie():
+    #changeable variables
+    screenwidth = 1000      #wijdte
+    screenheight = 600      #hoogte
+    caption = 'RAGNAROK'    #naam vna het venster
+    #end
+    
+    scherm = pygame.display.set_mode((screenwidth,screenheight))
+    pygame.display.set_caption(caption)
+    return scherm
+screen = scherminitialisatie()
 
-#hier wordt de window geinitialiseerd
-screenwidth = 1000
-screenheight = 600
-screen = pygame.display.set_mode((screenwidth,screenheight))
-#screen is een canvas waarop getekend wordt. alle plaatjes zijn canvassen waarop getekend wordt.
-#wat zichtbaar is zal niet veranderen tenzij er display update gedaan wordt waarbij het canvas opnieuw op het scherm getoond wordt
+#positie van de 'camera' in de virtuele wereld
+scherm_x = 0
+scherm_y = 0
 
-pygame.display.set_caption("RAGNAROK")     #dit zet de naam van de window
 
-sx = 0
-sy = 0
 #dit zijn de postities van van de 'camera'in onze virtuele wereld.
 #alle objecten hebben een wereld positie en uit de positie van het scherm in de wereld 
 #en de positie van het object in de wereld berekenen we waar op het scherm iets getekend moet worden.
 
 def getscreenx(wereldx):
-    global sx
-    drawx = wereldx - sx
+    global scherm_x
+    drawx = wereldx - scherm_x
     return drawx
 
 def getscreeny(wereldy):
-    global sy
-    drawy = wereldy - sy
+    global scherm_y
+    drawy = wereldy - scherm_y
     return drawy
 
 def draw(sprite, wx, wy):
@@ -492,9 +497,9 @@ while True:
         
 
     #dit is temporary code om de camera mee te laten bewegen met de hero
-    #sx is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
-    sx = ragnar.wx - 350
-    sy = ragnar.wy - 200
+    #scherm_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
+    scherm_x = ragnar.wx - 350
+    scherm_y = ragnar.wy - 200
     
     #draw fase
     screen.fill((0,255,255))
