@@ -1,7 +1,7 @@
 # Readme voor gebruik github
 
-1: als je een aanpassing aan de master branch doet, dan doe je dat via een pull-request
-----als je een aanpassing doet aan een andere eigen branch dan mag je dat met een commit doen
+1: als je een aanpassing aan de master branch doet, dan doe je dat via een pull-request  
+----als je een aanpassing doet aan een andere eigen branch dan mag je dat met een commit doen  
     
 2: een pull-request moet door 2 mensen geapproved worden, voordat hij gemerged wordt.  
 ----het is dus handig om soms te kijken voor pull-requests.  
