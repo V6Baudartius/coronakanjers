@@ -9,5 +9,5 @@
 3: een branch dient getiteld te worden als: 'naam-onderwerp-versie'.  
 
 4: in projects staat de to-do list en de taakverdeling.   
----Mocht je een godd idee hebben, maak dan een nieuwe kaart aan   
+---Mocht je een goed idee hebben, maak dan een nieuwe kaart aan   
 ----Als je klaar bent, kan je een nieuwe taak uit de lijst pakken die je interessant vind  
