@@ -32,40 +32,37 @@ def scherminitialisatie():
 screen = scherminitialisatie()
 
 #positie van de 'camera' in de virtuele wereld
-scherm_x = 0
-scherm_y = 0
+camera_x = 0
+camera_y = 0
 
+#--------------------
 
-#dit zijn de postities van van de 'camera'in onze virtuele wereld.
-#alle objecten hebben een wereld positie en uit de positie van het scherm in de wereld 
-#en de positie van het object in de wereld berekenen we waar op het scherm iets getekend moet worden.
+def draw(sprite, x, y):
+    global camera_x
+    global camera_y
+    
+#Om te bepalen waar op het scherm een object getekend moet worden
+#nemen we de huidige positie min de positie van de camera
+    drawx = x - camera_x
+    drawy = y - camera_y
+    drawposition = (drawx,drawy)
+    screen.blit(sprite, drawposition)
 
-def getscreenx(wereldx):
-    global scherm_x
-    drawx = wereldx - scherm_x
-    return drawx
+#----------------
 
-def getscreeny(wereldy):
-    global scherm_y
-    drawy = wereldy - scherm_y
-    return drawy
+def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
+#__file__ is een unieke variable die de map waarin een script staat geeft
+    currentpath = os.path.dirname(__file__) #./game_versies/
+   
+    stap1 = os.path.join(currentpath, mapnaam) #./game_versies/mapnaam/
+    stap2 = os.path.join(stap1, bestandsnaam) #./game_versies/mapnaam/bestandsnaam
 
-def draw(sprite, wx, wy):
-    drawx = getscreenx(wx)
-    drawy = getscreeny(wy)
-    screen.blit(sprite, (drawx, drawy) )
+    image = pygame.image.load(stap2)
+    return image
 
-#dit is de functie om plaatjes in te laden. bestandsextenties moeten aan de naam toegevoegd worden
-	#het kan nog niet dealen met plaatjes met witte achtergrond hiervoor is een colorkey nodig
-def imgload(filenaam):
-	datanaam = 'data'		#de naam van de map waarin de images staan. Zolang de map en het script zichin dezelfde map bevinden en deze naam klopt werkt het script
-	
-	mappad = os.path.dirname(__file__)		#dit vind het pad van de map waarin het script staat
-	datapad = os.path.join(mappad, datanaam)
-	filepad = os.path.join(datapad, filenaam)
-	image = pygame.image.load(filepad)
-	return image
+#-------------------------------------
 
+#dit wordt gebruikt bij collision
 def return1(number):
     if number > 0:
         return 1
@@ -444,7 +441,7 @@ class stopwatch():
         #Het rechthoekje met tijd erin kan verschillen door het hebben van uren in de tijd of niet. De breedte van het rechthoekje wordt hier dan gecorigeerd.
         if self.uren:
             breedte = 170    
-        else self.uren:
+        else:
             breedte = 105
             
         #De hoogte blijft wel altijd gelijk.    
@@ -461,7 +458,7 @@ class stopwatch():
         if not self.uren:
             #tekst zonder uren
             tijd_tekst = default_font.render(str(minuut).zfill(2) + ' : ' + str(seconde).zfill(2), True, self.kleurtijd)
-        else self.uren:
+        else:
             #tekst met uren
             tijd_tekst = default_font.render(str(uur).zfill(2) + ' : ' + str(minuut).zfill(2) + ' : ' + str(seconde).zfill(2), True, self.kleurtijd)
         #tekst wordt getekent
@@ -497,9 +494,9 @@ while True:
         
 
     #dit is temporary code om de camera mee te laten bewegen met de hero
-    #scherm_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
-    scherm_x = ragnar.wx - 350
-    scherm_y = ragnar.wy - 200
+    #camera_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
+    camera_x = ragnar.wx - 350
+    camera_y = ragnar.wy - 200
     
     #draw fase
     screen.fill((0,255,255))
