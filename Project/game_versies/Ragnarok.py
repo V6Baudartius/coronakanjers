@@ -23,7 +23,7 @@ def scherminitialisatie():
     #changeable variables
     screenwidth = 1000      #wijdte
     screenheight = 600      #hoogte
-    caption = 'RAGNAROK'    #naam vna het venster
+    caption = 'RAGNAROK'    #naam van het venster
     #end
     
     scherm = pygame.display.set_mode((screenwidth,screenheight))
@@ -45,10 +45,12 @@ def draw(sprite, x, y):
 #nemen we de huidige positie min de positie van de camera
     drawx = x - camera_x
     drawy = y - camera_y
+    
     drawposition = (drawx,drawy)
     screen.blit(sprite, drawposition)
 
 #----------------
+
 
 def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
 #__file__ is een unieke variable die de map waarin een script staat geeft
