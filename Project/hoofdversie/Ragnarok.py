@@ -10,14 +10,19 @@ import pygame, os, math, sys, time
 #geinitialiseerd moeten worden
 pygame.init()
 
-#initialisatie van een klok
+#-----------------------
+
+#frameratemanager:
+
 #de pygame klok is een wacht script:
     #als de pc sneller dan de gamespeed frames laad,
     #voert de klok een wait uit.
 gamespeed = 60 #aantal frames per second
 clock = pygame.time.Clock()
-       
-#initialisatie van het scherm
+ 
+#--------------------------------
+ 
+
 #dit geeft een surface die in Windows een venster opent
 def scherminitialisatie():
     #changeable variables
@@ -73,6 +78,7 @@ def return1(number):
     else:
         return 0
     
+#-------------------------------------
 
 #hierin staan alle functies en variabelen die ons karakter heeft
 class hero():
