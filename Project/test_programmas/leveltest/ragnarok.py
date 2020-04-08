@@ -4,7 +4,10 @@
   #math wordt om keersommen te kunnen doen
   #sys weet ik ook niet, maar kan nog handig zijn 
 import pygame, os, math, sys
-#test van jochem
+
+
+
+
 
 
 
@@ -109,6 +112,7 @@ class hero():
         # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
         #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
         direction = keys[pygame.K_d] - keys[pygame.K_a]
+        
         self.xspd = direction * self.mvmtspd
 
 
@@ -119,7 +123,7 @@ class hero():
         global gravity
         self.yspd += gravity
 
-        if keys[pygame.K_w]:
+        if keys[pygame.K_w] and spriteveranderalsdood:
             self.yspd = -self.jmpspd
 
         #einde verticale input
@@ -156,9 +160,12 @@ class hero():
 
 
 
-
+        if spriteveranderalsdood == False:
+            self.collisionRange.clear()
+            
         #als tweede doen we horizontale movement
-        self.wx += self.xspd
+        if spriteveranderalsdood:
+            self.wx += self.xspd
         self.hitbox.x = self.wx
         
 
@@ -168,8 +175,8 @@ class hero():
                 muur = each
         
         if muur:
-            print('collision')
-            print(muur)
+            #print('collision')
+            #print(muur)
             #dus als er een object aan muur toegewezen is
             
             #we verplaatsen ons naar de linker of rechterkant van het object
@@ -198,8 +205,8 @@ class hero():
                 grond = each
         
         if grond:
-            print('collision')
-            print(grond)
+            #print('collision')
+           # print(grond)
             
             direction = return1(self.yspd)
             #1 is naar beneden, -1 is omhoog
@@ -227,10 +234,18 @@ class hero():
         draw(self.sprite, self.wx, self.wy)   
 
         
-           
-        
+spriteveranderalsdood = True           
+class monster():
+    def __init__(self, x, y, speed):
+        self.speed = speed
+        self.x = x
+        self.y = y
+        self.sprite = imgload('monster.png')
     
-
+    def update(self):
+        draw(self.sprite, self.x, self.y)
+        self.x += self.speed
+        
 		
 		
 		
@@ -287,28 +302,64 @@ class doos(collision):
 
 #alle objecten die gecreerd worden
 #waarschuwing creer nooit twee objecten met collision op dezelfde coordinaten dit verpest het collision script
-ragnar = hero(400,300)
+#BEGIN LEVELTEST:
+#al het andere is oud en van ragnarok gekopieerd
 
-grasblokken = list()
-grasblokken.append( grasblok(0,500) ) #creert een grasblok en voegt het aan de lijst grassblokken toe op plek 0
-grasblokken.append( grasblok(500,500) )
-grasblokken.append( grasblok(5000,500) )
-grasblokken.append( grasblok(5500,500) )
+def lvlload(filenaam):
+	datanaam = 'levels'		#de naam van de map waarin de images staan. Zolang de map en het script zichin dezelfde map bevinden en deze naam klopt werkt het script
+	
+	mappad = os.path.dirname(__file__)		#dit vind het pad van de map waarin het script staat
+	datapad = os.path.join(mappad, datanaam)
+	filepad = os.path.join(datapad, filenaam)
+	lvl = pygame.image.load(filepad)
+	return lvl
 
 
-stenen = list()
-stenen.append( steen(0,400) )
-stenen.append( steen(800,400) )
-stenen.append( steen(650,400) )
-stenen.append( steen(210,400) )
+class levelparent():
+    def __init__(self):
+            source = lvlload('level_3.png')
+            width = source.get_width()
+            height = source.get_height()
+            gridsize = 100
+            
+            matrix = [[0 for x in range(width)] for x in range(height)]
 
-dozen = list()
-dozen.append( doos( 2000, 500) )
-dozen.append( doos( 1500, 200) )
-dozen.append( doos( 2800, 400) )
-dozen.append( doos( 3500, 400) )
-dozen.append( doos( 3800, 100) )
-dozen.append( doos( 4500, 500) )
+            #deze code stopt de kleur van alle pixels in een 2d array
+            #later lezen we dit array af en creeeren we objecten gebaseerd op de kleurwaarden in het array
+            for x in range(width):
+                for y in range(height):
+                    matrix[y][x] = source.get_at((x,y))
+            print(matrix)
+            dozen = list()
+            grasblokken = list()
+            stenen = list()
+            
+
+
+        
+            
+            for x in range(width) :
+                for y in range(height) :
+                    current = matrix[y][x]
+                    if current == (0,255,0,255):
+                        grasblokken.append( grasblok(x*gridsize, y*gridsize))
+                    elif current == (255,0,0, 255):
+                        global ragnar
+                        ragnar = hero(x*gridsize, y*gridsize)
+                    elif current == (255, 255, 255, 255) :
+                        stenen.append(steen(x*gridsize, y*gridsize))
+                    elif current ==(0, 0, 255, 255):
+                        dozen.append( doos(x*gridsize, y*gridsize))
+                    
+
+
+creatie = levelparent()
+
+
+michiel = monster(-420, 69, 0.1)
+
+#EINDE LEVELTEST
+
 
 print(allCollisionObjects)
 
@@ -326,19 +377,30 @@ while True:
     #code om link en rechts te lopen
     keysarray = pygame.key.get_pressed()     #input
     
+    
     ragnar.movementupdate(keysarray)
+        
 
     #dit is temporary code om de camera mee te laten bewegen met de hero
     #sx is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
-    sx = ragnar.wx - 200
+    sx = ragnar.wx - 350
     sy = ragnar.wy - 200
     
     #draw fase
     screen.fill((0,255,255))
     for each in allCollisionObjects:
         each.update()
+
+        
+    michiel.update()
+    #print(michiel.x)
+    if michiel.x + 500 > ragnar.wx and spriteveranderalsdood:
+        ragnar.sprite = imgload('ragnar_dood.png')
+        spriteveranderalsdood = False
+
         
     ragnar.drawupdate()
+        
     
     pygame.display.update()
     
