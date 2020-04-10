@@ -26,12 +26,13 @@ clock = pygame.time.Clock()
 #dit geeft een surface die in Windows een venster opent
 def scherminitialisatie():
     #changeable variables
-    screenwidth = 1000      #wijdte
-    screenheight = 600      #hoogte
+    #screenwidth = 1000      #wijdte
+    #screenheight = 600      #hoogte
     caption = 'RAGNAROK'    #naam van het venster
     #end
     
-    scherm = pygame.display.set_mode((screenwidth,screenheight))
+    scherm = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    #pygame.display.set_mode((screenwidth,screenheight))
     pygame.display.set_caption(caption)
     return scherm
 screen = scherminitialisatie()
@@ -200,7 +201,7 @@ class hero():
             #nu staat de hitbox op de juiste plek en moeten we het karakter even meenemen
             self.wx = self.hitbox.x
             self.xspd = 0
-        #einde hmovement
+        #einde movement
 
         
         #nu komt de verticale movement
@@ -365,7 +366,7 @@ def lvlload(filenaam):
 
 class levelparent():
     def __init__(self):
-            source = lvlload('level_3.png')
+            source = lvlload('level_2.png')
             width = source.get_width()
             height = source.get_height()
             gridsize = 100
@@ -492,7 +493,10 @@ while True:
     #code om het script te stoppen
     for event in pygame.event.get():        #haalt alle events op. een van de events is het drukken op kruisje
         if event.type == pygame.QUIT:       #als op het kruisje is gedrukt
-            pygame.quit()                   #dan sluit pygame af 
+            pygame.quit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()               #dan sluit pygame af 
         
     #code om link en rechts te lopen
     keysarray = pygame.key.get_pressed()     #input
@@ -504,7 +508,9 @@ while True:
     #dit is temporary code om de camera mee te laten bewegen met de hero
     #camera_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
     camera_x = ragnar.wx - 350
-    camera_y = ragnar.wy - 200
+    camera_y = 400
+    if ragnar.wy <= 500:
+        camera_y = ragnar.wy - 100     
     
     #draw fase
     screen.fill((0,255,255))
