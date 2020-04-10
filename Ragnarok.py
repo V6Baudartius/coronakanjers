@@ -509,7 +509,7 @@ while True:
     #camera_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
     camera_x = ragnar.wx - 350
     camera_y = 400
-    if ragnar.wy <= 500:
+    if ragnar.wy <= 300:
         camera_y = ragnar.wy - 100     
     
     #draw fase
