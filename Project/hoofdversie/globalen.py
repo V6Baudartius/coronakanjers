@@ -1,3 +1,13 @@
+#this is a module
+#standard exit code to prevent use as a program
+if __name__ = '__main__':
+    errormessage = 'This is a module and should not be run alone'
+    print(erromessage)
+    from sys import exit
+    sys.exit(errormessage)
+
+
+
 print(__name__)
 import pygame
 
