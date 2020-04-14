@@ -96,11 +96,14 @@ class hero():
         
 		
 	#movement eigenschappen
-        self.jmpspd = 20
-        self.mvmtspd = 10            #movementspeed
+        self.jmpspd = 50
+        self.mvmtspd = 20            #movementspeed
         global gravity 
         gravity = 1
         self.movdir = 0
+        self.noymove = 0
+        
+       
         
 	#hier maken we een rectangle die we kunnen gebruiken voor collision
         width = self.sprite.get_width()
@@ -126,29 +129,21 @@ class hero():
         
         self.xspd = direction * self.mvmtspd
 
+#begin verticale input
+        #global gravity
+        #self.yspd += gravity
 
-
-        #einde horizontale input
-
-        #begin verticale input
-        global gravity
-        self.yspd += gravity
-
-        if keys[pygame.K_w] and spriteveranderalsdood:
-            self.yspd = -self.jmpspd
+        #if keys[pygame.K_w] and spriteveranderalsdood:
+            #self.yspd = -self.jmpspd
 
         #einde verticale input
 
 
+        #einde horizontale input
 
 
 
-
-
-
-
-
-
+    def collision(self):
         #begin collision 
         #hier wordt xspd en yspd definitief
         #veranderingen hieraan moeten dus hiervoor gebeuren
@@ -232,12 +227,36 @@ class hero():
 
         #eindecollision
 
+    
 
 
+    def gravAndJump(self, keys):
+        #eerst kijken of we op de grond staan
+        #self.hitbox.y
+        print(self.noymove)
+        onground = False
+        #if we dont move
+        if self.yspd == 0:
+            self.noymove += 1
 
-        
+            #if we have not moved for 2 frames
+            if self.noymove > 2:
+                #check if onground
+                for each in self.collisionRange:
+                    collideposition = (self.hitbox.centerx, self.hitbox.bottom + 2)
+                    if each.hitbox.collidepoint( collideposition ):
+                        onground = True
+        #als we wel verticaal bewogen
+        else:
+            self.noymove = 0
 
-
+        #jump      
+        if keys[pygame.K_w] and self.noymove > 2:
+            self.yspd = -self.jmpspd
+            
+        #gravity    
+        if  not self.noymove > 3 or not onground:
+            self.yspd += gravity
         
         
     def drawupdate(self):
@@ -477,7 +496,7 @@ class stopwatch():
 
 creatie = levelparent()
 enemy1 = enemy_lopend(2000,400)
-michiel = monster(-420, 69, 0.1)
+#michiel = monster(-420, 69, 0.1)
 #De stopwatch wordt hier geinitialiseerd
 klok1 = stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0),start)
 
@@ -503,7 +522,8 @@ while True:
     
     
     ragnar.movementupdate(keysarray)
-        
+    ragnar.collision()
+    ragnar.gravAndJump(keysarray)
 
     #dit is temporary code om de camera mee te laten bewegen met de hero
     #camera_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
@@ -518,11 +538,11 @@ while True:
         each.update()
     enemy1.movementupdate
         
-    michiel.update()
+    #michiel.update()
     #print(michiel.x)
-    if michiel.x + 500 > ragnar.wx and spriteveranderalsdood:
-        ragnar.sprite = imgload('ragnar_dood.png')
-        spriteveranderalsdood = False
+    #if michiel.x + 500 > ragnar.wx and spriteveranderalsdood:
+        #ragnar.sprite = imgload('ragnar_dood.png')
+        #spriteveranderalsdood = False
 
     klok1.drawstopwatch()  #de klok wordt hier getekent  
     ragnar.drawupdate()
