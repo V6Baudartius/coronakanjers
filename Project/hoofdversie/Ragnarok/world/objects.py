@@ -10,39 +10,41 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from .. import settings, globale_variablen, gfx
+from .. import settings as set, globale_variablen, gfx
 import pygame
 
 #dit wordt de parentclass van alle objecten waar hero tegenaan kan botsen
 class collision():
     def __init__(self, x, y, width, height, sprite):    
-        allCollisionObjects.append(self)     #we voegen het object toe aan de lijst
+
+        globale_variablen.allCollisionObjects.append(self)     #we voegen het object toe aan de lijst voor collision
         
+        #de variablen lokaal opslaan
         self.sprite = sprite
-        self.wx = x
-        self.wy = y
+        self.x = x
+        self.y = y
         self.width = width
         self.height = height
         self.hitbox = pygame.Rect(x, y, width, height)    #deze rectangle wordt gebruikt voor collision, het is de 'hitbox'
         
     def update(self):
-        draw(self.sprite, self.wx, self.wy)
+        gfx.draw(self.sprite, self.wx, self.wy)
         
-
+#hier zijn alle individuelen objecten
 class grasblok(collision):
     def __init__(self, x, y):
-    
-        sprite = imgload('grasblok.png')
+        sprite = gfx.imgload('grasblok.png')
         #de sprite = 500 bij 100
+        #de wijdte en hoogte kan ook anders zijn dan de sprite
+        #doe dit door een wijdte of hoogte te hardcoden
         wijdte = sprite.get_width()
         hoogte = sprite.get_height()
         super().__init__(x, y, wijdte, hoogte, sprite)
         
                 
-class steen(collision) :   
+class steen(collision):   
     def __init__(self, x, y):
-    
-        sprite = imgload('steen.png')
+        sprite = gfx.imgload('steen.png')
         #de sprite is 50 bij 100
         wijdte = sprite.get_width()
         hoogte = sprite.get_height()
@@ -50,7 +52,8 @@ class steen(collision) :
 
 class doos(collision):
     def __init__(self, x, y):
-        sprite = imgload('doos.png')
+        sprite = gfx.imgload('doos.png')
+        #sprite = 100 bij 100
         wijdte = sprite.get_width()
         hoogte = sprite.get_height()
         super().__init__(x, y, wijdte, hoogte, sprite)

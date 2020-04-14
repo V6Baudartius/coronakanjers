@@ -22,3 +22,11 @@ def scherminitialisatie(height,width,caption):
     scherm = pygame.display.set_mode((screenwidth,screenheight))
     pygame.display.set_caption(caption)
     return scherm
+    
+def sign(number):
+    if number == 0:
+        return 0    
+    elif number > 0:
+        return 1
+    else:
+        return -1

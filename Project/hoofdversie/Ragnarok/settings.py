@@ -14,3 +14,10 @@ if __name__ == '__main__':
 hoogte = 1000
 wijdte = 1000
 caption = 'RAGNAROK'
+
+
+#noten:
+
+#onze eigen modules lijken wel gechain-importeerd kunnen worden:
+#als ik a importeer bij b en dan b importeer bij c dan heeft c ook abs
+#maar bij externe modules als pygame is dit niet het geval.

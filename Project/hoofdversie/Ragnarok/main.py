@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
 
 from . import game as game
-
+from . import menu as menu
 
 def execute():
     game.start()
@@ -21,7 +21,18 @@ def execute():
         counter += 1
         print(counter)
         game.loop()
+        
+        
+        
         if counter>10:
             break
     game.end()   
-
+    menu.start()
+    counter = 0
+    while True:
+        counter += 1
+        print(counter)
+        menu.loop()
+        if counter>10:
+            break
+    menu.end()

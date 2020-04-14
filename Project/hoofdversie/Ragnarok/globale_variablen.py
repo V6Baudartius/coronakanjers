@@ -21,6 +21,7 @@ player_alive = True
 #de lijsten met objecten voor collision
 allCollisionObjects = list()
 CollisionRange = list()
+allObjects = list()
 
 #de positie van de camera
 camera_x = 0
