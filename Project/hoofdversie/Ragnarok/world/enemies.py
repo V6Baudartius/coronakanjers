@@ -23,7 +23,8 @@ class enemy_lopend():
         self.hitbox = pygame.Rect(x,y,width,height)
         self.direction = 1
         self.speed = 4
-        
+    
+    
     def movementupdate(self):
 
         self.hitbox.x = self.x                   

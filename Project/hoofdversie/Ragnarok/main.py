@@ -10,6 +10,8 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
+print('hello')
+
 
 from . import game as game
 from . import menu as menu
@@ -36,3 +38,6 @@ def execute():
         if counter>10:
             break
     menu.end()
+    
+
+    

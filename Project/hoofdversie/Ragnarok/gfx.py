@@ -13,6 +13,7 @@ if __name__ == '__main__':
 from . import settings as set, globale_variablen as glob  #our modules
 import os, pygame                   #public modules
     
+
 def draw(sprite, x, y):
     #Om te bepalen waar op het scherm een object getekend moet worden
     #nemen we de huidige positie min de positie van de camera
