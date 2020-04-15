@@ -507,10 +507,16 @@ while True:
 
     #dit is temporary code om de camera mee te laten bewegen met de hero
     #camera_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
-    camera_x = ragnar.wx - 350
-    camera_y = 400
-    if ragnar.wy <= 300:
-        camera_y = ragnar.wy - 100     
+        camera_x = ragnar.wx - 350
+    camera_y = ragnar.wy - 200
+    if camera_x <= 0:
+        camera_x = 0
+    if camera_x > deur.x + 300: #dit is niet uit te voeren in een verticaal level, daar moet je code schrijven voor camera_y
+        camera_x = deur.x + 300
+    if camera_y > 400:
+        camera_y = 400
+    if camera_y < -300:
+        camera_y = -300   
     
     #draw fase
     screen.fill((0,255,255))
