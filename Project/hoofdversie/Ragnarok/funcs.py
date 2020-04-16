@@ -11,15 +11,18 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 import pygame
+from . import settings
 
 def scherminitialisatie(height,width,caption):
     #argumenten
-    screenwidth = height      #wijdte
-    screenheight = width      #hoogte
-    caption = caption    #naam van het venster
+    screenwidth = settings.hoogte      #wijdte
+    screenheight = settings.wijdte     #hoogte
+      
+    if settings.fullscreen:
+        scherm = pygame.display.set_mode((screenwidth,screenheight), pygame.FULLSCREEN)
+    else:
+        scherm = pygame.display.set_mode((screenwidth,screenheight))
     
-    
-    scherm = pygame.display.set_mode((screenwidth,screenheight))
     pygame.display.set_caption(caption)
     return scherm
     

@@ -15,6 +15,9 @@ from . import funcs, settings
 #het scherm waarop getekend wordt
 screen = funcs.scherminitialisatie(settings.hoogte, settings.wijdte, settings.caption)
 
+#hieraan wordt ragnar later toegewezen
+ragnar = 0
+
 #de check of we doodzijn gegaan of niet
 player_alive = True
 

@@ -10,169 +10,159 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from .. import settings, globale_variablen, gfx
+from .. import settings, globale_variablen, gfx, funcs
 import pygame
 
+#-----loopfuncties-------
+#keys = pygame.key.get_pressed()
+#horizontalmovement(keys)
+#verticalmovement(keys)
+#inrange = get_inrange()
+#collision(inrange)
+#gravity(inragne)
+#-------
 
 #hierin staan alle functies en variabelen die ons karakter heeft
 class hero():
     def __init__(self, x, y):
 		#draw variablen
-        self.sprite = imgload('Ragnar.png')
+        self.sprite = gfx.imgload('Ragnar.png')
         
-		
-	#coordinaten
-        self.wx = x
-        self.wy = y
+        #coordinaten
+        self.x = x
+        self.y = y
         self.xspd = 0
         self.yspd = 0
-        
-		
-	#movement eigenschappen
-        self.jmpspd = 20
-        self.mvmtspd = 10            #movementspeed
-        global gravity 
-        gravity = 1
+
+        #movement eigenschappen
+        self.jmpspd = settings.jumpspeed
+        self.mvmtspd = settings.movementspeed           
         self.movdir = 0
+        self.noymove = 0
+        self.flyframes = 0
+        self.onground = True
         
-	#hier maken we een rectangle die we kunnen gebruiken voor collision
+        #hitbox rectangle
         width = self.sprite.get_width()
         height = self.sprite.get_height()
-        self.hitbox = pygame.Rect(self.wx, self.wy, width, height)
+        self.hitbox = pygame.Rect(x, y, width, height)
 
         #dit is de zoekrange voor objecten om collision mee te doen
-        #de collisionrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
+        #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
         #en waar we dus mee kunnen colliden
-        self.xrange = 500
-        self.yrange = 500
-        self.collisionRange = list()
+        self.xrange = settings.xrange
+        self.yrange = settings.yrange
 
+    def gummen(self):
+        #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
+        pygame.draw.rect(globale_variablen.screen, settings.background_color, self.hitbox)
 
-    def movementupdate(self, keys):    
-
-        #begin horizontale input
-
+    
+    def horizontalmovement(self, keys):    
         #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
         # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
         #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
         direction = keys[pygame.K_d] - keys[pygame.K_a]
-        
         self.xspd = direction * self.mvmtspd
+        
+    def verticalmovement(self, keys):
+        #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
+        #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
+        if keys[pygame.K_w] and self.noymove >= 2:
+            self.yspd = -self.jmpspd   
 
-
-
-        #einde horizontale input
-
-        #begin verticale input
-        global gravity
-        self.yspd += gravity
-
-        if keys[pygame.K_w] and spriteveranderalsdood:
-            self.yspd = -self.jmpspd
-
-        #einde verticale input
-
-
-
-
-
-
-
-
-
-
-
-        #begin collision 
+    def get_inrange(self):
+        #als eerste bepalen we welke objecten dichtbij zijn.
+        #dit doen we om het gebruik van rect.collide te minimaliseren zodat het programma efficienter wordt        
+        inrangelist = list()
+        for each in globale_variablen.allCollisionObjects:
+            deltax = abs(each.hitbox.centerx - self.hitbox.centerx) #abs geeft de absolute waarde.
+            deltay = abs(each.hitbox.centery - self.hitbox.centery) #dit rekend dus de afstanden tussen de objecten uit
+            
+            inrange = deltax < self.xrange and deltay < self.yrange 
+            if inrange:
+                inrangelist.append(each)
+        
+        return inrangelist
+        
+    def collision(self, collisionlist):
         #hier wordt xspd en yspd definitief
         #veranderingen hieraan moeten dus hiervoor gebeuren
         
-        #als eerste bepalen we welke objecten dichtbij zijn.
-        #dit doen we om het gebruik van rect.collide te minimaliseren zodat het programma efficienter wordt
-        #de range waarin dit gebeurt is net iets groter dan de snelheid zodat alles waar
-        #we tegenaan zouden kunnen lopen sowieso in de range valt
-        global allCollisionObjects
-        self.collisionRange.clear()
         
-        for each in allCollisionObjects:
-            deltax = abs(each.hitbox.centerx - self.hitbox.centerx) #abs geeft de absolute waarde.
-            deltay = abs(each.hitbox.centery - self.hitbox.centery) #dit rekend dus de afstanden tussen de objecten uit
-            inrange = deltax < self.xrange and deltay < self.yrange 
-            if inrange:
-                self.collisionRange.append(each)
-            #als inrange dan voeg toe aan de lijst
-        #einde collisionrange bepalen
-
-
-
-        if spriteveranderalsdood == False:
-            self.collisionRange.clear()
-            
-        #als tweede doen we horizontale movement
-        if spriteveranderalsdood:
-            self.wx += self.xspd
-        self.hitbox.x = self.wx
-        
-
+        #horizontale collision
+        self.x += self.xspd
+        self.hitbox.x = self.x
+        #muur is een tijdelijke naam voor het object waar we horizontaal tegenaankomen
         muur = False
-        for each in self.collisionRange:
+        for each in collisionlist:
             if self.hitbox.colliderect(each.hitbox):
                 muur = each
-        
+        #als we niks raken met colliderect blijft muur dus False
         if muur:
-            #print('collision')
-            #print(muur)
-            #dus als er een object aan muur toegewezen is
-            
-            #we verplaatsen ons naar de linker of rechterkant van het object
-            #afhankelijk van de bewegingsrichting
-            direction = return1(self.xspd)
-            #dit geeft -1 als links en 1 als rechts
+            #we verplaatsen ons naar de linker of rechterkant van het object afhankelijk van de bewegingsrichting
+            direction = funcs.sign(self.xspd)
             if direction == 1:
                 self.hitbox.right = muur.hitbox.left
             if direction == -1:
                 self.hitbox.left = muur.hitbox.right
+            
             #nu staat de hitbox op de juiste plek en moeten we het karakter even meenemen
-            self.wx = self.hitbox.x
+            self.x = self.hitbox.x
+            #snelheid wordt ook 0 omdat we ergens tegenaan botsen
             self.xspd = 0
-        #einde hmovement
 
-        
-        #nu komt de verticale movement
-        #deze gaat hetzelfde alleen dan met y, er zijn dus minder comments
-        self.wy += self.yspd
-        self.hitbox.y = self.wy
+            
+        #nu komt de verticale collision
+        self.y += self.yspd
+        self.hitbox.y = self.y
+        #grond dient zelfde funcite als muur in t vorige stuk
         grond = False
-        #grond is hier hetzelfde als muur in het vorige stuk
-        #omdat we hier verticaal bezig zijn heb ik de naam aangepast
-        for each in self.collisionRange:
+        for each in collisionlist:
             if self.hitbox.colliderect(each.hitbox):
                 grond = each
-        
         if grond:
-            #print('collision')
-           # print(grond)
-            
-            direction = return1(self.yspd)
-            #1 is naar beneden, -1 is omhoog
-            
+            direction = funcs.sign(self.yspd)
             if direction == 1:
                 self.hitbox.bottom = grond.hitbox.top
             if direction == -1:
                 self.hitbox.top = grond.hitbox.bottom
-            self.wy = self.hitbox.y
+            #hitbox meenemen en tot stilstand komen
+            self.y = self.hitbox.y
             self.yspd = 0
-        #einde vmovement
-
-        #eindecollision
-
-
-
-
-        
-
-
         
         
-    def drawupdate(self):
-        #draw
-        draw(self.sprite, self.wx, self.wy)   
+    def gravity(self, collisionlist):
+        #we beginnen met de assumptie dat we niet op de grond staan
+        if self.yspd == 0:
+            self.noymove += 1
+        else:
+            #als we bewegen is het zeker dat we niet op de grond staan
+            self.noymove = 0
+            self.onground = False
+        
+        if self.noymove >= 2:
+            #als we twee frames niet verticaal bewegen
+            #dan staan we waarschijnlijk op de grond
+            #maar omdat dit niet zeker is checken we nog eens met collision
+            repeated_test = False
+            for each in collisionlist:
+                collideposition = (self.hitbox.centerx, self.hitbox.bottom + 2)
+                if each.hitbox.collidepoint( collideposition ):
+                    repeated_test = True
+            self.onground = repeated_test
+        
+        #flyframes zijn het aantal cheatframes dat we in de lucht hangen
+        if self.onground:
+            self.flyframes = 0
+        else:
+            self.flyframes += 1
+  
+        if (self.flyframes > settings.flyframeslimit and not self.onground) or self.noymove <= 2:
+            self.yspd += settings.gravity
+  
+        #dit systeem doet alleen gravity als je al bepaalde tijd van een blok afbent
+        #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
+        
+    def redraw(self):
+        gfx.draw(self.sprite, self.x, self.y)   

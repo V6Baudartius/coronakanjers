@@ -14,6 +14,27 @@ if __name__ == '__main__':
 hoogte = 1000
 wijdte = 1000
 caption = 'RAGNAROK'
+fullscreen = False
+
+#algemeen
+gravity = 1
+background_color = (0,0,255)
+gamespeed = 300
+gridsize = 100
+
+#player
+jumpspeed = 25
+movementspeed = 10
+flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
+                    #hogere waardes maken platformen aanzienlijk makkelijker
+#afstand waarin gezocht wordt als collision gedaan wordt
+xrange = 500
+yrange = 500
+
+#framerate
+display_framerate = True        #doet nog niks
+
+
 
 
 #noten:

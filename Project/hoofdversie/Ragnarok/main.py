@@ -10,34 +10,30 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-print('hello')
 
 
-from . import game as game
-from . import menu as menu
+
+from . import game, menu, globale_variablen, gfx
+
+import pygame
 
 def execute():
+    #loading screen script
+    laadscherm = gfx.imgload('laadscherm.png')
+    gfx.draw(laadscherm)
+    pygame.display.update()
+    
+    #artificial delay zodat we naar het laadscherm kunnen kijken
+    from time import sleep
+    sleep(2)
+    
+    
+    
+    #start of game
     game.start()
-    counter = 0
     while True:
-        counter += 1
-        print(counter)
         game.loop()
-        
-        
-        
-        if counter>10:
-            break
-    game.end()   
-    menu.start()
-    counter = 0
-    while True:
-        counter += 1
-        print(counter)
-        menu.loop()
-        if counter>10:
-            break
-    menu.end()
+    game.end()
     
 
     

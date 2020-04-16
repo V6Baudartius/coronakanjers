@@ -13,22 +13,19 @@ if __name__ == '__main__':
 from .. import settings as set, globale_variablen, gfx
 import pygame
 
+
 #dit wordt de parentclass van alle objecten waar hero tegenaan kan botsen
 class collision():
     def __init__(self, x, y, width, height, sprite):    
 
         globale_variablen.allCollisionObjects.append(self)     #we voegen het object toe aan de lijst voor collision
-        
         #de variablen lokaal opslaan
         self.sprite = sprite
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
         self.hitbox = pygame.Rect(x, y, width, height)    #deze rectangle wordt gebruikt voor collision, het is de 'hitbox'
-        
+        #als je x, y, width of heigt nodig hebt dan kan je dat uit de hitbox
+                
     def update(self):
-        gfx.draw(self.sprite, self.wx, self.wy)
+        gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)
         
 #hier zijn alle individuelen objecten
 class grasblok(collision):
@@ -41,7 +38,6 @@ class grasblok(collision):
         hoogte = sprite.get_height()
         super().__init__(x, y, wijdte, hoogte, sprite)
         
-                
 class steen(collision):   
     def __init__(self, x, y):
         sprite = gfx.imgload('steen.png')

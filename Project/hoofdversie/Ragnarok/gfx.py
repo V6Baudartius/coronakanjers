@@ -10,18 +10,19 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from . import settings as set, globale_variablen as glob  #our modules
+from . import settings as set, globale_variablen  #our modules
 import os, pygame                   #public modules
     
 
-def draw(sprite, x, y):
+def draw(sprite, x=0, y=0):
     #Om te bepalen waar op het scherm een object getekend moet worden
     #nemen we de huidige positie min de positie van de camera
-    drawx = x - glob.camera_x
-    drawy = y - glob.camera_y
-    
+    drawx = x - globale_variablen.camera_x
+    drawy = y - globale_variablen.camera_y
     drawposition = (drawx,drawy)
     globale_variablen.screen.blit(sprite, drawposition)
+    
+    
     
 def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
 #__file__ is een unieke variable die de map waarin een script staat geeft
