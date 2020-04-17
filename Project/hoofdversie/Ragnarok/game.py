@@ -32,7 +32,7 @@ def start():
     stopwatch = klok.stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0))
     
     #creation
-    levelcreator.createlevel('level_1.png')
+    levelcreator.createlevel('level_2.png')
     
     #firstdraw
     glob.screen.fill(settings.background_color)
@@ -80,7 +80,7 @@ def loop():
             glob.running = False                  #dan sluit pygame af 
     
     #clock tic gaat als laatste omdat deze wacht als we te snel zijn gegaan
-    clock.tick(settings.gamespeed)
+    clock.tick()
     
 
             
