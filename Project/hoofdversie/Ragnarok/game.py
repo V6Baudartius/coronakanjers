@@ -13,7 +13,7 @@ if __name__ == '__main__':
 #onze eigen code
 from .world import player, enemies, objects
 from .UI import klok
-from . import settings, levelcreator, globale_variablen as glob, camera
+from . import settings, levelcreator, globale_variablen as glob, camera, gfx
 
 from time import sleep
 

@@ -25,7 +25,7 @@ class collision():
         #als je x, y, width of heigt nodig hebt dan kan je dat uit de hitbox
                 
     def predraw(self):
-        gfx.draw(globale_variablen.backgroundsurface, self.hitbox.x, self.hitbox.y)
+        gfx.drawrect(set.background_color,self.hitbox.x,self.hitbox.y)
     
     def postdraw(self):
         gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)

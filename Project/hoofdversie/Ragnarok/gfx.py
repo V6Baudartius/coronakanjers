@@ -22,11 +22,16 @@ def draw(sprite, x=0, y=0):
     drawposition = (drawx,drawy)
     globale_variablen.screen.blit(sprite, drawposition)
     
-def drawrect(rectangle, color):
-    rectangle.x -= globale_variablen.camera_x
-    rectangle.y -= globale_variablen.camera_y
     
-    pygame.draw.rect(globale.variablen.screen, color, rectangle)
+def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
+    drawx = x - globale_variablen.camera_x
+    drawy = y - globale_variablen.camera_y
+    
+    drawrectangle = pygame.Rect(x,y,width,height)
+    drawrectangle.x = drawx
+    drawrectangle.y = drawy    
+
+    pygame.draw.rect(globale_variablen.screen, color, drawrectangle)
     
     
     

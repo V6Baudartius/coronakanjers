@@ -55,8 +55,7 @@ class hero():
 
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
-        gfx.drawrectangle(self.hitbox, settings.background_color)
-
+        gfx.drawrect(settings.background_color,self.x,self.y)
     
     def horizontalmovement(self, keys):    
         #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
@@ -166,3 +165,4 @@ class hero():
         
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   
+        

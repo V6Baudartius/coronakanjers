@@ -24,6 +24,8 @@ class enemy_lopend():
         self.direction = 1
         self.speed = 4
     
+    def predraw(self):
+        gfx.drawrect(settings.background_color,self.x,self.y)
     
     def movementupdate(self):
 
@@ -49,5 +51,5 @@ class enemy_lopend():
         
         
         
-    def drawupdate(self):
+    def postdraw(self):
         draw(self.sprite, self.x, self.y)
