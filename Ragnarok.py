@@ -96,7 +96,7 @@ class hero():
         
 		
 	#movement eigenschappen
-        self.jmpspd = 20
+        self.jmpspd = 30
         self.mvmtspd = 10            #movementspeed
         global gravity 
         gravity = 1
@@ -304,6 +304,16 @@ class doos(collision):
         wijdte = sprite.get_width()
         hoogte = sprite.get_height()
         super().__init__(x, y, wijdte, hoogte, sprite)
+
+class deur(collision) :   
+    def __init__(self, x, y):
+        sprite = imgload('deur.png')
+        #de sprite is 100 bij 200
+        self.x = x
+        self.y = y
+        wijdte = sprite.get_width()
+        hoogte = sprite.get_height()
+        super().__init__(x, y, wijdte, hoogte, sprite)
         
 class enemy_lopend():
     def __init__(self, x, y):
@@ -343,8 +353,8 @@ class enemy_lopend():
     def drawupdate(self):
         draw(self.sprite, self.x, self.y)
         
-    
-    
+deur = deur(5000,800)   
+print(allCollisionObjects)    
  
 
 
@@ -366,7 +376,7 @@ def lvlload(filenaam):
 
 class levelparent():
     def __init__(self):
-            source = lvlload('level_2.png')
+            source = lvlload('level_4.png')
             width = source.get_width()
             height = source.get_height()
             gridsize = 100
@@ -503,14 +513,22 @@ while True:
     
     
     ragnar.movementupdate(keysarray)
-        
 
+    if ragnar.wx<0:
+        ragnar.wx = 0
+        
     #dit is temporary code om de camera mee te laten bewegen met de hero
     #camera_x is de linker bovenhoek van de camera en rangar.wx is de absolute positie van ragnar
-    camera_x = ragnar.wx - 350
-    camera_y = 400
-    if ragnar.wy <= 300:
-        camera_y = ragnar.wy - 100     
+        camera_x = ragnar.wx - 350
+    camera_y = ragnar.wy - 200
+    if camera_x <= 0:
+        camera_x = 0
+    if camera_x > deur.x + 300: #dit is niet uit te voeren in een verticaal level, daar moet je code schrijven voor camera_y
+        camera_x = deur.x + 300
+    if camera_y > 400:
+        camera_y = 400
+    if camera_y < -300:
+        camera_y = -300   
     
     #draw fase
     screen.fill((0,255,255))
