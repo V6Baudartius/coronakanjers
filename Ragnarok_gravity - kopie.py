@@ -573,6 +573,8 @@ while True:
         camera_y = -300
     if deur.x == ragnar.wx:
         print('zelfde x')
+    if deur.hitbox.colliderect(ragnar.hitbox):
+        print('next level')
 
     #if event.type==pygame.KEYDOWN:
         #if event.key==pygame.K_ENTER:
