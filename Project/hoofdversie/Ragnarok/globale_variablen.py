@@ -11,6 +11,12 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 from . import funcs, settings
+import pygame
+
+
+#als True dan is er iets runnend
+running = False
+
 
 #het scherm waarop getekend wordt
 screen = funcs.scherminitialisatie(settings.hoogte, settings.wijdte, settings.caption)
@@ -25,6 +31,10 @@ player_alive = True
 allCollisionObjects = list()
 CollisionRange = list()
 allObjects = list()
+
+#achtergrond surface om mee te gummen
+backgroundsurface = pygame.Surface((settings.gridsize,settings.gridsize))
+backgroundsurface.fill(settings.background_color)
 
 #de positie van de camera
 camera_x = 0

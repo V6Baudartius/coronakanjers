@@ -24,7 +24,10 @@ class collision():
         self.hitbox = pygame.Rect(x, y, width, height)    #deze rectangle wordt gebruikt voor collision, het is de 'hitbox'
         #als je x, y, width of heigt nodig hebt dan kan je dat uit de hitbox
                 
-    def update(self):
+    def predraw(self):
+        gfx.draw(globale_variablen.backgroundsurface, self.hitbox.x, self.hitbox.y)
+    
+    def postdraw(self):
         gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)
         
 #hier zijn alle individuelen objecten

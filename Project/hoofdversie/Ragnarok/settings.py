@@ -10,6 +10,8 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
+import pygame
+
 #scherm
 hoogte = 1000
 wijdte = 1000
@@ -18,8 +20,7 @@ fullscreen = False
 
 #algemeen
 gravity = 1
-background_color = (0,0,255)
-gamespeed = 300
+gamespeed = 60
 gridsize = 100
 
 #player
@@ -33,6 +34,9 @@ yrange = 500
 
 #framerate
 display_framerate = True        #doet nog niks
+
+#draw settigns
+background_color = (0,0,255)
 
 
 

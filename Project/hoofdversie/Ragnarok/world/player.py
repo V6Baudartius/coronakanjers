@@ -53,9 +53,9 @@ class hero():
         self.xrange = settings.xrange
         self.yrange = settings.yrange
 
-    def gummen(self):
+    def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
-        pygame.draw.rect(globale_variablen.screen, settings.background_color, self.hitbox)
+        gfx.draw(globale_variablen.backgroundsurface, self.hitbox.x, self.hitbox.y)
 
     
     def horizontalmovement(self, keys):    
@@ -164,5 +164,5 @@ class hero():
         #dit systeem doet alleen gravity als je al bepaalde tijd van een blok afbent
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
         
-    def redraw(self):
+    def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   

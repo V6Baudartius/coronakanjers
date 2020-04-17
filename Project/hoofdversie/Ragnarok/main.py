@@ -25,13 +25,14 @@ def execute():
     
     #artificial delay zodat we naar het laadscherm kunnen kijken
     from time import sleep
-    sleep(2)
+    sleep(1)
     
     
     
     #start of game
     game.start()
-    while True:
+    globale_variablen.running = True
+    while globale_variablen.running:
         game.loop()
     game.end()
     
