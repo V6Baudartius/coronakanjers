@@ -336,6 +336,9 @@ class deur():
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x,y,width,height)
         
+    def drawupdate(self):
+        draw(self.sprite, self.x, self.y)
+
 class enemy_lopend():
     def __init__(self, x, y):
         self.sprite = imgload('enemy.bmp')
@@ -375,12 +378,7 @@ class enemy_lopend():
         draw(self.sprite, self.x, self.y)
 
 
-print(allCollisionObjects)   
-    
-    
- 
-
-
+print(allCollisionObjects)
 
 #alle objecten die gecreerd worden
 #waarschuwing creer nooit twee objecten met collision op dezelfde coordinaten dit verpest het collision script
@@ -523,11 +521,11 @@ class stopwatch():
 #EINDE STOPWATCH
 
 creatie = levelparent()
-deur = deur(0,0)
+deur = deur(5000,800)
 enemy1 = enemy_lopend(2000,400)
 #michiel = monster(-420, 69, 0.1)
 #De stopwatch wordt hier geinitialiseerd
-klok1 = stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0),start)
+klok1 = stopwatch((0,255,0),(255,255,255),1180,5,True,True,5,(0,0,0),start)
 
 
 #print(allCollisionObjects)
@@ -563,17 +561,18 @@ while True:
     camera_y = ragnar.wy - 200
     if camera_x <= 0:
         camera_x = 0
-    if camera_x > 5300: #dit is niet uit te voeren in een verticaal level, daar moet je code schrijven voor camera_y
-        camera_x = 5300
+    if camera_x > deur.x + 300: #dit is niet uit te voeren in een verticaal level, daar moet je code schrijven voor camera_y
+        camera_x = deur.x + 300
     if camera_y > 400:
         camera_y = 400
     if camera_y < -300:
         camera_y = -300
+    if deur.x == ragnar.wx:
+        print('zelfde x')
 
-    #pygame.Rect.colliderect
-    #if colliderect(Ragnar):
-     #   print('collide')
-
+      for event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_ENTER and deur.hitbox.colliderect(ragnar.hitbox):
+                print('next level')
         
     #draw fase
     screen.fill((0,255,255))
@@ -589,10 +588,9 @@ while True:
         #ragnar.sprite = imgload('ragnar_dood.png')
         #spriteveranderalsdood = False
 
-    klok1.drawstopwatch()  #de klok wordt hier getekent  
+    klok1.drawstopwatch()  #de klok wordt hier getekent
+    deur.drawupdate()
     ragnar.drawupdate()
     enemy1.drawupdate()
-    deur.drawupdate()
-
     
     pygame.display.update()
