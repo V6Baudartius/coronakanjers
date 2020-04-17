@@ -342,44 +342,6 @@ class deur():
     def drawupdate(self):
         draw(self.sprite, self.x, self.y)
 
-class enemy_lopend():
-    def __init__(self, x, y):
-        self.sprite = imgload('enemy.bmp')
-        self.x = x
-        self.y = y
-        width = self.sprite.get_width()
-        height = self.sprite.get_height()
-        self.hitbox = pygame.Rect(x,y,width,height)
-        self.direction = 1
-        self.speed = 4
-        
-    def movementupdate(self):
-
-        self.hitbox.x = self.x                   
-        self.hitbox.y = self.y
-
-
-        if self.direction == 1:
-            test_x = self.hitbox.right + self.speed
-        elif self.direction == -1:    
-            test_x = self.hitbox.left + self.speed*-1
-        
-        test_pos = (test_x, self.y-50)
-        global allCollisionObjects
-        print(test_pos)
-        for each in allCollisionObjects:
-        
-            if each.hitbox.collidepoint(test_pos):
-                self.direction *= -1
-                #print('collision')
-
-        self.x += self.speed*self.direction
-        
-        
-        
-    def drawupdate(self):
-        draw(self.sprite, self.x, self.y)
-
 
 print(allCollisionObjects)
 
@@ -525,7 +487,6 @@ class stopwatch():
 
 creatie = levelparent()
 deur = deur(5000,800)
-enemy1 = enemy_lopend(2000,400)
 #michiel = monster(-420, 69, 0.1)
 #De stopwatch wordt hier geinitialiseerd
 klok1 = stopwatch((0,255,0),(255,255,255),1180,5,True,True,5,(0,0,0),start)
@@ -571,27 +532,13 @@ while True:
         camera_y = 400
     if camera_y < -300:
         camera_y = -300
-    if deur.x == ragnar.wx:
-        print('zelfde x')
-    if deur.hitbox.colliderect(ragnar.hitbox):
+    if deur.hitbox.colliderect(ragnar.hitbox)and keysarray[pygame.K_SPACE]:
         print('next level')
-
-    #if event.type==pygame.KEYDOWN:
-        #if event.key==pygame.K_ENTER:
-        #if event.key == pygame.K_ENTER and deur.hitbox.colliderect(ragnar.hitbox):
-            #print('next level')
-            
-    if event.type==pygame.KEYDOWN:
-        if keys[pygame.K_h]:
-            print('HHHHH')
         
     #draw fase
     screen.fill((0,255,255))
     for each in allCollisionObjects:
-        each.update()
-    enemy1.movementupdate
-
-        
+        each.update()        
         
     #michiel.update()
     #print(michiel.x)
@@ -602,6 +549,5 @@ while True:
     klok1.drawstopwatch()  #de klok wordt hier getekent
     deur.drawupdate()
     ragnar.drawupdate()
-    enemy1.drawupdate()
     
     pygame.display.update()
