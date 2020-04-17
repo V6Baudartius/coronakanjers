@@ -21,9 +21,9 @@ from time import sleep
 import pygame
 
 #this wil initialize the game loop
-def start():
+def start(level):
     #pygame
-    pygame.init()
+    
     global clock
     clock = pygame.time.Clock() 
     
@@ -32,8 +32,9 @@ def start():
     stopwatch = klok.stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0))
     
     #creation
-    levelcreator.createlevel('level_2.png')
-    print(glob.allCollisionObjects)
+    levelcreator.createlevel(level)
+    global hout
+    hout = objects.deur(glob.ragnar.x+400,glob.ragnar.y)
     
     #firstdraw
     glob.screen.fill(settings.background_color)
@@ -48,7 +49,7 @@ def loop():
     for each in glob.allCollisionObjects:
         each.predraw()
     glob.ragnar.predraw()
-    
+    hout.predraw()
     #camera
     camera.cameramovement()
 
@@ -60,11 +61,12 @@ def loop():
     glob.ragnar.collision(inrange)
     glob.ragnar.gravity(inrange)
     
+    hout.entercheck(keys)
     #postdraw
     for each in glob.allCollisionObjects:
         each.postdraw()
     glob.ragnar.postdraw()
-    
+    hout.postdraw()
     pygame.display.update()
     
     #misc
@@ -78,7 +80,12 @@ def loop():
     #code om het script te stoppen
     for event in pygame.event.get():        #haalt alle events op. een van de events is het drukken op kruisje
         if event.type == pygame.QUIT:       #als op het kruisje is gedrukt
-            glob.running = False                  #dan sluit pygame af 
+            pygame.quit()                  #dan sluit pygame af 
+    
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_r]:
+        glob.running = False
+        keys = None
     
     #clock tic gaat als laatste omdat deze wacht als we te snel zijn gegaan
     clock.tick(settings.gamespeed)
@@ -90,7 +97,13 @@ def loop():
 #dit is opruimcode 
 #AKA de allobject lijst moet geleegd en alle refrences naar start variablen moeten verwijderd 
 def end():
-    glob.allCllisionObjects.clear()
-    glob.ragnar = 0 
+    
+    glob.allCollisionObjects.clear()
+    glob.ragnar = None
+    global clock
+    clock = None
+    global stopwatch
+    stopwatch = None
+    
 
-    pygame.quit()
+    

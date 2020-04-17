@@ -22,7 +22,7 @@ running = False
 screen = funcs.scherminitialisatie(settings.hoogte, settings.wijdte, settings.caption)
 
 #hieraan wordt ragnar later toegewezen
-ragnar = 0
+ragnar = None
 
 #de check of we doodzijn gegaan of niet
 player_alive = True

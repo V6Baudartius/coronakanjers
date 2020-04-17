@@ -36,7 +36,7 @@ yrange = 500
 display_framerate = True        #doet nog niks
 
 #draw settigns
-background_color = (0,0,255)
+background_color = (105, 199, 224)
 
 
 

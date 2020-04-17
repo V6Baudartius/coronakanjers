@@ -56,3 +56,41 @@ class doos(collision):
         wijdte = sprite.get_width()
         hoogte = sprite.get_height()
         super().__init__(x, y, wijdte, hoogte, sprite)
+        
+        
+#special objects
+class deur():
+    def __init__(self, x, y):
+        self.sprite = gfx.imgload('deur.png')
+        self.x = x
+        self.y = y
+        width = self.sprite.get_width()
+        height = self.sprite.get_height()
+        self.hitbox = pygame.Rect(x,y,width,height)
+
+    def entercheck(self, keys):
+        if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and keys[pygame.K_SPACE]:
+            globale_variablen.running = False
+        
+    def predraw(self):
+        gfx.drawrect(set.background_color,self.hitbox.x,self.hitbox.y)
+    
+    def postdraw(self):
+        gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

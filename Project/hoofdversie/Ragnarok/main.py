@@ -17,24 +17,60 @@ from . import game, menu, globale_variablen, gfx
 
 import pygame
 
+currentlevel = 0
+level = ['level_1.png','level_2.png','level_3.png','level_4.png']
+
+
 def execute():
+    
     #loading screen script
     laadscherm = gfx.imgload('laadscherm.png')
     gfx.draw(laadscherm)
     pygame.display.update()
     
+    
     #artificial delay zodat we naar het laadscherm kunnen kijken
     from time import sleep
     sleep(1)
     
+    pygame.init()
+    
+    while True:    
+        #start of game
+        global currentlevel
+        
+        game.start(level[currentlevel])
+        globale_variablen.running = True
+        while globale_variablen.running:
+            game.loop()
+        game.end()
+
+        currentlevel += 1
+        
+        gfx.draw(laadscherm)
+        pygame.display.update()
+        sleep(1)
+        
+        
     
     
-    #start of game
-    game.start()
-    globale_variablen.running = True
-    while globale_variablen.running:
-        game.loop()
-    game.end()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     
