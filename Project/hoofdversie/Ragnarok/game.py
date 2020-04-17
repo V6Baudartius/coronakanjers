@@ -22,17 +22,20 @@ import pygame
 
 #this wil initialize the game loop
 def start():
-    #basics
+    #pygame
     pygame.init()
     global clock
     clock = pygame.time.Clock() 
-    camera.cameramovement
+    
+    #sytze's stopwatch
+    global stopwatch
+    stopwatch = klok.stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0))
+    
     #creation
     levelcreator.createlevel('level_1.png')
     
     #firstdraw
     glob.screen.fill(settings.background_color)
-    
     pygame.display.update()
     
 counter = 0
@@ -45,15 +48,9 @@ def loop():
         each.predraw()
     glob.ragnar.predraw()
     
-    #misc
+    #camera
     camera.cameramovement()
-    clock.tick(settings.gamespeed)
-    global counter
-    counter += 1
-    if counter > 120:
-        counter = 0
-        print(clock.get_fps() )
-    
+
     #player
     keys = pygame.key.get_pressed()
     glob.ragnar.horizontalmovement(keys)
@@ -69,10 +66,21 @@ def loop():
     
     pygame.display.update()
     
+    #misc
+    stopwatch.update()
+    global counter
+    counter += 1
+    if counter > 120:
+        counter = 0
+        print(clock.get_fps() )
+    
     #code om het script te stoppen
     for event in pygame.event.get():        #haalt alle events op. een van de events is het drukken op kruisje
         if event.type == pygame.QUIT:       #als op het kruisje is gedrukt
             glob.running = False                  #dan sluit pygame af 
+    
+    #clock tic gaat als laatste omdat deze wacht als we te snel zijn gegaan
+    clock.tick(settings.gamespeed)
     
 
             

@@ -55,7 +55,7 @@ class hero():
 
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
-        gfx.draw(globale_variablen.backgroundsurface, self.hitbox.x, self.hitbox.y)
+        gfx.drawrectangle(self.hitbox, settings.background_color)
 
     
     def horizontalmovement(self, keys):    
