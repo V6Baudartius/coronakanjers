@@ -335,6 +335,9 @@ class deur():
         width = self.sprite.get_width()
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x,y,width,height)
+
+    def movementupdate(self, keys):
+        confirm = keys[pygame.K_h]
         
     def drawupdate(self):
         draw(self.sprite, self.x, self.y)
@@ -542,7 +545,8 @@ while True:
             pygame.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                pygame.quit()                   #dan sluit pygame af 
+                pygame.quit()                       #dan sluit pygame af
+                
         
     #code om link en rechts te lopen
     keysarray = pygame.key.get_pressed()     #input
@@ -570,9 +574,14 @@ while True:
     if deur.x == ragnar.wx:
         print('zelfde x')
 
-      for event.type == pygame.KEYDOWN:
-          if event.key == pygame.K_ENTER and deur.hitbox.colliderect(ragnar.hitbox):
-                print('next level')
+    #if event.type==pygame.KEYDOWN:
+        #if event.key==pygame.K_ENTER:
+        #if event.key == pygame.K_ENTER and deur.hitbox.colliderect(ragnar.hitbox):
+            #print('next level')
+            
+    if event.type==pygame.KEYDOWN:
+        if keys[pygame.K_h]:
+            print('HHHHH')
         
     #draw fase
     screen.fill((0,255,255))
