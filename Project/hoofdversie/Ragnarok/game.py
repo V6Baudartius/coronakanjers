@@ -33,6 +33,7 @@ def start():
     
     #creation
     levelcreator.createlevel('level_2.png')
+    print(glob.allCollisionObjects)
     
     #firstdraw
     glob.screen.fill(settings.background_color)
@@ -80,7 +81,7 @@ def loop():
             glob.running = False                  #dan sluit pygame af 
     
     #clock tic gaat als laatste omdat deze wacht als we te snel zijn gegaan
-    clock.tick()
+    clock.tick(settings.gamespeed)
     
 
             
@@ -89,4 +90,7 @@ def loop():
 #dit is opruimcode 
 #AKA de allobject lijst moet geleegd en alle refrences naar start variablen moeten verwijderd 
 def end():
+    glob.allCllisionObjects.clear()
+    glob.ragnar = 0 
+
     pygame.quit()
