@@ -233,7 +233,7 @@ class hero():
     def gravAndJump(self, keys):
         #eerst kijken of we op de grond staan
         #self.hitbox.y
-        print(self.noymove)
+        #print(self.noymove)
         onground = False
         #if we dont move
         if self.yspd == 0:
@@ -499,7 +499,8 @@ enemy1 = enemy_lopend(2000,400)
 #michiel = monster(-420, 69, 0.1)
 #De stopwatch wordt hier geinitialiseerd
 klok1 = stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0),start)
-
+global counter
+counter = 0
 
 print(allCollisionObjects)
 
@@ -507,7 +508,12 @@ print(allCollisionObjects)
 while True:
     #deze klok reguleert de snelheid waarmee de loop uitgevoert wordt
     #als de computer sneller klaar is dan de clockspeed dan wacht hij even voordat hij de volgende frame laad
-    clock.tick(gamespeed)
+    clock.tick()
+    
+    counter += 1
+    if counter > 120:
+        counter = 0
+        print(clock.get_fps() )
     
     #code om het script te stoppen
     for event in pygame.event.get():        #haalt alle events op. een van de events is het drukken op kruisje
