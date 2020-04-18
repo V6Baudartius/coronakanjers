@@ -16,12 +16,9 @@ grasblok =  (0,255,0,255)       #groen
 doos =      (0,0,255,255)       #blauw
 toorts =    (255,255,0,255)     #geel
 transition =(255,0,255,255)     #paars
-steen =     (0,255,255,255)     #lichtblauwig ofzo?
+steen =     (0,255,255,255)     #cyaan
 grond =     (255,128,0,255)     #bruin
 spike =     (0,0,0)             #negro kleur
-
-
-
 
 #-----------------------
 
@@ -58,7 +55,8 @@ def createlevel(levelname):
                     foox = x*settings.gridsize
                     fooy = y* settings.gridsize
                     
-                    
+#--------------------------------------------------------------------------------------- 
+ 
                     if current == grasblok:
                         objects.grasblok(foox, fooy)
                     
@@ -83,7 +81,7 @@ def createlevel(levelname):
                     elif current == spike:
                         objects.spike(foox, fooy)
                         
-                        
+#-------------------------------------------------------------------------------                        
                         
                         
                         

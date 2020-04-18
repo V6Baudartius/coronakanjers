@@ -40,6 +40,10 @@ def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
 
     image = pygame.image.load(stap2).convert()
     
+    image.set_colorkey(set.colorkey)
+    
+    
+    
     if not set.scale == 1:
         width = image.get_width()
         height = image.get_height()
