@@ -48,6 +48,7 @@ printfps = True
 
 #font
 font = "C:/Windows/Fonts/comicz.TTF"
+
 #draw settigns
 background_color = (105, 199, 224)
 
