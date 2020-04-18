@@ -13,15 +13,24 @@ if __name__ == '__main__':
 import pygame
 
 #scherm
-hoogte = 1000
-wijdte = 1000
+scherm_hoogte = 1000
+scherm_wijdte = 1000
+fullscreen = True  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
-fullscreen = False
+
+#fps
+printfps = True
 
 #algemeen
 gravity = 1
 gamespeed = 60
 gridsize = 100
+
+#camera boundaries
+customsize = False
+level_w = 0
+level_h = 0
+
 
 #player
 jumpspeed = 25

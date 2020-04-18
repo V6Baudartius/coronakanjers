@@ -14,12 +14,21 @@ import pygame
 from . import settings
 
 def scherminitialisatie(height,width,caption):
-    #argumenten
-    screenwidth = settings.hoogte      #wijdte
-    screenheight = settings.wijdte     #hoogte
+    
+    pygame.init()#argumenten
+    screenwidth = height      #wijdte
+    screenheight = width    #hoogte
       
     if settings.fullscreen:
-        scherm = pygame.display.set_mode((screenwidth,screenheight), pygame.FULLSCREEN)
+        monitor = pygame.display.Info()
+        width = monitor.current_w
+        height = monitor.current_h
+        
+        #dit is voor de camera -- verder niet op letten
+        settings.scherm_wijdte = width
+        settings.scherm_hoogte = height
+        
+        scherm = pygame.display.set_mode((width,height), pygame.FULLSCREEN)
     else:
         scherm = pygame.display.set_mode((screenwidth,screenheight))
     

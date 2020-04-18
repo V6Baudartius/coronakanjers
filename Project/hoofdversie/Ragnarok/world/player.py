@@ -166,3 +166,12 @@ class hero():
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   
         
+        
+        
+def allupdates():
+    globale_variablen.ragnar.horizontalmovement(globale_variablen.keys)
+    globale_variablen.ragnar.verticalmovement(globale_variablen.keys)
+    inrange = globale_variablen.ragnar.get_inrange()
+    globale_variablen.ragnar.collision(inrange)
+    globale_variablen.ragnar.gravity(inrange)
+        

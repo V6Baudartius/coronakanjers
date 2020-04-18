@@ -27,10 +27,7 @@ def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
     drawx = x - globale_variablen.camera_x
     drawy = y - globale_variablen.camera_y
     
-    drawrectangle = pygame.Rect(x,y,width,height)
-    drawrectangle.x = drawx
-    drawrectangle.y = drawy    
-
+    drawrectangle = pygame.Rect(drawx,drawy,width,height)    
     pygame.draw.rect(globale_variablen.screen, color, drawrectangle)
     
     

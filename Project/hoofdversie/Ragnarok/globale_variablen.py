@@ -19,7 +19,7 @@ running = False
 
 
 #het scherm waarop getekend wordt
-screen = funcs.scherminitialisatie(settings.hoogte, settings.wijdte, settings.caption)
+screen = funcs.scherminitialisatie(settings.scherm_hoogte, settings.scherm_wijdte, settings.caption)
 
 #hieraan wordt ragnar later toegewezen
 ragnar = None
@@ -39,3 +39,6 @@ backgroundsurface.fill(settings.background_color)
 #de positie van de camera
 camera_x = 0
 camera_y = 0
+
+#keysarray, voor globale acces van het keyboard
+keys = None

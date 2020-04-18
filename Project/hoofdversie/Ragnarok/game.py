@@ -1,19 +1,19 @@
 print(__name__)
+from sys import exit
 
 #standard exit code to prevent use as a program
 if __name__ == '__main__':
     errormessage = 'This is a module and should not be run alone'
     print(errormessage)
     #quits if run as script
-    from sys import exit
     exit(errormessage)
 
 #------------------------------------------------
 
 #onze eigen code
-from .world import player, enemies, objects
+from .world import player, enemies, objects, camera, levelcreator
 from .UI import klok
-from . import settings, levelcreator, globale_variablen as glob, camera, gfx
+from . import settings, globale_variablen as glob, gfx
 
 from time import sleep
 
@@ -33,8 +33,6 @@ def start(level):
     
     #creation
     levelcreator.createlevel(level)
-    global hout
-    hout = objects.deur(glob.ragnar.x+400,glob.ragnar.y)
     
     #firstdraw
     glob.screen.fill(settings.background_color)
@@ -45,49 +43,62 @@ counter = 0
 
 #this is what is executed every tick
 def loop():
-    #predraw
-    for each in glob.allCollisionObjects:
-        each.predraw()
+
+    #predraw -- voor uitleg zie objects.py
+    for object in glob.allObjects:
+        object.predraw()
+    
     glob.ragnar.predraw()
-    hout.predraw()
+    
     #camera
     camera.cameramovement()
-
-    #player
-    keys = pygame.key.get_pressed()
-    glob.ragnar.horizontalmovement(keys)
-    glob.ragnar.verticalmovement(keys)
-    inrange = glob.ragnar.get_inrange()
-    glob.ragnar.collision(inrange)
-    glob.ragnar.gravity(inrange)
     
-    hout.entercheck(keys)
-    #postdraw
-    for each in glob.allCollisionObjects:
-        each.postdraw()
+    #input
+    glob.keys = pygame.key.get_pressed()
+    
+    #update
+    player.allupdates()
+    stopwatch.update()
+    for object in glob.allObjects:
+        object.update()
+        
+    #postdraw -- voor uitleg zie objects.py
+    for object in glob.allObjects:
+        object.postdraw()
     glob.ragnar.postdraw()
-    hout.postdraw()
+    
+    #push the changed surface to screen
     pygame.display.update()
     
-    #misc
-    stopwatch.update()
-    global counter
-    counter += 1
-    if counter > 120:
-        counter = 0
-        print(clock.get_fps() )
     
-    #code om het script te stoppen
-    for event in pygame.event.get():        #haalt alle events op. een van de events is het drukken op kruisje
+    #fps meter
+    if settings.printfps:
+        global counter
+        counter += 1
+        if counter > 120:
+            counter = 0
+            print(clock.get_fps() )
+    
+
+    #exit conditions
+        #voor nu alleen venster afsluiten
+        #andere events waardoor we uit de loop moeten breken (pauze?) ook hieronder
+    for event in pygame.event.get() :        #haalt alle events op. een van de events is het drukken op kruisje
         if event.type == pygame.QUIT:       #als op het kruisje is gedrukt
             pygame.quit()                  #dan sluit pygame af 
+            exit()
     
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_r]:
-        glob.running = False
-        keys = None
+    if glob.keys[pygame.K_ESCAPE]:
+        pygame.quit()                  #dan sluit pygame af 
+        exit()
+          
+            
+            
+            
+            
+            
     
-    #clock tic gaat als laatste omdat deze wacht als we te snel zijn gegaan
+    #clock -- deze gaat als laatste omdat deze wacht als t script sneller gaat dan gamespeed
     clock.tick(settings.gamespeed)
     
 
@@ -98,6 +109,7 @@ def loop():
 #AKA de allobject lijst moet geleegd en alle refrences naar start variablen moeten verwijderd 
 def end():
     
+    glob.allObjects.clear()
     glob.allCollisionObjects.clear()
     glob.ragnar = None
     global clock
