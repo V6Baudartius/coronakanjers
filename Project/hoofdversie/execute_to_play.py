@@ -1,3 +1,6 @@
 import Ragnarok.main
 print('import succesful')
-Ragnarok.main.execute()
+
+import cProfile
+cProfile.run('Ragnarok.main.execute()')
+

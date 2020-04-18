@@ -46,7 +46,7 @@ class stopwatch():
         grootte = 25
 
         #De font (lettertype) wordt  hier bepaald.
-        default_font = pygame.font.Font("C:/Windows/Fonts/comicz.TTF", grootte)
+        default_font = pygame.font.Font(settings.font, grootte)
         #Als het verschil in seconden negatief wordt, wordt het met behulp van dit trucje weer goed positief gemaakt.
         if seconde < 0:
             seconde += 60

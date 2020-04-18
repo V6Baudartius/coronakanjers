@@ -15,15 +15,13 @@ import pygame
 #scherm
 scherm_hoogte = 1000
 scherm_wijdte = 1000
-fullscreen = True  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
+fullscreen = False  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw
 gridsize = 100
-scale = 4
+scale = 1
 
-#fps
-printfps = True
 
 #algemeen
 gravity = 1
@@ -46,8 +44,10 @@ xrange = 500
 yrange = 500
 
 #framerate
-display_framerate = True        #doet nog niks
+printfps = True
 
+#font
+font = "C:/Windows/Fonts/comicz.TTF"
 #draw settigns
 background_color = (105, 199, 224)
 
