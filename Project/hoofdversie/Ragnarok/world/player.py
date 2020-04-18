@@ -65,7 +65,11 @@ class hero():
         #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
         direction = keys[pygame.K_d] - keys[pygame.K_a]
         self.xspd += direction * settings.acceleration
-        self.xspd -= funcs.sign(self.xspd) * settings.friction
+        
+        lostspeed = funcs.sign(self.xspd) * settings.friction
+        if abs(lostspeed) > abs(self.xspd):
+            lostspeed = self.xspd
+        self.xspd -= lostspeed
         
         if abs(self.xspd) > settings.maxspeed:
             self.xspd = direction*settings.maxspeed

@@ -23,10 +23,6 @@ gridsize = 100
 scale = 1
 
 
-#algemeen
-gravity = 1
-
-
 
 #camera boundaries
 customsize = False
@@ -36,11 +32,12 @@ camera_xoffset = 350
 camera_yoffset = 200
 
 
-#player
-jumpspeed = 25
-maxspeed = 10
-acceleration = 4
-friction = 2
+#movement
+gravity = 2
+jumpspeed = 40
+maxspeed = 20
+acceleration = 5
+friction = 4
 
 flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker

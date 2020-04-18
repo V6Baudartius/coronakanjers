@@ -106,12 +106,6 @@ class collisionobject(genericobject):
                                                             #dit is omdat alle collision vanuit de player gedaan wordt
         super().__init__(x,y,width,height,sprite)
         
-       
-        #de variablen lokaal opslaan
-        self.sprite = sprite
-        self.hitbox = pygame.Rect(x, y, width, height)    #deze rectangle wordt gebruikt voor collision, het is de 'hitbox'
-        #als je x, y, width of heigt nodig hebt dan kan je dat uit de hitbox
-                
     
 #----------------------------COLLISION OBJECTEN --------------------------------------------------------------------        
 
