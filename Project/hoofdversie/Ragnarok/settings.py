@@ -25,7 +25,7 @@ scale = 1
 
 #algemeen
 gravity = 1
-gamespeed = 60
+
 
 
 #camera boundaries
@@ -39,8 +39,8 @@ camera_yoffset = 200
 #player
 jumpspeed = 25
 maxspeed = 10
-accelaration = 2
-friction = 1
+acceleration = 4
+friction = 2
 
 flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker
@@ -50,6 +50,8 @@ yrange = 500
 
 #framerate
 printfps = True
+capfps = True
+gamespeed = 60
 
 #font
 font = "C:/Windows/Fonts/comicz.TTF"

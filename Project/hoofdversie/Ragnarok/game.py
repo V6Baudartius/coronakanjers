@@ -99,8 +99,11 @@ def loop():
             
     
     #clock -- deze gaat als laatste omdat deze wacht als t script sneller gaat dan gamespeed
-    #clock.tick(settings.gamespeed)
-    clock.tick()
+    if settings.capfps:
+        clock.tick(settings.gamespeed)
+    else:
+        clock.tick()
+    
 
             
             

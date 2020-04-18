@@ -33,10 +33,11 @@ class hero():
         self.y = y
         self.xspd = 0
         self.yspd = 0
-
+        
+        
+        
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
-        self.mvmtspd = settings.maxspeed           
         self.movdir = 0
         self.noymove = 0
         self.flyframes = 0
@@ -63,8 +64,19 @@ class hero():
         # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
         #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
         direction = keys[pygame.K_d] - keys[pygame.K_a]
-        self.xspd = direction * self.mvmtspd
+        self.xspd += direction * settings.acceleration
+        self.xspd -= funcs.sign(self.xspd) * settings.friction
         
+        if abs(self.xspd) > settings.maxspeed:
+            self.xspd = direction*settings.maxspeed
+            
+     
+
+
+
+
+
+     
     def verticalmovement(self, keys):
         #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
         #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
