@@ -11,7 +11,7 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 import pygame
-from . import settings
+from . import settings, globale_variablen
 
 def scherminitialisatie(height,width,caption):
     
@@ -42,3 +42,10 @@ def sign(number):
         return 1
     else:
         return -1
+        
+        
+def destroyObject(object):
+    globale_variablen.allObjects.remove(object)
+    globale_variablen.allCollisionObjects.remove(object)
+            
+   

@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from .. import settings as set, globale_variablen, gfx
+from .. import settings as set, globale_variablen, gfx, funcs
 import pygame
 
 
@@ -61,11 +61,14 @@ class spike(genericobject):
         sprite = gfx.imgload('spike.png')
         width = sprite.get_width()
         height = sprite.get_height()
-        super().__init__(x, y, width, height, sprite)
+        super().__init__(x, y, sprite)
         
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
-            print('dood')
+            try:
+                funcs.destroyObject(self)
+            except:
+                print('failed to destroy')
         
         
         
