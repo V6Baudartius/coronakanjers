@@ -21,6 +21,7 @@ caption = 'RAGNAROK'
 #draw
 gridsize = 128
 scale = 1
+colorkey = (255,255,255)
 
 
 
