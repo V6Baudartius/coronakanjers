@@ -16,7 +16,7 @@ import pygame
 
 #een object zonder collision dat wel getekend wordt
 #dit vormt de parent van alle andere objecten
-#een object heeft drie functie
+#een object heeft drie functies
     #1 predraw, hier haalt hij zichzelf van de schermsurface af
     #2 update, hier wordt de invload van het object op het spel uitgevoerd
     #3 postdraw, nadat camera gemoved is en updates zijn uitgevoerd tekent het zich weer op de schermsurface
