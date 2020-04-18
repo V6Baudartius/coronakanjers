@@ -19,7 +19,7 @@ fullscreen = True  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw
-gridsize = 100
+gridsize = 128
 scale = 1
 
 
