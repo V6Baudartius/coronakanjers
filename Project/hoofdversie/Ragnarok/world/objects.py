@@ -57,7 +57,16 @@ class grond(genericobject):
         super().__init__(x, y, width, height, sprite)    
         
         
+class spike(genericobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('spike.png')
+        width = sprite.get_width()
+        height = sprite.get_height()
+        super().__init__(x, y, width, height, sprite)
         
+    def update(self):
+        if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
+            print('dood')
         
         
         

@@ -18,7 +18,7 @@ toorts =    (255,255,0,255)     #geel
 transition =(255,0,255,255)     #paars
 steen =     (0,255,255,255)     #lichtblauwig ofzo?
 grond =     (255,128,0,255)     #bruin
-
+spike =     (0,0,0)             #negro kleur
 
 
 
@@ -80,7 +80,8 @@ def createlevel(levelname):
                     elif current == grond:
                         objects.grond(foox, fooy)
                         
-                        
+                    elif current == spike:
+                        objects.spike(foox, fooy)
                         
                         
                         
