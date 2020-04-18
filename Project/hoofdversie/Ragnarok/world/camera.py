@@ -14,8 +14,8 @@ from .. import settings as s, globale_variablen as g
 
 
 def cameramovement():
-    g.camera_x = g.ragnar.x - 350
-    g.camera_y = g.ragnar.y - 200
+    g.camera_x = g.ragnar.x - s.camera_xoffset
+    g.camera_y = g.ragnar.y - s.camera_yoffset
     #linkerboundary
     if g.camera_x <= 0:
         g.camera_x = 0
