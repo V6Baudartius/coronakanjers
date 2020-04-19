@@ -13,6 +13,7 @@ if __name__ == '__main__':
 from .. import settings, globale_variablen, gfx
 import pygame
 
+#deze enemy is een work in progress en haalt waarschijnlijk de release niet
 class enemy_lopend():
     def __init__(self, x, y):
         self.sprite = imgload('enemy.bmp')

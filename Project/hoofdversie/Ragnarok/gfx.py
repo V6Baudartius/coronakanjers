@@ -21,7 +21,8 @@ def draw(sprite, x=0, y=0, width=set.gridsize, height=set.gridsize):
     drawy = y - globale_variablen.camera_y
     drawposition = (drawx,drawy)
     
-    globale_variablen.screen.blit(sprite, drawposition)
+    affectedarea = globale_variablen.screen.blit(sprite, drawposition)
+    globale_variablen.displayupdatelist.append(affectedarea)
 
     
 def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
@@ -30,6 +31,7 @@ def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
     
     drawrectangle = pygame.Rect(drawx,drawy,width,height)  
     pygame.draw.rect(globale_variablen.screen, set.background_color, drawrectangle)
+    globale_variablen.displayupdatelist.append(drawrectangle)
     
 def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
 #__file__ is een unieke variable die de map waarin een script staat geeft
@@ -38,9 +40,10 @@ def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
     stap1 = os.path.join(currentpath, mapnaam) #./game_versies/mapnaam/
     stap2 = os.path.join(stap1, bestandsnaam) #./game_versies/mapnaam/bestandsnaam
 
-    image = pygame.image.load(stap2).convert()
+    image = pygame.image.load(stap2)
+    image = image.convert()
     
-    image.set_colorkey(set.colorkey)
+    
     
     
     

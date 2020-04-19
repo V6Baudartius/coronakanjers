@@ -48,7 +48,7 @@ yrange = 500
 
 #framerate
 printfps = True
-capfps = True
+capfps = False
 gamespeed = 60
 
 #font

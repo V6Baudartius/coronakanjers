@@ -68,7 +68,9 @@ def loop():
     glob.ragnar.postdraw()
     
     #push the changed surface to screen
-    pygame.display.update()
+    for area in glob.displayupdatelist:
+        pygame.display.update(area)
+    glob.displayupdatelist.clear()
     
     
     #fps meter
