@@ -56,6 +56,24 @@ class hero():
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
         gfx.drawrect(settings.background_color,self.x,self.y)
+
+    def crouch(self):
+        self.height= self.height / 2
+        #self.wy = self.wy + self.height
+        if self.height <= 100:
+            self.height = 100
+        self.hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.sprite = gfx.imgload('Ragnar.png')
+        if globale_variablen.keys[pygame.K_s]:
+            self.crouch()
+        else:
+            self.uncrouch()
+
+    def uncrouch(self):
+        self.sprite = gfx.imgload('deur.png')
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
+        self.hitbox = pygame.Rect(self.x, self.y, self.width, self.height)
     
     def horizontalmovement(self, keys):    
         #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
@@ -64,6 +82,12 @@ class hero():
         direction = keys[pygame.K_d] - keys[pygame.K_a]
         self.xspd = direction * self.mvmtspd
         
+<<<<<<< Updated upstream
+=======
+        if abs(self.xspd) > settings.maxspeed:
+            self.xspd = direction*settings.maxspeed
+     
+>>>>>>> Stashed changes
     def verticalmovement(self, keys):
         #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
         #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
@@ -161,6 +185,7 @@ class hero():
             self.yspd += settings.gravity
   
         #dit systeem doet alleen gravity als je al bepaalde tijd van een blok afbent
+<<<<<<< Updated upstream
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
 
     #def crouch(self):
@@ -172,6 +197,10 @@ class hero():
         #self.sprite = imgload('Ragnar.png')
         #print(self.wy)
         
+=======
+        #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'          
+
+>>>>>>> Stashed changes
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   
         
@@ -180,7 +209,9 @@ class hero():
 def allupdates():
     globale_variablen.ragnar.horizontalmovement(globale_variablen.keys)
     globale_variablen.ragnar.verticalmovement(globale_variablen.keys)
+    globale_variablen.ragnar.crouch()
     inrange = globale_variablen.ragnar.get_inrange()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)
+    
         
