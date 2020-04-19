@@ -89,17 +89,15 @@ class spike(genericobject):
         
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
-            try:
-                funcs.destroyObject(self)
-            except:
-                print('failed to destroy') 
+            funcs.destroyObject(self)
+            
 
 
 class hakbijl(genericobject):
-    def __init__(self,x,y,xspd = 50,yspd = -40):
+    def __init__(self,x,y):
+        self.xspd = set.xgooisnelheid
+        self.yspd = set.ygooisnelheid
         sprite = gfx.imgload('bijl1.png')
-        self.xspd = xspd
-        self.yspd = yspd
         super().__init__(x, y, sprite)
         
     def update(self):
@@ -107,6 +105,14 @@ class hakbijl(genericobject):
         self.hitbox.y += self.yspd
         self.yspd += set.gravity
         
+        for each in globale_variablen.allCollisionObjects:
+            if each.hitbox.collidepoint((self.hitbox.centerx, self.hitbox.centery)):
+            
+                soort = type(each)
+                if soort == doos:
+                    funcs.destroyObject(each)
+                    
+                funcs.destroyObject(self)
         
         
         

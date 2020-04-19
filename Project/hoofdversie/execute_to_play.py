@@ -4,3 +4,4 @@ print('import succesful')
 import cProfile
 cProfile.run('Ragnarok.main.execute()')
 
+

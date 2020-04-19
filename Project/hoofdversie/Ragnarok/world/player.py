@@ -31,6 +31,11 @@ class hero():
         self.ragnar = gfx.imgload('ragnar.png')
         self.sprite = self.grote_ragnar
         
+        #axe
+        self.oncooldown = False
+        self.timer = 0
+        
+        
         #coordinaten
         self.x = x
         self.y = y
@@ -63,31 +68,46 @@ class hero():
         gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
         
     def bijlgooi(self):
-        if globale_variablen.keys[pygame.K_x]:
+        if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
             objects.hakbijl(self.x, self.y)
+            self.oncooldown = True
+            self.timer = 0
             
+        if self.oncooldown:
+            self.timer += 1
             
-    def crouch(self):
+        if self.timer > settings.cooldown:
+            self.oncooldown = False
+            
+    def crouch(self, collisionrange):
+        #crouch
         if globale_variablen.keys[pygame.K_s] and self.crouching == False:
             self.crouching = True
-            
-            self.hitbox.height = self.hitbox.height / 2
+            self.y += settings.gridsize
+            self.hitbox.height -= settings.gridsize
             #self.wy = self.wy + self.height
             if self.hitbox.height <= settings.gridsize:
                 self.hitbox.height = settings.gridsize
             self.sprite = self.ragnar
-            
-        elif self.crouching == True and not globale_variablen.keys[pygame.K_s]:
-            self.crouching = False
-            
-            self.sprite = self.grote_ragnar
-            self.y -= settings.gridsize
-            width = self.sprite.get_width()
-            height = self.sprite.get_height()
-            self.hitbox = pygame.Rect(self.x, self.y, width, height)
         
-    
-    
+        #uncrouch
+        elif self.crouching == True and not globale_variablen.keys[pygame.K_s]:
+            print(self.onground)
+            headroom = True
+            vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
+            for each in collisionrange:
+                if each.hitbox.colliderect(vierkant):
+                    headroom = False
+            if headroom:
+                self.crouching = False                
+                self.sprite = self.grote_ragnar
+                self.y -= settings.gridsize
+                width = self.sprite.get_width()
+                height = self.sprite.get_height()
+                self.hitbox = pygame.Rect(self.x, self.y, width, height)
+
+
+
     def horizontalmovement(self):    
         #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
         # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
@@ -185,11 +205,14 @@ class hero():
             #dan staan we waarschijnlijk op de grond
             #maar omdat dit niet zeker is checken we nog eens met collision
             repeated_test = False
+            self.hitbox.y += 2
             for each in collisionlist:
-                collideposition = (self.hitbox.centerx, self.hitbox.bottom + 2)
-                if each.hitbox.collidepoint( collideposition ):
+                if each.hitbox.colliderect( self.hitbox ):
                     repeated_test = True
             self.onground = repeated_test
+            self.hitbox.y -=2
+        
+        
         
         #flyframes zijn het aantal cheatframes dat we in de lucht hangen
         if self.onground:
@@ -209,11 +232,11 @@ class hero():
         
         
 def allupdates():
+    inrange = globale_variablen.ragnar.get_inrange()
     globale_variablen.ragnar.bijlgooi()
-    globale_variablen.ragnar.crouch()
+    globale_variablen.ragnar.crouch(inrange)
     globale_variablen.ragnar.horizontalmovement()
     globale_variablen.ragnar.verticalmovement()
-    inrange = globale_variablen.ragnar.get_inrange()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)
         

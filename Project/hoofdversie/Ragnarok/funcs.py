@@ -16,8 +16,6 @@ from . import settings, globale_variablen
 def scherminitialisatie(height,width,caption):
     
     pygame.init()#argumenten
-    screenwidth = height      #wijdte
-    screenheight = width    #hoogte
       
     if settings.fullscreen:
         monitor = pygame.display.Info()
@@ -30,7 +28,7 @@ def scherminitialisatie(height,width,caption):
         
         scherm = pygame.display.set_mode((width,height), pygame.FULLSCREEN)
     else:
-        scherm = pygame.display.set_mode((screenwidth,screenheight))
+        scherm = pygame.display.set_mode((width,height))
     
     pygame.display.set_caption(caption)
     return scherm
@@ -45,7 +43,9 @@ def sign(number):
         
         
 def destroyObject(object):
-    globale_variablen.allObjects.remove(object)
-    globale_variablen.allCollisionObjects.remove(object)
-            
+    try:
+        globale_variablen.allObjects.remove(object)
+        globale_variablen.allCollisionObjects.remove(object)
+    except:
+        print('destroy failed')
    

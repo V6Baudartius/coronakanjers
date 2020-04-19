@@ -35,6 +35,7 @@ displayupdatelist = list()
 
 
 
+
 #achtergrond surface om mee te gummen
 backgroundsurface = pygame.Surface((settings.gridsize,settings.gridsize))
 backgroundsurface.fill(settings.background_color)

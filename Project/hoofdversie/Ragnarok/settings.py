@@ -13,9 +13,9 @@ if __name__ == '__main__':
 import pygame
 
 #scherm
-scherm_hoogte = 1000
-scherm_wijdte = 1000
-fullscreen = True  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
+scherm_hoogte = 800
+scherm_wijdte = 1500
+fullscreen = False  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw
@@ -30,7 +30,7 @@ customsize = False
 level_w = 0
 level_h = 0
 camera_xoffset = 350
-camera_yoffset = 200
+camera_yoffset = 400
 
 #movement
 gravity = 2
@@ -42,8 +42,8 @@ friction = 4
 flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker
 #afstand waarin gezocht wordt als collision gedaan wordt
-xrange = 500
-yrange = 500
+xrange = 600
+yrange = 600
 
 #framerate
 printfps = True
@@ -56,7 +56,10 @@ font = "C:/Windows/Fonts/comicz.TTF"
 #draw settigns
 background_color = (105, 199, 224)
 
-
+#bijl
+xgooisnelheid = 40
+ygooisnelheid = -20
+cooldown = 20
 
 
 #noten:
