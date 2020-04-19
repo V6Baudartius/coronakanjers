@@ -27,7 +27,9 @@ import pygame
 class hero():
     def __init__(self, x, y):
 		#draw variablen
-        self.sprite = gfx.imgload('Ragnar.png')
+        self.grote_ragnar = gfx.imgload('grote_ragnar.png')
+        self.ragnar = gfx.imgload('ragnar.png')
+        self.sprite = self.grote_ragnar
         
         #coordinaten
         self.x = x
@@ -35,7 +37,8 @@ class hero():
         self.xspd = 0
         self.yspd = 0
         
-        #bijl
+        #crouch
+        self.crouching = False
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
@@ -57,7 +60,7 @@ class hero():
 
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
-        gfx.drawrect(settings.background_color,self.x,self.y)
+        gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
         
     def bijlgooi(self):
         if globale_variablen.keys[pygame.K_x]:
@@ -65,16 +68,20 @@ class hero():
             
             
     def crouch(self):
-        if globale_variablen.keys[pygame.K_s]:
-            self.hitbox.height= self.hitbox.height / 2
+        if globale_variablen.keys[pygame.K_s] and self.crouching == False:
+            self.crouching = True
+            
+            self.hitbox.height = self.hitbox.height / 2
             #self.wy = self.wy + self.height
-            if self.hitbox.height <= 100:
-                self.hitbox.height = 100
+            if self.hitbox.height <= settings.gridsize:
+                self.hitbox.height = settings.gridsize
+            self.sprite = self.ragnar
             
-            self.sprite = gfx.imgload('Ragnar.png')
+        elif self.crouching == True and not globale_variablen.keys[pygame.K_s]:
+            self.crouching = False
             
-        else:
-            self.sprite = gfx.imgload('deur.png')
+            self.sprite = self.grote_ragnar
+            self.y -= settings.gridsize
             width = self.sprite.get_width()
             height = self.sprite.get_height()
             self.hitbox = pygame.Rect(self.x, self.y, width, height)
