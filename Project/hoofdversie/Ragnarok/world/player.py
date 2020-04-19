@@ -62,6 +62,23 @@ class hero():
     def bijlgooi(self):
         if globale_variablen.keys[pygame.K_x]:
             objects.hakbijl(self.x, self.y)
+            
+            
+    def crouch(self):
+        if globale_variablen.keys[pygame.K_s]:
+            self.hitbox.height= self.hitbox.height / 2
+            #self.wy = self.wy + self.height
+            if self.hitbox.height <= 100:
+                self.hitbox.height = 100
+            
+            self.sprite = gfx.imgload('Ragnar.png')
+            
+        else:
+            self.sprite = gfx.imgload('deur.png')
+            width = self.sprite.get_width()
+            height = self.sprite.get_height()
+            self.hitbox = pygame.Rect(self.x, self.y, width, height)
+        
     
     
     def horizontalmovement(self):    
@@ -186,6 +203,7 @@ class hero():
         
 def allupdates():
     globale_variablen.ragnar.bijlgooi()
+    globale_variablen.ragnar.crouch()
     globale_variablen.ragnar.horizontalmovement()
     globale_variablen.ragnar.verticalmovement()
     inrange = globale_variablen.ragnar.get_inrange()
