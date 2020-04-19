@@ -15,7 +15,7 @@ import pygame
 #scherm
 scherm_hoogte = 1000
 scherm_wijdte = 1000
-fullscreen = False  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
+fullscreen = True  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw

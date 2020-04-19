@@ -26,7 +26,7 @@ import pygame
 class hero():
     def __init__(self, x, y):
 		#draw variablen
-        self.sprite = gfx.imgload('Ragnar.png')
+        self.sprite = gfx.imgload('deur.png')
         
         #coordinaten
         self.x = x
@@ -43,9 +43,9 @@ class hero():
         self.onground = True
         
         #hitbox rectangle
-        width = self.sprite.get_width()
-        height = self.sprite.get_height()
-        self.hitbox = pygame.Rect(x, y, width, height)
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
+        self.hitbox = pygame.Rect(x, y, self.width, self.height)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -162,6 +162,15 @@ class hero():
   
         #dit systeem doet alleen gravity als je al bepaalde tijd van een blok afbent
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
+
+    #def crouch(self):
+        #self.height = self.height / 2
+        #if self.height <= 100:
+        #    self.height = 100
+        #self.hitbox = pygame.Rect(self.wx, self.wy, self.width, self.height)
+        #self.wy = self.wy + self.height
+        #self.sprite = imgload('Ragnar.png')
+        #print(self.wy)
         
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   

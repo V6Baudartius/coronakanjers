@@ -29,7 +29,7 @@ def start(level):
     
     #sytze's stopwatch
     global stopwatch
-    stopwatch = klok.stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0))
+    stopwatch = klok.stopwatch((0,255,0),(255,255,255),1150,5,True,True,5,(0,0,0))
     
     #creation
     levelcreator.createlevel(level)
@@ -78,6 +78,10 @@ def loop():
         if counter > 120:
             counter = 0
             print(clock.get_fps() )
+
+    #crouch
+    if glob.keys[pygame.K_s]:
+        glob.ragnar.crouch()
     
 
     #exit conditions
