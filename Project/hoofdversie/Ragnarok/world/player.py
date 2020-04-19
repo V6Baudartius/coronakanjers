@@ -11,6 +11,7 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 from .. import settings, globale_variablen, gfx, funcs
+from . import objects
 import pygame
 
 #-----loopfuncties-------
@@ -58,12 +59,17 @@ class hero():
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
         gfx.drawrect(settings.background_color,self.x,self.y)
+        
+    def bijlgooi(self):
+        if globale_variablen.keys[pygame.K_x]:
+            objects.hakbijl(self.x, self.y)
     
-    def horizontalmovement(self, keys):    
+    
+    def horizontalmovement(self):    
         #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
         # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
         #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
-        direction = keys[pygame.K_d] - keys[pygame.K_a]
+        direction = globale_variablen.keys[pygame.K_d] - globale_variablen.keys[pygame.K_a]
         self.xspd += direction * settings.acceleration
         
         lostspeed = funcs.sign(self.xspd) * settings.friction
@@ -75,16 +81,10 @@ class hero():
             self.xspd = direction*settings.maxspeed
             
      
-
-
-
-
-
-     
-    def verticalmovement(self, keys):
+    def verticalmovement(self):
         #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
         #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
-        if keys[pygame.K_w] and self.noymove >= 2:
+        if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
             self.yspd = -self.jmpspd   
 
     def get_inrange(self):
@@ -186,8 +186,9 @@ class hero():
         
         
 def allupdates():
-    globale_variablen.ragnar.horizontalmovement(globale_variablen.keys)
-    globale_variablen.ragnar.verticalmovement(globale_variablen.keys)
+    globale_variablen.ragnar.bijlgooi()
+    globale_variablen.ragnar.horizontalmovement()
+    globale_variablen.ragnar.verticalmovement()
     inrange = globale_variablen.ragnar.get_inrange()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)

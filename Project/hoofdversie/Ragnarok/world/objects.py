@@ -95,9 +95,17 @@ class spike(genericobject):
                 print('failed to destroy') 
 
 
-#class              
+class hakbijl(genericobject):
+    def __init__(self,x,y,xspd = 50,yspd = -40):
+        sprite = gfx.imgload('bijl1.png')
+        self.xspd = xspd
+        self.yspd = yspd
+        super().__init__(x, y, sprite)
         
-        
+    def update(self):
+        self.hitbox.x += self.xspd
+        self.hitbox.y += self.yspd
+        self.yspd += set.gravity
         
         
         
