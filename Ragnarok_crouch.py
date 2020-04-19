@@ -86,7 +86,7 @@ def return1(number):
 class hero():
     def __init__(self, x, y):
 		#draw variablen
-        self.sprite = imgload('Ragnar.png')
+        self.sprite = imgload('deur.png')
         
 		
 	#coordinaten
@@ -107,9 +107,9 @@ class hero():
        
         
 	#hier maken we een rectangle die we kunnen gebruiken voor collision
-        width = self.sprite.get_width()
-        height = self.sprite.get_height()
-        self.hitbox = pygame.Rect(self.wx, self.wy, width, height)
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
+        self.hitbox = pygame.Rect(self.wx, self.wy, self.width, self.height)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de collisionrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -260,6 +260,16 @@ class hero():
         #gravity    
         if  not self.noymove > 3 or not onground:
             self.yspd += gravity
+
+    def crouch(self):
+        self.height= self.height / 2
+        if self.height <= 100:
+            self.height = 100
+        self.hitbox = pygame.Rect(self.wx, self.wy, self.width, self.height)
+        self.wy = self.wy + self.height
+        self.sprite = imgload('Ragnar.png')
+        print(self.wy)
+
         
         
     def drawupdate(self):
@@ -534,6 +544,9 @@ while True:
         camera_y = -300
     if deur.hitbox.colliderect(ragnar.hitbox)and keysarray[pygame.K_SPACE]:
         print('next level')
+    if keysarray[pygame.K_s]:
+        ragnar.crouch()
+        
         
     #draw fase
     screen.fill((0,255,255))
