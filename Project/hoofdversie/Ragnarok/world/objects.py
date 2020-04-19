@@ -95,7 +95,7 @@ class spike(genericobject):
                 print('failed to destroy') 
 
 
-class                
+#class              
         
         
         
