@@ -35,6 +35,8 @@ class hero():
         self.xspd = 0
         self.yspd = 0
         
+        #bijl
+        
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
         self.movdir = 0
