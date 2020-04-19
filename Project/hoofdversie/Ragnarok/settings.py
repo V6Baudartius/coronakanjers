@@ -32,7 +32,6 @@ level_h = 0
 camera_xoffset = 350
 camera_yoffset = 200
 
-
 #movement
 gravity = 2
 jumpspeed = 40
