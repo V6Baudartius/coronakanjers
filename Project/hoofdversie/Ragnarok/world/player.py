@@ -35,7 +35,7 @@ class hero():
         self.xspd = 0
         self.yspd = 0
         
-        
+        #bijl
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
@@ -43,7 +43,6 @@ class hero():
         self.noymove = 0
         self.flyframes = 0
         self.onground = True
-        
 
         #hitbox rectangle
         width = self.sprite.get_width()
