@@ -263,14 +263,18 @@ class hero():
 
     def crouch(self):
         self.height= self.height / 2
+        #self.wy = self.wy + self.height
         if self.height <= 100:
             self.height = 100
         self.hitbox = pygame.Rect(self.wx, self.wy, self.width, self.height)
-        self.wy = self.wy + self.height
         self.sprite = imgload('Ragnar.png')
         print(self.wy)
 
-        
+    def uncrouch(self):
+        self.sprite = imgload('deur.png')
+        self.width = self.sprite.get_width()
+        self.height = self.sprite.get_height()
+        self.hitbox = pygame.Rect(self.wx, self.wy, self.width, self.height)
         
     def drawupdate(self):
         #draw
@@ -546,7 +550,7 @@ while True:
         print('next level')
     if keysarray[pygame.K_s]:
         ragnar.crouch()
-        
+    else: ragnar.uncrouch()
         
     #draw fase
     screen.fill((0,255,255))
