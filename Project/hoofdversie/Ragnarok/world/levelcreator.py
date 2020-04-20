@@ -19,6 +19,8 @@ transition =(255,0,255,255)     #paars
 steen =     (0,255,255,255)     #cyaan
 grond =     (255,128,0,255)     #bruin
 spike =     (0,0,0)             #negro kleur
+bloem1 =    (218,83,2,255)       #oranje
+wolk =      (230,240,240,255)   #blauwwit
 
 #-----------------------
 
@@ -80,6 +82,13 @@ def createlevel(levelname):
                         
                     elif current == spike:
                         objects.spike(foox, fooy)
+                            
+                    elif current == bloem1:
+                        objects.bloem1(foox, fooy)
+                        
+                    elif current == wolk:
+                        objects.wolk(foox, fooy)
+                    
                         
 #-------------------------------------------------------------------------------                        
                         
