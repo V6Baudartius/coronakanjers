@@ -62,6 +62,11 @@ def loop():
     for object in glob.allObjects:
         object.update()
         
+    #animation
+    for object in glob.allObjects:
+        object.animation()
+
+    
     #postdraw -- voor uitleg zie objects.py
     for object in glob.allObjects:
         object.postdraw()

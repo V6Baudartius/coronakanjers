@@ -21,6 +21,7 @@ caption = 'RAGNAROK'
 #draw
 gridsize = 128
 scale = 1
+enablecolorkey = True
 colorkey = (255,255,255)
 
 
@@ -38,16 +39,16 @@ jumpspeed = 40
 maxspeed = 20
 acceleration = 5
 friction = 4
-
 flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker
+
 #afstand waarin gezocht wordt als collision gedaan wordt
 xrange = 600
 yrange = 600
 
 #framerate
 printfps = True
-capfps = True
+capfps = False
 gamespeed = 60
 
 #font

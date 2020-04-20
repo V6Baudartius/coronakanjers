@@ -41,6 +41,8 @@ def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
     stap2 = os.path.join(stap1, bestandsnaam) #./game_versies/mapnaam/bestandsnaam
 
     image = pygame.image.load(stap2)
+    if set.enablecolorkey:
+        image.set_colorkey(set.colorkey)
     image = image.convert()
     
     

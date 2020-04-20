@@ -47,5 +47,5 @@ def destroyObject(object):
         globale_variablen.allObjects.remove(object)
         globale_variablen.allCollisionObjects.remove(object)
     except:
-        print('destroy failed')
+        pass
    

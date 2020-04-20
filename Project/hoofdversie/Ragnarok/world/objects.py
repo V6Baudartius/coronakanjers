@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
 from .. import settings as set, globale_variablen, gfx, funcs
 import pygame
+from random import randint
 
 
 #een object zonder collision dat wel getekend wordt
@@ -36,19 +37,16 @@ class genericobject():
         
     def update(self):
         pass    #de update kan bij elk object apart worden gedefineerd
+        
+    def animation(self):
+        pass
     
     def postdraw(self):
         gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)
 
 #------------------------------------normale/decoratieve objecten -----------------------------------------------------
         
-class kleine_toorts(genericobject):
-    def __init__(self, x, y):
-        sprite = gfx.imgload('torch.gif')
-        super().__init__(x, y, sprite)
-        
-    def update(self):
-        pass
+
         
 class grond(genericobject):
     def __init__(self, x, y):
@@ -57,10 +55,96 @@ class grond(genericobject):
         
         
 
+
+
+#-------------------------------------------PARENT VAN OBJECTEN MET ANIMATIE-------------------------------------------
+        
+class animationobject(genericobject):
+    def __init__(self,x,y, sprite):
+        self.random = False
+        self.animationcounter = 0
+        self.currentframe = 0
+        self.frame = list()
+    #bij de kinderen append je alle frames van de animatie aan deze list
+        #self.frame.append('frame1.png')
+        #self.frame.append('frame2.png')
+        #self.frame.append('frame3.png')
+        #enz..
+        
+        super().__init__(x,y,sprite)
         
         
+    def animation(self):
+        if self.random:
+            self.animationcounter += randint(0,1)
+        else:
+            self.animationcounter += 1
         
         
+        if self.animationcounter >= self.animationspeed:
+            self.animationcounter = 0
+            self.currentframe += 1
+            if self.currentframe >= self.animationsize:
+                self.currentframe = 0
+            
+            self.sprite = self.frame[self.currentframe]
+            
+#---------------------------------------OBJECTEN MET ANIMATIE-------------------------------------------
+
+class kleine_toorts(animationobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('torch0000.png')
+        #animation
+        super().__init__(x,y,sprite)
+        self.animationspeed = 15    #ticks each frame wil be displayed
+        self.animationsize = 4  #amount of frames
+        self.random = True
+        
+        self.frame.append(sprite)
+        self.frame.append(gfx.imgload('torch0001.png'))
+        self.frame.append(gfx.imgload('torch0002.png'))
+        self.frame.append(gfx.imgload('torch0003.png'))
+        
+    def update(self):
+        if randint(1,40) == 1:
+            smoke(self.hitbox.x + randint(0,set.gridsize/2),self.hitbox.y + 10)
+            
+
+
+class hakbijl(animationobject):
+    def __init__(self,x,y):
+        sprite = gfx.imgload('bijl1.png')
+        #animation
+        self.animationspeed = 5    #ticks each frame wil be displayed
+        self.animationsize = 4  #amount of frames
+        super().__init__(x,y,sprite)
+        
+        self.frame.append(sprite)
+        self.frame.append(gfx.imgload('bijl2.png'))
+        self.frame.append(gfx.imgload('bijl3.png'))
+        self.frame.append(gfx.imgload('bijl4.png'))
+        
+        #movement
+        self.xspd = set.xgooisnelheid
+        self.yspd = set.ygooisnelheid
+        
+    def update(self):        
+        #movement + events
+        self.hitbox.x += self.xspd
+        self.hitbox.y += self.yspd
+        self.yspd += set.gravity
+        
+        if self.yspd > 50:
+            funcs.destroyObject(self)
+        
+        for each in globale_variablen.allCollisionObjects:
+            if each.hitbox.colliderect(self.hitbox):
+            
+                soort = type(each)
+                if soort == doos:
+                    funcs.destroyObject(each)
+                    
+                funcs.destroyObject(self)
         
         
         
@@ -93,26 +177,7 @@ class spike(genericobject):
             
 
 
-class hakbijl(genericobject):
-    def __init__(self,x,y):
-        self.xspd = set.xgooisnelheid
-        self.yspd = set.ygooisnelheid
-        sprite = gfx.imgload('bijl1.png')
-        super().__init__(x, y, sprite)
-        
-    def update(self):
-        self.hitbox.x += self.xspd
-        self.hitbox.y += self.yspd
-        self.yspd += set.gravity
-        
-        for each in globale_variablen.allCollisionObjects:
-            if each.hitbox.collidepoint((self.hitbox.centerx, self.hitbox.centery)):
-            
-                soort = type(each)
-                if soort == doos:
-                    funcs.destroyObject(each)
-                    
-                funcs.destroyObject(self)
+
         
         
         
@@ -158,9 +223,32 @@ class doos(collisionobject):
 
 
         
+#---------------Particles Parent-----------------------------------------------
 
-
+class particle(genericobject):
+    def __init__(self, x, y, sprite):
+        self.xspd = 0
+        self.yspd = 0
+        self.duration = 120
+        self.time = 0
+        super().__init__(x,y,sprite)
         
+    def update(self):
+        self.hitbox.x += self.xspd
+        self.hitbox.y += self.yspd
+        self.time += 1
+        if self.time > self.duration:
+            funcs.destroyObject(self)
+        
+#-------------------------------Particles------------------------------------------
+
+class smoke(particle):
+        def __init__(self, x, y):
+            sprite = gfx.imgload('smoke.png')
+            super().__init__(x,y,sprite)
+            self.yspd = randint(-3,-1)
+            self.duration = randint(110,200)
+            
         
         
         
