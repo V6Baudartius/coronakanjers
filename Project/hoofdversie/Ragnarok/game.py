@@ -45,10 +45,11 @@ counter = 0
 def loop():
 
     #predraw -- voor uitleg zie objects.py
-    for object in glob.allObjects:
-        object.predraw()
+    #for object in glob.allObjects:
+    #    object.predraw()
+    #glob.ragnar.predraw()
+    glob.screen.fill(settings.background_color)
     
-    glob.ragnar.predraw()
     
     #camera
     camera.cameramovement()
@@ -73,9 +74,7 @@ def loop():
     glob.ragnar.postdraw()
     
     #push the changed surface to screen
-    for area in glob.displayupdatelist:
-        pygame.display.update(area)
-    glob.displayupdatelist.clear()
+    pygame.display.flip()
     
     
     #fps meter

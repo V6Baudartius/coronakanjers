@@ -43,12 +43,12 @@ flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van e
                     #hogere waardes maken platformen aanzienlijk makkelijker
 
 #afstand waarin gezocht wordt als collision gedaan wordt
-xrange = 600
-yrange = 600
+xrange = gridsize
+yrange = 2*gridsize
 
 #framerate
 printfps = True
-capfps = True
+capfps = False
 gamespeed = 60
 
 #font

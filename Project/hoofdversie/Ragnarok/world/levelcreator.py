@@ -21,6 +21,7 @@ grond =     (255,128,0,255)     #bruin
 spike =     (0,0,0)             #negro kleur
 bloem1 =    (218,83,2,255)       #oranje
 wolk =      (230,240,240,255)   #blauwwit
+ijs =       (111,94,236,255)    #ijsblauw
 
 #-----------------------
 
@@ -88,6 +89,9 @@ def createlevel(levelname):
                         
                     elif current == wolk:
                         objects.wolk(foox, fooy)
+                        
+                    elif current == ijs:
+                        objects.ijs(foox, fooy)
                     
                         
 #-------------------------------------------------------------------------------                        

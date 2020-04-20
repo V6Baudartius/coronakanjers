@@ -30,7 +30,7 @@ def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
     drawy = y - globale_variablen.camera_y
     
     drawrectangle = pygame.Rect(drawx,drawy,width,height)  
-    pygame.draw.rect(globale_variablen.screen, set.background_color, drawrectangle)
+    globale_variablen.screen.fill(set.background_color, drawrectangle)
     globale_variablen.displayupdatelist.append(drawrectangle)
     
 def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
