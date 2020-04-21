@@ -48,7 +48,7 @@ yrange = 2*gridsize
 
 #framerate
 printfps = True
-capfps = False
+capfps = True
 gamespeed = 60
 
 #font
