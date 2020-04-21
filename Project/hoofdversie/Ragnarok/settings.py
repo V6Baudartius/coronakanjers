@@ -43,8 +43,8 @@ flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van e
                     #hogere waardes maken platformen aanzienlijk makkelijker
 
 #afstand waarin gezocht wordt als collision gedaan wordt
-xrange = gridsize
-yrange = 2*gridsize
+xrange = gridsize + 10
+yrange = 2*gridsize + 10
 
 #framerate
 printfps = True
@@ -61,6 +61,11 @@ background_color = (105, 199, 224)
 xgooisnelheid = 40
 ygooisnelheid = -20
 cooldown = 20
+
+#monster
+monster_speed = 4
+
+
 
 
 #noten:

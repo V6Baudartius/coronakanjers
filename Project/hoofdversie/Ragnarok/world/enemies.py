@@ -10,8 +10,54 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from .. import settings, globale_variablen, gfx
+from .. import settings as set, globale_variablen as glob, gfx
+from .objects import objects
 import pygame
+
+class achtervolgend_monster(objects.genericobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('budgetbeer.png')
+        super().__init__(x,y,sprite)
+        
+    def update(self):
+        self.hitbox.y = glob.ragnar.y
+        self.hitbox.x += set.monster_speed
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #deze enemy is een work in progress en haalt waarschijnlijk de release niet
 class enemy_lopend():

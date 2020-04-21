@@ -31,3 +31,4 @@ def cameramovement():
     #onderkant
     if g.camera_y > s.level_h - s.scherm_hoogte:
         g.camera_y = s.level_h - s.scherm_hoogte
+        

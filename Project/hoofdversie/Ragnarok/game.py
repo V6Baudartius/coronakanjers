@@ -45,9 +45,9 @@ counter = 0
 def loop():
 
     #predraw -- voor uitleg zie objects.py
-    #for object in glob.allObjects:
-    #    object.predraw()
-    #glob.ragnar.predraw()
+        #for object in glob.allObjects:
+        #    object.predraw()
+        #glob.ragnar.predraw()
     glob.screen.fill(settings.background_color)
     
     
@@ -58,7 +58,7 @@ def loop():
     glob.keys = pygame.key.get_pressed()
     
     #update
-    player.allupdates()
+    player.allupdates() #hier zit ook de draw fase bij
     stopwatch.update()
     for object in glob.allObjects:
         object.update()
@@ -71,7 +71,8 @@ def loop():
     #postdraw -- voor uitleg zie objects.py
     for object in glob.allObjects:
         object.postdraw()
-    glob.ragnar.postdraw()
+    globale_variablen.ragnar.postdraw()
+    
     
     #push the changed surface to screen
     pygame.display.flip()
