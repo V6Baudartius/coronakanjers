@@ -34,7 +34,7 @@ def start(level):
     #creation
     levelcreator.createlevel(level)
     
-    enemies.achtervolgend_monster(-200,0)
+    enemies.achtervolgend_monster(-200,glob.ragnar.y)
     
     #firstdraw
     glob.screen.fill(settings.background_color)
@@ -61,7 +61,7 @@ def loop():
     
     #update
     player.allupdates() #hier zit ook de draw fase bij
-    stopwatch.update()
+    
     for object in glob.allObjects:
         object.update()
         
@@ -74,7 +74,7 @@ def loop():
     for object in glob.allObjects:
         object.postdraw()
     glob.ragnar.postdraw()
-    
+    stopwatch.update()
     
     #push the changed surface to screen
     pygame.display.flip()
@@ -83,7 +83,7 @@ def loop():
     #fps meter
     if settings.printfps:
         global counter
-        counter += 1
+        counter += 1 
         if counter > 120:
             counter = 0
             print(clock.get_fps() )
@@ -100,11 +100,8 @@ def loop():
     if glob.keys[pygame.K_ESCAPE]:
         pygame.quit()                  #dan sluit pygame af 
         exit()
-          
-            
-            
-            
-            
+        
+        
             
     
     #clock -- deze gaat als laatste omdat deze wacht als t script sneller gaat dan gamespeed
