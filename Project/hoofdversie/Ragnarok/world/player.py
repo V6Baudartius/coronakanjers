@@ -118,13 +118,7 @@ class hero():
         #gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
         pass
         
-    def grondcheck(self, collisionrange):
-        self.grondbox.x = self.x
-        self.grondbox.y = self.hitbox.bottom
-        self.ondergrond = None
-        for each in collisionrange:
-            if self.grondbox.colliderect(each.hitbox):
-                self.ondergrond = type(each)
+
 
         
     def bijlgooi(self):
@@ -169,13 +163,27 @@ class hero():
                 #move naar voren
                     self.xspd = 3
                     
-
+    def grondcheck(self, collisionrange):
+        self.grondbox.x = self.x
+        self.grondbox.y = self.hitbox.bottom
+       
+        self.ondergrond = None
+        for each in collisionrange:
+            if self.grondbox.colliderect(each.hitbox):
+                self.ondergrond = type(each)
 
 
     def horizontalmovement(self):    
         #ondergrond check
+        #air
+        if self.ondergrond == None:   
+            acceleration = settings.luchtacceleration
+            friction = settings.luchtfriction
+            maxspeed = settings.luchtmaxspeed
+            exceedfriction = settings.luchtexceedfriction
+
         #ijs
-        if self.ondergrond == objects.ijs:   
+        elif self.ondergrond == objects.ijs:   
             acceleration = settings.ijsacceleration
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
@@ -187,6 +195,9 @@ class hero():
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
             exceedfriction = settings.ijexceedfriction    
+        
+        
+        
         
         #normaal
         else:
