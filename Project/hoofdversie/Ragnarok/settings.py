@@ -14,7 +14,7 @@ import pygame
 
 #beer
 budgetbeer = True
-
+beerfollowdistance = 2000
 
 
 #scherm
@@ -43,14 +43,18 @@ gravity = 2
 jumpspeed = 40
 speedlimit = 100
 
-hardspeedcap = 30
+hardspeedcap = 120
 
 #normale h variablen
-normalacceleration = 3
+normalacceleration = 4
 normalfriction = 1          #dit is de standaard vertraging
 normalmaxspeed = 20
 normalexceedfriction = 0.50 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
 
+luchtacceleration = 4
+luchtfriction = 0
+luchtmaxspeed = 10
+luchtexceedfriction = 0.30 
 
 #speciale ondergronden
 ijsacceleration = 2

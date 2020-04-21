@@ -23,8 +23,8 @@ class achtervolgend_monster(objects.genericobject):
     def update(self):
         self.yspd = int( (glob.ragnar.hitbox.centery - self.hitbox.bottom)/8)
         
-        if glob.ragnar.x - self.hitbox.x > (set.camera_xoffset + self.hitbox.width):
-            self.hitbox.x = glob.ragnar.x - (set.camera_xoffset + self.hitbox.width)
+        if glob.ragnar.x - self.hitbox.x > set.beerfollowdistance:
+            self.hitbox.x = glob.ragnar.x - set.beerfollowdistance
         
         
         self.hitbox.y += self.yspd

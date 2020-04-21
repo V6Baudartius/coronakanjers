@@ -226,20 +226,18 @@ class hero():
         #friction
         if not self.xspd == 0:        
             #als de snelheid kleiner is dan de maxspeed
-            if abs(self.xspd) <= maxspeed:
-                #verliezen we een standaardhoeveelheid
-                lostspeed = funcs.sign(self.xspd) * friction
-            #als de snelheid groter is dan de maxspeed
-            else: 
-            #verliezen we een percentage van onze speed
-                lostspeed = int(abs(self.xspd)*exceedfriction)
+            
+            
+            lostspeed = funcs.sign(self.xspd) * friction
+            if abs(self.xspd) > maxspeed:
+                lostspeed += (int(abs(self.xspd)-maxspeed+2)*exceedfriction)
             
             #code om te voorkomen dat friction door nul heen gaat
             if abs(lostspeed) > abs(self.xspd):
                 lostspeed = self.xspd
             
             #en we verliezen de snelheid
-            self.xspd -= lostspeed
+            self.xspd -= lostspeed*funcs.sign(self.xspd)
             
     
         #code om te voorkomen dat we harder gaan dan de game aankan
