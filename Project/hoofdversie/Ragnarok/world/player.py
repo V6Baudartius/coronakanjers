@@ -43,7 +43,7 @@ class hero():
         self.animationspeed = 10    #ticks each frame wil be displayed
         self.animationsize = 14  #amount of frames
         
-        #frames
+        #data
         self.still = gfx.imgload('torch0001.png')
         
         self.right = list()
@@ -63,20 +63,20 @@ class hero():
         self.right.append(gfx.imgload('torch0003.png'))
         
         self.left = list()
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
+        self.left.append(gfx.imgload('L5.png'))
+        self.left.append(gfx.imgload('L6.png'))
+        self.left.append(gfx.imgload('L7.png'))
+        self.left.append(gfx.imgload('L8.png'))
+        self.left.append(gfx.imgload('L9.png'))
+        self.left.append(gfx.imgload('L10.png'))
+        self.left.append(gfx.imgload('L11.png'))
+        self.left.append(gfx.imgload('L12.png'))
+        self.left.append(gfx.imgload('L13.png'))
+        self.left.append(gfx.imgload('L14.png'))
+        self.left.append(gfx.imgload('L1.png'))
+        self.left.append(gfx.imgload('L2.png'))
+        self.left.append(gfx.imgload('L3.png'))
+        self.left.append(gfx.imgload('L4.png'))
         
         #coordinaten
         self.x = x
