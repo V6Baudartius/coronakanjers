@@ -92,6 +92,7 @@ class hero():
         
         #crouch
         self.crouching = False
+        self.ijs_friction = False
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
@@ -104,6 +105,7 @@ class hero():
         width = self.sprite.get_width()
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x, y, width, height)
+        self.grondcheck = pygame.Rect(x, y , self.width, self.height + 100)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -115,6 +117,10 @@ class hero():
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
         #gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
         pass
+        
+    def grondcheckupdate(self):
+        self.grondcheck.x = self.x
+        self.grondcheck.y = self.y
         
     def bijlgooi(self):
         if globale_variablen.levend:
@@ -372,6 +378,7 @@ class hero():
         
 def allupdates():
     inrange = globale_variablen.ragnar.get_inrange()
+    globale_variablen.ragnar.grondcheckupdate()
     globale_variablen.ragnar.bijlgooi()
     globale_variablen.ragnar.crouch(inrange)
     globale_variablen.ragnar.horizontalmovement()
