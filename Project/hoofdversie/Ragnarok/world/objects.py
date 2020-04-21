@@ -190,7 +190,7 @@ class spike(genericobject):
         
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
-            funcs.destroyObject(self)
+            glob.levend = False
             
 
 

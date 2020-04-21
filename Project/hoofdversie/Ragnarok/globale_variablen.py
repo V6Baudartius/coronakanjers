@@ -25,7 +25,7 @@ screen = funcs.scherminitialisatie(settings.scherm_hoogte, settings.scherm_wijdt
 ragnar = None
 
 #de check of we doodzijn gegaan of niet
-player_alive = True
+levend = True
 
 #de lijsten met objecten voor collision
 allCollisionObjects = list()

@@ -11,7 +11,7 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 from .. import settings as set, globale_variablen as glob, gfx
-from .objects import objects
+from . import objects
 import pygame
 
 class achtervolgend_monster(objects.genericobject):
@@ -22,6 +22,8 @@ class achtervolgend_monster(objects.genericobject):
     def update(self):
         self.hitbox.y = glob.ragnar.y
         self.hitbox.x += set.monster_speed
+        if self.hitbox.colliderect(glob.ragnar.hitbox):
+            glob.levend = False
         
 
 
