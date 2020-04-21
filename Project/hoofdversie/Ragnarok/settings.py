@@ -30,15 +30,17 @@ colorkey = (255,255,255)
 customsize = False
 level_w = 0
 level_h = 0
-camera_xoffset = 350
+camera_xoffset = 500
 camera_yoffset = 400
 
 #movement
 gravity = 2
 jumpspeed = 40
+
 maxspeed = 20
 acceleration = 5
 friction = 1
+
 flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker
 

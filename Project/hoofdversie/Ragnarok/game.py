@@ -34,7 +34,7 @@ def start(level):
     #creation
     levelcreator.createlevel(level)
     
-    enemies.achtervolgend.monster(-200,0)
+    enemies.achtervolgend_monster(-200,0)
     
     #firstdraw
     glob.screen.fill(settings.background_color)
@@ -73,7 +73,7 @@ def loop():
     #postdraw -- voor uitleg zie objects.py
     for object in glob.allObjects:
         object.postdraw()
-    globale_variablen.ragnar.postdraw()
+    glob.ragnar.postdraw()
     
     
     #push the changed surface to screen

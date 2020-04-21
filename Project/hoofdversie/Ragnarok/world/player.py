@@ -40,32 +40,29 @@ class hero():
         self.animationcounter = 0
         self.currentframe = 0
         
-        self.animationspeed = 10    #ticks each frame wil be displayed
+        self.animationspeed = 2    #ticks each frame wil be displayed
         self.animationsize = 14  #amount of frames
         
-<<<<<<< HEAD
-        #frames
-        self.still = gfx.imgload('r5.png')
-=======
+
         #data
-        self.still = gfx.imgload('r5.png')
->>>>>>> 1766403301ff526e6f04ccfd3e7fa46f52ad7911
+        self.still = gfx.imgload('vikingsrechts0004.png')
+
         
         self.right = list()
-        self.right.append(gfx.imgload('r5.png'))
-        self.right.append(gfx.imgload('r6.png'))
-        self.right.append(gfx.imgload('r7.png'))
-        self.right.append(gfx.imgload('r8.png'))
-        self.right.append(gfx.imgload('r9.png'))
-        self.right.append(gfx.imgload('r10.png'))
-        self.right.append(gfx.imgload('r11.png'))
-        self.right.append(gfx.imgload('r12.png'))
-        self.right.append(gfx.imgload('r13.png'))
-        self.right.append(gfx.imgload('r14.png'))
-        self.right.append(gfx.imgload('r1.png'))
-        self.right.append(gfx.imgload('r2.png'))
-        self.right.append(gfx.imgload('r3.png'))
-        self.right.append(gfx.imgload('r4.png'))
+        self.right.append(gfx.imgload('vikingsrechts0004.png'))
+        self.right.append(gfx.imgload('vikingsrechts0005.png'))
+        self.right.append(gfx.imgload('vikingsrechts0006.png'))
+        self.right.append(gfx.imgload('vikingsrechts0007.png'))
+        self.right.append(gfx.imgload('vikingsrechts0008.png'))
+        self.right.append(gfx.imgload('vikingsrechts0009.png'))
+        self.right.append(gfx.imgload('vikingsrechts0010.png'))
+        self.right.append(gfx.imgload('vikingsrechts0011.png'))
+        self.right.append(gfx.imgload('vikingsrechts0012.png'))
+        self.right.append(gfx.imgload('vikingsrechts0013.png'))
+        self.right.append(gfx.imgload('vikingsrechts0000.png'))
+        self.right.append(gfx.imgload('vikingsrechts0001.png'))
+        self.right.append(gfx.imgload('vikingsrechts0002.png'))
+        self.right.append(gfx.imgload('vikingsrechts0003.png'))
         
         self.left = list()
         self.left.append(gfx.imgload('viking0004.png'))
@@ -74,10 +71,10 @@ class hero():
         self.left.append(gfx.imgload('viking0007.png'))
         self.left.append(gfx.imgload('viking0008.png'))
         self.left.append(gfx.imgload('viking0009.png'))
-        self.left.append(gfx.imgload('viking00010.png'))
-        self.left.append(gfx.imgload('viking00011.png'))
-        self.left.append(gfx.imgload('viking00012.png'))
-        self.left.append(gfx.imgload('viking00013.png'))
+        self.left.append(gfx.imgload('viking0010.png'))
+        self.left.append(gfx.imgload('viking0011.png'))
+        self.left.append(gfx.imgload('viking0012.png'))
+        self.left.append(gfx.imgload('viking0013.png'))
         self.left.append(gfx.imgload('viking0000.png'))
         self.left.append(gfx.imgload('viking0001.png'))
         self.left.append(gfx.imgload('viking0002.png'))
@@ -279,7 +276,7 @@ class hero():
         self.animationcounter += 1
         
         if self.direction == 0:
-            self.frame = self.still
+            self.sprite = self.still
         else:
             if self.animationcounter >= self.animationspeed:
                 self.animationcounter = 0
