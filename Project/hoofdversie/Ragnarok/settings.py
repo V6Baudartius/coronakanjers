@@ -43,9 +43,32 @@ gravity = 2
 jumpspeed = 40
 speedlimit = 100
 
-maxspeed = 20
-acceleration = 5
-friction = 1
+hardspeedcap = 30
+
+#normale h variablen
+normalacceleration = 3
+normalfriction = 1          #dit is de standaard vertraging
+normalmaxspeed = 20
+normalexceedfriction = 0.50 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
+
+
+#speciale ondergronden
+ijsacceleration = 2
+ijsfriction = 0
+ijsmaxspeed = 10
+ijsexceedfriction = 0.30  
+
+modderacceleration = 5
+modderfriction = 2
+moddermaxspeed = 8
+modderexceedfriction = 0.60  
+
+boosteracceleration = 8
+boosterfriction = 0
+boostermaxspeed = 8
+boosterexceedfriction = 0.30  
+
+
 
 flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker

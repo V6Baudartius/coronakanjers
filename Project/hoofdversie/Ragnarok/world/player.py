@@ -105,7 +105,7 @@ class hero():
         width = self.sprite.get_width()
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x, y, width, height)
-        self.grondcheck = pygame.Rect(x, y , self.width, self.height + 100)
+        self.grondbox = pygame.Rect(x, self.hitbox.bottom , self.hitbox.width, 3)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -118,9 +118,14 @@ class hero():
         #gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
         pass
         
-    def grondcheckupdate(self):
-        self.grondcheck.x = self.x
-        self.grondcheck.y = self.y
+    def grondcheck(self, collisionrange):
+        self.grondbox.x = self.x
+        self.grondbox.y = self.hitbox.bottom
+        self.ondergrond = None
+        for each in collisionrange:
+            if self.grondbox.colliderect(each.hitbox):
+                self.ondergrond = type(each)
+
         
     def bijlgooi(self):
         if globale_variablen.levend:
@@ -168,53 +173,67 @@ class hero():
 
 
     def horizontalmovement(self):    
+        #ondergrond check
+        #ijs
+        if self.ondergrond == objects.ijs:   
+            acceleration = settings.ijsacceleration
+            friction = settings.ijsfriction
+            maxspeed = settings.ijsmaxspeed
+            exceedfriction = settings.ijsexceedfriction
+        
+        #modder
+        elif self.ondergrond == objects.modder:   
+            acceleration = settings.ijsacceleration
+            friction = settings.ijsfriction
+            maxspeed = settings.ijsmaxspeed
+            exceedfriction = settings.ijexceedfriction    
+        
+        #normaal
+        else:
+            acceleration = settings.normalacceleration
+            friction = settings.normalfriction
+            maxspeed = settings.normalmaxspeed
+            exceedfriction = settings.normalexceedfriction 
+
+        
+        #accelaration + limiter
         if globale_variablen.levend and not self.crouching:
-            
             #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
             # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
             #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
             left = globale_variablen.keys[pygame.K_a]
             right = globale_variablen.keys[pygame.K_d]
+            self.direction = right - left
+            self.xspd += self.direction * acceleration
             
-            if right:
+            #dit is om te weten welke animatie moet
+            if right:       #rechts heeft voorrang over links omdat men naar rechs behoort te bewegen
                 self.movdir = 1
             elif left:
                 self.movdir = -1
+        
+        #friction
+        if not self.xspd == 0:        
+            #als de snelheid kleiner is dan de maxspeed
+            if abs(self.xspd) <= maxspeed:
+                #verliezen we een standaardhoeveelheid
+                lostspeed = funcs.sign(self.xspd) * friction
+            #als de snelheid groter is dan de maxspeed
+            else: 
+            #verliezen we een percentage van onze speed
+                lostspeed = int(abs(self.xspd)*exceedfriction)
             
-            
-            self.direction = right - left
-            self.xspd += self.direction * settings.acceleration
-            
-            
-            
-    def friction(self):
-        if ijs:
-            pass        
-        elif modder:
-            pass        
-        elif sneeuw:
-            pass      
-        elif booster:
-            pass
-        elif crouch:
-            pass
-        
-        
-        
-        
-        
-        
-        
-        if not self.xspd == 0:
-            #friction
-            lostspeed = funcs.sign(self.xspd) * settings.friction
+            #code om te voorkomen dat friction door nul heen gaat
             if abs(lostspeed) > abs(self.xspd):
                 lostspeed = self.xspd
+            
+            #en we verliezen de snelheid
             self.xspd -= lostspeed
+            
     
-    
-            if abs(self.xspd) > settings.maxspeed:
-                self.xspd = self.direction*settings.maxspeed
+        #code om te voorkomen dat we harder gaan dan de game aankan
+        if abs(self.xspd) > settings.hardspeedcap:
+            self.xspd = self.direction*settings.hardspeedcap
             
      
     def verticalmovement(self):
@@ -222,9 +241,14 @@ class hero():
             #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
             #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
             if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
-                self.yspd = -self.jmpspd   
-        if abs(self.yspd) > settings.speedlimit:
-                self.yspd = self.direction*settings.speedlimit
+                 print ('jump')
+                 self.yspd = -self.jmpspd
+                      
+        
+        
+        #code om de game te beschermen
+        if abs(self.yspd) > settings.hardspeedcap:
+            self.yspd = funcs.sign(self.yspd)*settings.hardspeedcap
 
     def get_inrange(self):
     #als eerste bepalen we welke objecten dichtbij zijn.
@@ -378,11 +402,10 @@ class hero():
         
 def allupdates():
     inrange = globale_variablen.ragnar.get_inrange()
-    globale_variablen.ragnar.grondcheckupdate()
-    globale_variablen.ragnar.bijlgooi()
     globale_variablen.ragnar.crouch(inrange)
+    globale_variablen.ragnar.bijlgooi()
+    globale_variablen.ragnar.grondcheck(inrange)
     globale_variablen.ragnar.horizontalmovement()
-    globale_variablen.ragnar.friction()
     globale_variablen.ragnar.verticalmovement()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)

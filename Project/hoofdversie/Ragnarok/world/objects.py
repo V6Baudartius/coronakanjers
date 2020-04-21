@@ -60,6 +60,8 @@ class bloem1(genericobject):
         sprite = gfx.imgload('bloemen1.png')
         super().__init__(x, y, sprite) 
         
+
+        
 class wolk(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('wolk.png')
@@ -239,18 +241,16 @@ class doos(collisionobject):
         sprite = gfx.imgload('doos.png')
         #sprite = 100 bij 100
         super().__init__(x, y, sprite)
-        
-
+             
 class ijs(collisionobject):   
     def __init__(self, x, y):
         sprite = gfx.imgload('ijsblok.png')
         super().__init__(x, y, sprite)
         
-    def update(self):
-        if globale_variablen.ragnar.grondcheck.colliderect(self.hitbox):
-            print('het werkt koud')
-            #globale_variablen.ragnar.ijs_friction == True   
-
+class modder(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('modder.png')
+        super().__init__(x, y, sprite)
         
 
 
