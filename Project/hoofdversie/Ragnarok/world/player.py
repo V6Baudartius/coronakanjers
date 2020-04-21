@@ -302,5 +302,5 @@ def allupdates():
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)
     globale_variablen.ragnar.animation()
-    globale_variablen.ragnar.postdraw()
+    
         

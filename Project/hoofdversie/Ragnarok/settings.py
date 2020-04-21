@@ -62,6 +62,11 @@ xgooisnelheid = 40
 ygooisnelheid = -20
 cooldown = 20
 
+#monster
+monster_speed = 4
+
+
+
 
 #noten:
 

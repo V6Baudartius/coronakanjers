@@ -71,6 +71,7 @@ def loop():
     #postdraw -- voor uitleg zie objects.py
     for object in glob.allObjects:
         object.postdraw()
+    globale_variablen.ragnar.postdraw()
     
     
     #push the changed surface to screen
