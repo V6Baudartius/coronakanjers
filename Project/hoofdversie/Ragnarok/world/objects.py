@@ -238,6 +238,18 @@ class doos(collisionobject):
         super().__init__(x, y, sprite)
         
 
+class ijs(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('ijsblok.png')
+        super().__init__(x, y, sprite)
+        
+    def update(self):
+        if globale_variablen.ragnar.grondcheck.colliderect(self.hitbox):
+            print('het werkt koud')
+            #globale_variablen.ragnar.ijs_friction == True   
+
+        
+
 
         
 #---------------Particles Parent-----------------------------------------------

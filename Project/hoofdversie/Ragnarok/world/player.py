@@ -86,6 +86,7 @@ class hero():
         
         #crouch
         self.crouching = False
+        self.ijs_friction = False
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
