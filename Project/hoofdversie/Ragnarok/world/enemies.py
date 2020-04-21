@@ -21,7 +21,7 @@ class achtervolgend_monster(objects.genericobject):
         self.yspd = 0
         
     def update(self):
-        self.yspd = int( (glob.ragnar.y - self.hitbox.y)/2)
+        self.yspd = int( (glob.ragnar.y - self.hitbox.y)/8)
         print(self.yspd)
         self.hitbox.y += self.yspd
         self.hitbox.x += set.monster_speed
