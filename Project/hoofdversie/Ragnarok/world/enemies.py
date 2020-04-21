@@ -41,12 +41,10 @@ class enemy_lopend():
         
         test_pos = (test_x, self.y-50)
         global allCollisionObjects
-        print(test_pos)
         for each in allCollisionObjects:
         
             if each.hitbox.collidepoint(test_pos):
                 self.direction *= -1
-                print('collision')
 
         self.x += self.speed*self.direction
         

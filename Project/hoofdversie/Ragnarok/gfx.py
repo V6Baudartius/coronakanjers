@@ -10,30 +10,30 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from . import settings as set, globale_variablen  #our modules
+from . import settings as set, globale_variablen as glob #our modules
 import os, pygame                   #public modules
     
 
 def draw(sprite, x=0, y=0, width=set.gridsize, height=set.gridsize):
     #Om te bepalen waar op het scherm een object getekend moet worden
     #nemen we de huidige positie min de positie van de camera
-    drawx = x - globale_variablen.camera_x
-    drawy = y - globale_variablen.camera_y
+    drawx = x - glob.camera_x
+    drawy = y - glob.camera_y
     drawposition = (drawx,drawy)
     
-    affectedarea = globale_variablen.screen.blit(sprite, drawposition)
-    globale_variablen.displayupdatelist.append(affectedarea)
+    glob.screen.blit(sprite, drawposition)
+    print('draw')
+    
 
     
 def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
-    drawx = x - globale_variablen.camera_x
-    drawy = y - globale_variablen.camera_y
+    #drawx = x - glob.camera_x
+    #drawy = y - glob.camera_y
+    pass
+    #drawrectangle = pygame.Rect(drawx,drawy,width,height)  
+    #glob.camerasurface.fill(set.background_color, drawrectangle)
     
-    drawrectangle = pygame.Rect(drawx,drawy,width,height)  
-    globale_variablen.screen.fill(set.background_color, drawrectangle)
-    globale_variablen.displayupdatelist.append(drawrectangle)
-    
-def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
+def imgload(bestandsnaam, mapnaam='data2'):   #de standaard map is 'data'
 #__file__ is een unieke variable die de map waarin een script staat geeft
     currentpath = os.path.dirname(__file__) #./game_versies/
    
@@ -44,18 +44,8 @@ def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
     if set.enablecolorkey:
         image.set_colorkey(set.colorkey)
     image = image.convert()
-    
-    
-    
-    
-    
-    if not set.scale == 1:
-        width = image.get_width()
-        height = image.get_height()
-        resizedimage = pygame.transform.scale(image,(width*set.scale, height*set.scale))
-        return resizedimage
-    else:
-        return image
+
+    return image
     
     
         

@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from . import funcs, settings
+from . import funcs, settings as set
 import pygame
 
 
@@ -19,7 +19,8 @@ running = False
 
 
 #het scherm waarop getekend wordt
-screen = funcs.scherminitialisatie(settings.scherm_hoogte, settings.scherm_wijdte, settings.caption)
+screen = funcs.scherminitialisatie()
+camerasurface = pygame.Surface((set.scherm_wijdte/set.scale, set.scherm_hoogte/set.scale))
 
 #hieraan wordt ragnar later toegewezen
 ragnar = None
@@ -37,8 +38,8 @@ displayupdatelist = list()
 
 
 #achtergrond surface om mee te gummen
-backgroundsurface = pygame.Surface((settings.gridsize,settings.gridsize))
-backgroundsurface.fill(settings.background_color)
+backgroundsurface = pygame.Surface((set.gridsize,set.gridsize))
+backgroundsurface.fill(set.background_color)
 
 #de positie van de camera
 camera_x = 0

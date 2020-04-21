@@ -237,6 +237,11 @@ class doos(collisionobject):
         #sprite = 100 bij 100
         super().__init__(x, y, sprite)
         
+    def update(self):
+        pass
+    
+        
+        
 
 
         

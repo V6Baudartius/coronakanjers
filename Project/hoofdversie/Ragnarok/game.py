@@ -13,7 +13,7 @@ if __name__ == '__main__':
 #onze eigen code
 from .world import player, enemies, objects, camera, levelcreator
 from .UI import klok
-from . import settings, globale_variablen as glob, gfx
+from . import settings, globale_variablen as glob, gfx, funcs
 
 from time import sleep
 
@@ -45,10 +45,10 @@ counter = 0
 def loop():
 
     #predraw -- voor uitleg zie objects.py
-    #for object in glob.allObjects:
-    #    object.predraw()
-    #glob.ragnar.predraw()
-    glob.screen.fill(settings.background_color)
+    for object in glob.allObjects:
+        object.predraw()
+    glob.ragnar.predraw()
+    #glob.screen.fill(settings.background_color)
     
     
     #camera
@@ -74,7 +74,7 @@ def loop():
     glob.ragnar.postdraw()
     
     #push the changed surface to screen
-    pygame.display.flip()
+    funcs.updatescreen()
     
     
     #fps meter

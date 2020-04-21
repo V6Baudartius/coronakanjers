@@ -65,7 +65,8 @@ class hero():
 
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
-        gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
+        #gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
+        pass
         
     def bijlgooi(self):
         if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
@@ -92,7 +93,6 @@ class hero():
         
         #uncrouch
         elif self.crouching == True and not globale_variablen.keys[pygame.K_s]:
-            print(self.onground)
             headroom = True
             vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
             for each in collisionrange:

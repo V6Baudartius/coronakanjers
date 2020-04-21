@@ -14,13 +14,13 @@ import pygame
 
 #scherm
 scherm_hoogte = 800
-scherm_wijdte = 1500
+scherm_wijdte = 1500 #dit moet deelbaar zijn door scale anders zijn de gevolgen niet te overzien
 fullscreen = False  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw
-gridsize = 128
-scale = 1
+gridsize = 32
+scale = 4       #doe 1,2 of 4 zodat schermhoogte en wijdte door scale te delen zijn
 enablecolorkey = True
 colorkey = (255,255,255)
 

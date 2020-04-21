@@ -2,7 +2,7 @@ import Ragnarok.main
 print('import succesful')
 
 import cProfile
-cProfile.run('Ragnarok.main.execute()')
-#Ragnarok.main.execute()
+#cProfile.run('Ragnarok.main.execute()')
+Ragnarok.main.execute()
 
 
