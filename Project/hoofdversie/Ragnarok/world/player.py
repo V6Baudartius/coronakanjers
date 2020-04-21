@@ -92,7 +92,6 @@ class hero():
         
         #uncrouch
         elif self.crouching == True and not globale_variablen.keys[pygame.K_s]:
-            print(self.onground)
             headroom = True
             vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
             for each in collisionrange:
@@ -115,10 +114,12 @@ class hero():
         direction = globale_variablen.keys[pygame.K_d] - globale_variablen.keys[pygame.K_a]
         self.xspd += direction * settings.acceleration
         
-        lostspeed = funcs.sign(self.xspd) * settings.friction
-        if abs(lostspeed) > abs(self.xspd):
-            lostspeed = self.xspd
-        self.xspd -= lostspeed
+        if not self.xspd == 0:
+            #friction
+            lostspeed = funcs.sign(self.xspd) * settings.friction
+            if abs(lostspeed) > abs(self.xspd):
+                lostspeed = self.xspd
+            self.xspd -= lostspeed
         
         if abs(self.xspd) > settings.maxspeed:
             self.xspd = direction*settings.maxspeed
@@ -239,4 +240,5 @@ def allupdates():
     globale_variablen.ragnar.verticalmovement()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)
+    globale_variablen.ragnar.postdraw()
         

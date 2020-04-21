@@ -21,7 +21,7 @@ caption = 'RAGNAROK'
 #draw
 gridsize = 128
 scale = 1
-enablecolorkey = True
+enablecolorkey = False
 colorkey = (255,255,255)
 
 
@@ -43,12 +43,12 @@ flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van e
                     #hogere waardes maken platformen aanzienlijk makkelijker
 
 #afstand waarin gezocht wordt als collision gedaan wordt
-xrange = gridsize
-yrange = 2*gridsize
+xrange = gridsize + 10
+yrange = 2*gridsize + 10
 
 #framerate
 printfps = True
-capfps = False
+capfps = True
 gamespeed = 60
 
 #font
