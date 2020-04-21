@@ -34,6 +34,8 @@ def start(level):
     #creation
     levelcreator.createlevel(level)
     
+    enemies.achtervolgend.monster(-200,0)
+    
     #firstdraw
     glob.screen.fill(settings.background_color)
     pygame.display.update()

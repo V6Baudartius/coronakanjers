@@ -43,8 +43,13 @@ class hero():
         self.animationspeed = 10    #ticks each frame wil be displayed
         self.animationsize = 14  #amount of frames
         
+<<<<<<< HEAD
         #frames
         self.still = gfx.imgload('r5.png')
+=======
+        #data
+        self.still = gfx.imgload('r5.png')
+>>>>>>> 1766403301ff526e6f04ccfd3e7fa46f52ad7911
         
         self.right = list()
         self.right.append(gfx.imgload('r5.png'))
@@ -63,20 +68,20 @@ class hero():
         self.right.append(gfx.imgload('r4.png'))
         
         self.left = list()
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0001.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
-        self.left.append(gfx.imgload('torch0002.png'))
-        self.left.append(gfx.imgload('torch0003.png'))
+        self.left.append(gfx.imgload('viking0004.png'))
+        self.left.append(gfx.imgload('viking0005.png'))
+        self.left.append(gfx.imgload('viking0006.png'))
+        self.left.append(gfx.imgload('viking0007.png'))
+        self.left.append(gfx.imgload('viking0008.png'))
+        self.left.append(gfx.imgload('viking0009.png'))
+        self.left.append(gfx.imgload('viking00010.png'))
+        self.left.append(gfx.imgload('viking00011.png'))
+        self.left.append(gfx.imgload('viking00012.png'))
+        self.left.append(gfx.imgload('viking00013.png'))
+        self.left.append(gfx.imgload('viking0000.png'))
+        self.left.append(gfx.imgload('viking0001.png'))
+        self.left.append(gfx.imgload('viking0002.png'))
+        self.left.append(gfx.imgload('viking0003.png'))
         
         #coordinaten
         self.x = x
