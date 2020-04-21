@@ -28,6 +28,8 @@ class hero():
     def __init__(self, x, y):
 		#draw variablen
         self.sprite = gfx.imgload('vikingsrechts0004.png')
+        self.movdir
+        
         
         #axe
         self.oncooldown = False
@@ -44,6 +46,7 @@ class hero():
 
         #data
         self.still = self.sprite
+        self.dood = gfx.imgload('viking_dood.png')
         self.crouchingsprite = gfx.imgload('vikingcrouch.png')
         
         self.right = list()
@@ -111,69 +114,95 @@ class hero():
         pass
         
     def bijlgooi(self):
-        if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
-            objects.hakbijl(self.x, self.y)
-            self.oncooldown = True
-            self.timer = 0
-            
-        if self.oncooldown:
-            self.timer += 1
-            
-        if self.timer > settings.cooldown:
-            self.oncooldown = False
+        if globale_variablen.levend:
+            if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
+                objects.hakbijl(self.x, self.y, self.xspd + self.direction*settings.xgooisnelheid, self.yspd + settings.ygooisnelheid)
+                self.oncooldown = True
+                self.timer = 0
+                
+            if self.oncooldown:
+                self.timer += 1
+                
+            if self.timer > settings.cooldown:
+                self.oncooldown = False
             
     def crouch(self, collisionrange):
-        #crouch
-        if globale_variablen.keys[pygame.K_s] and not self.crouching:
-            self.crouching = True
-            self.y += settings.gridsize/2
-            self.hitbox.height -= settings.gridsize/2
-            
-            self.sprite = self.crouchingsprite
-        
-        #uncrouch
-        elif self.crouching and not globale_variablen.keys[pygame.K_s]:
-            headroom = True
-            vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
-            for each in collisionrange:
-                if each.hitbox.colliderect(vierkant):
-                    headroom = False
-            if headroom:
-                self.crouching = False                
-                self.sprite = self.still
-                self.y -= settings.gridsize/2
-                self.hitbox.y = self.y
-                self.hitbox.height += settings.gridsize/2
+        if globale_variablen.levend:
+            #crouch
+            if globale_variablen.keys[pygame.K_s] and not self.crouching:
+                self.crouching = True
+                self.y += settings.gridsize/2
+                self.hitbox.height -= settings.gridsize/2
                 
+                self.sprite = self.crouchingsprite
+            
+            #uncrouch
+            #als je op wil staan
+            elif self.crouching and not globale_variablen.keys[pygame.K_s]:
+                #check collision voor hoofdruimte
+                headroom = True
+                vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize/2, self.hitbox.width, self.hitbox.height)
+                for each in collisionrange:
+                    if each.hitbox.colliderect(vierkant):
+                        headroom = False
+                #als er ruimte is 
+                if headroom:
+                    #sta op
+                    self.crouching = False                
+                    self.sprite = self.still
+                    self.y -= settings.gridsize/2
+                    self.hitbox.y = self.y
+                    self.hitbox.height += settings.gridsize/2
+                #zo niet
+                else:
+                #move naar voren
+                    self.xspd = 3
+                    
 
 
 
     def horizontalmovement(self):    
-        #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
-        # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
-        #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
-        self.direction = globale_variablen.keys[pygame.K_d] - globale_variablen.keys[pygame.K_a]
-        self.xspd += self.direction * settings.acceleration
-        
+        if globale_variablen.levend and not self.crouching:
+            
+            #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
+            # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
+            #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
+            left = globale_variablen.keys[pygame.K_d]
+            right = globale_variablen.keys[pygame.K_a]
+            
+            if right:
+                self.movdir = 1
+            elif left:
+                self.movdir = -1
+            
+            
+            direction = left - right
+            self.xspd += direction * settings.acceleration
+            
+            
+            
+    def friction(self):
         if not self.xspd == 0:
             #friction
             lostspeed = funcs.sign(self.xspd) * settings.friction
             if abs(lostspeed) > abs(self.xspd):
                 lostspeed = self.xspd
             self.xspd -= lostspeed
-        
-        if abs(self.xspd) > settings.maxspeed:
-            self.xspd = self.direction*settings.maxspeed
+    
+    
+            if abs(self.xspd) > settings.maxspeed:
+                self.xspd = self.direction*settings.maxspeed
             
      
     def verticalmovement(self):
-        #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
-        #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
-        if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
-            self.yspd = -self.jmpspd   
+        if globale_variablen.levend:
+            #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
+            #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
+            if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
+                self.yspd = -self.jmpspd   
 
     def get_inrange(self):
-        #als eerste bepalen we welke objecten dichtbij zijn.
+    #als eerste bepalen we welke objecten dichtbij zijn.
         #dit doen we om het gebruik van rect.collide te minimaliseren zodat het programma efficienter wordt        
         inrangelist = list()
         for each in globale_variablen.allCollisionObjects:
@@ -194,6 +223,7 @@ class hero():
         #horizontale collision
         self.x += self.xspd
         self.hitbox.x = self.x
+        
         #muur is een tijdelijke naam voor het object waar we horizontaal tegenaankomen
         muur = False
         for each in collisionlist:
@@ -269,21 +299,24 @@ class hero():
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
     
     def animation(self):
-        if not self.crouching:
-            self.animationcounter += 1
-            if self.direction == 0:
-                self.sprite = self.still
-            else:
-                if self.animationcounter >= self.animationspeed:
-                    self.animationcounter = 0
-                    self.currentframe += 1
-                    if self.currentframe >= self.animationsize:
-                        self.currentframe = 0
-                    
-                    if self.direction == 1:
-                        self.sprite = self.right[self.currentframe]
-                    else: 
-                        self.sprite = self.left[self.currentframe]
+        if globale_variablen.levend:
+            if not self.crouching:
+                self.animationcounter += 1
+                if self.direction == 0:
+                    self.sprite = self.still
+                else:
+                    if self.animationcounter >= self.animationspeed:
+                        self.animationcounter = 0
+                        self.currentframe += 1
+                        if self.currentframe >= self.animationsize:
+                            self.currentframe = 0
+                        
+                        if self.direction == 1:
+                            self.sprite = self.right[self.currentframe]
+                        else: 
+                            self.sprite = self.left[self.currentframe]
+        else:
+            self.sprite = self.dood
 
     
     def postdraw(self):
@@ -296,6 +329,7 @@ def allupdates():
     globale_variablen.ragnar.bijlgooi()
     globale_variablen.ragnar.crouch(inrange)
     globale_variablen.ragnar.horizontalmovement()
+    globale_variablen.ragnar.friction()
     globale_variablen.ragnar.verticalmovement()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)

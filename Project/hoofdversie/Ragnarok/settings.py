@@ -60,8 +60,8 @@ font = "C:/Windows/Fonts/comicz.TTF"
 background_color = (105, 199, 224)
 
 #bijl
-xgooisnelheid = 40
-ygooisnelheid = -20
+xgooisnelheid = 100
+ygooisnelheid = 0
 cooldown = 20
 
 #monster

@@ -129,12 +129,16 @@ class kleine_toorts(animationobject):
 
 
 class hakbijl(animationobject):
-    def __init__(self,x,y):
+    def __init__(self,x,y, xspd,yspd):
         sprite = gfx.imgload('bijl1.png')
         #animation
         self.animationspeed = 5    #ticks each frame wil be displayed
         self.animationsize = 4  #amount of frames
         super().__init__(x,y,sprite)
+        
+        self.xspd = xspd
+        self.yspd = yspd
+        
         
         self.frame.append(sprite)
         self.frame.append(gfx.imgload('bijl2.png'))
@@ -142,8 +146,6 @@ class hakbijl(animationobject):
         self.frame.append(gfx.imgload('bijl4.png'))
         
         #movement
-        self.xspd = set.xgooisnelheid
-        self.yspd = set.ygooisnelheid
         
     def update(self):        
         #movement + events
