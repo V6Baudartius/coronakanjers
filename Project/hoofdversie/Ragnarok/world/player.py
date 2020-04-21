@@ -182,6 +182,23 @@ class hero():
             
             
     def friction(self):
+        if ijs:
+            pass        
+        elif modder:
+            pass        
+        elif sneeuw:
+            pass      
+        elif booster:
+            pass
+        elif crouch:
+            pass
+        
+        
+        
+        
+        
+        
+        
         if not self.xspd == 0:
             #friction
             lostspeed = funcs.sign(self.xspd) * settings.friction
