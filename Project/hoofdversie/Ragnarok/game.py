@@ -45,9 +45,9 @@ counter = 0
 def loop():
 
     #predraw -- voor uitleg zie objects.py
-    #for object in glob.allObjects:
-    #    object.predraw()
-    #glob.ragnar.predraw()
+        #for object in glob.allObjects:
+        #    object.predraw()
+        #glob.ragnar.predraw()
     glob.screen.fill(settings.background_color)
     
     

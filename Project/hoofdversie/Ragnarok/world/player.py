@@ -36,6 +36,48 @@ class hero():
         self.timer = 0
         
         
+        #animation
+        self.animationcounter = 0
+        self.currentframe = 0
+        
+        self.animationspeed = 10    #ticks each frame wil be displayed
+        self.animationsize = 14  #amount of frames
+        
+        #frames
+        self.still = gfx.imgload('torch0001.png')
+        
+        self.right = list()
+        self.right.append(gfx.imgload('torch0001.png'))
+        self.right.append(gfx.imgload('torch0001.png'))
+        self.right.append(gfx.imgload('torch0002.png'))
+        self.right.append(gfx.imgload('torch0003.png'))
+        self.right.append(gfx.imgload('torch0001.png'))
+        self.right.append(gfx.imgload('torch0002.png'))
+        self.right.append(gfx.imgload('torch0003.png'))
+        self.right.append(gfx.imgload('torch0001.png'))
+        self.right.append(gfx.imgload('torch0002.png'))
+        self.right.append(gfx.imgload('torch0003.png'))
+        self.right.append(gfx.imgload('torch0002.png'))
+        self.right.append(gfx.imgload('torch0003.png'))
+        self.right.append(gfx.imgload('torch0002.png'))
+        self.right.append(gfx.imgload('torch0003.png'))
+        
+        self.left = list()
+        self.left.append(gfx.imgload('torch0001.png'))
+        self.left.append(gfx.imgload('torch0001.png'))
+        self.left.append(gfx.imgload('torch0002.png'))
+        self.left.append(gfx.imgload('torch0003.png'))
+        self.left.append(gfx.imgload('torch0001.png'))
+        self.left.append(gfx.imgload('torch0002.png'))
+        self.left.append(gfx.imgload('torch0003.png'))
+        self.left.append(gfx.imgload('torch0001.png'))
+        self.left.append(gfx.imgload('torch0002.png'))
+        self.left.append(gfx.imgload('torch0003.png'))
+        self.left.append(gfx.imgload('torch0002.png'))
+        self.left.append(gfx.imgload('torch0003.png'))
+        self.left.append(gfx.imgload('torch0002.png'))
+        self.left.append(gfx.imgload('torch0003.png'))
+        
         #coordinaten
         self.x = x
         self.y = y
@@ -47,7 +89,7 @@ class hero():
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
-        self.movdir = 0
+        
         self.noymove = 0
         self.flyframes = 0
         self.onground = True
@@ -65,7 +107,8 @@ class hero():
 
     def predraw(self):
         #we gummen onzelf uit en dan na de movement tekenen we onszelf weer
-        gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
+        #gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
+        pass
         
     def bijlgooi(self):
         if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
@@ -111,8 +154,8 @@ class hero():
         #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
         # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
         #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
-        direction = globale_variablen.keys[pygame.K_d] - globale_variablen.keys[pygame.K_a]
-        self.xspd += direction * settings.acceleration
+        self.direction = globale_variablen.keys[pygame.K_d] - globale_variablen.keys[pygame.K_a]
+        self.xspd += self.direction * settings.acceleration
         
         if not self.xspd == 0:
             #friction
@@ -122,7 +165,7 @@ class hero():
             self.xspd -= lostspeed
         
         if abs(self.xspd) > settings.maxspeed:
-            self.xspd = direction*settings.maxspeed
+            self.xspd = self.direction*settings.maxspeed
             
      
     def verticalmovement(self):
@@ -226,7 +269,25 @@ class hero():
   
         #dit systeem doet alleen gravity als je al bepaalde tijd van een blok afbent
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
+    
+    def animation(self):
+        self.animationcounter += 1
         
+        if self.direction == 0:
+            self.frame = self.still
+        else:
+            if self.animationcounter >= self.animationspeed:
+                self.animationcounter = 0
+                self.currentframe += 1
+                if self.currentframe >= self.animationsize:
+                    self.currentframe = 0
+                
+                if self.direction == 1:
+                    self.sprite = self.right[self.currentframe]
+                else: 
+                    self.sprite = self.left[self.currentframe]
+
+    
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   
         
@@ -240,5 +301,6 @@ def allupdates():
     globale_variablen.ragnar.verticalmovement()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)
+    globale_variablen.ragnar.animation()
     globale_variablen.ragnar.postdraw()
         
