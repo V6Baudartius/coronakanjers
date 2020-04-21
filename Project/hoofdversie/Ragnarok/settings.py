@@ -12,6 +12,11 @@ if __name__ == '__main__':
 
 import pygame
 
+#beer
+budgetbeer = False
+
+
+
 #scherm
 scherm_hoogte = 800
 scherm_wijdte = 1500
@@ -36,6 +41,7 @@ camera_yoffset = 400
 #movement
 gravity = 2
 jumpspeed = 40
+speedlimit = 100
 
 maxspeed = 20
 acceleration = 5
@@ -60,9 +66,9 @@ font = "C:/Windows/Fonts/comicz.TTF"
 background_color = (105, 199, 224)
 
 #bijl
-xgooisnelheid = 40
+xgooisnelheid = 20
 ygooisnelheid = -20
-cooldown = 20
+cooldown = 30
 
 #monster
 monster_speed = 4

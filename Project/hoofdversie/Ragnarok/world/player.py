@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
 from .. import settings, globale_variablen, gfx, funcs
 from . import objects
+from random import randint
 import pygame
 
 #-----loopfuncties-------
@@ -28,6 +29,8 @@ class hero():
     def __init__(self, x, y):
 		#draw variablen
         self.sprite = gfx.imgload('vikingsrechts0004.png')
+        self.movdir = 1
+        
         
         #axe
         self.oncooldown = False
@@ -43,7 +46,10 @@ class hero():
         
 
         #data
-        self.still = self.sprite
+        self.stillleft = gfx.imgload('vikinglinksstil.png')
+        self.stillright = gfx.imgload('vikingrechtsstil.png')
+        self.doodlinks = gfx.imgload('doodlinks0000.png')
+        self.doodrechts = gfx.imgload('doodrechts0000.png')
         self.crouchingsprite = gfx.imgload('vikingcrouch.png')
         
         self.right = list()
@@ -86,6 +92,7 @@ class hero():
         
         #crouch
         self.crouching = False
+        self.ijs_friction = False
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
@@ -98,6 +105,7 @@ class hero():
         width = self.sprite.get_width()
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x, y, width, height)
+        self.grondcheck = pygame.Rect(x, y , self.width, self.height + 100)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -110,50 +118,92 @@ class hero():
         #gfx.drawrect(settings.background_color, self.x ,self.y, self.hitbox.width, self.hitbox.height)
         pass
         
+    def grondcheckupdate(self):
+        self.grondcheck.x = self.x
+        self.grondcheck.y = self.y
+        
     def bijlgooi(self):
-        if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
-            objects.hakbijl(self.x, self.y)
-            self.oncooldown = True
-            self.timer = 0
-            
-        if self.oncooldown:
-            self.timer += 1
-            
-        if self.timer > settings.cooldown:
-            self.oncooldown = False
+        if globale_variablen.levend:
+            if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
+                objects.hakbijl(self.hitbox.centerx, self.y, self.xspd + self.movdir*settings.xgooisnelheid, self.yspd + settings.ygooisnelheid)
+                self.oncooldown = True
+                self.timer = 0
+                
+            if self.oncooldown:
+                self.timer += 1
+                
+            if self.timer > settings.cooldown:
+                self.oncooldown = False
             
     def crouch(self, collisionrange):
-        #crouch
-        if globale_variablen.keys[pygame.K_s] and not self.crouching:
-            self.crouching = True
-            self.y += settings.gridsize/2
-            self.hitbox.height -= settings.gridsize/2
+        if globale_variablen.levend:
+            #crouch
+            if globale_variablen.keys[pygame.K_s] and not self.crouching:
+                self.crouching = True
+                self.y += settings.gridsize/2
+                self.hitbox.height -= settings.gridsize/2
             
-            self.sprite = self.crouchingsprite
-        
-        #uncrouch
-        elif self.crouching and not globale_variablen.keys[pygame.K_s]:
-            headroom = True
-            vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
-            for each in collisionrange:
-                if each.hitbox.colliderect(vierkant):
-                    headroom = False
-            if headroom:
-                self.crouching = False                
-                self.sprite = self.still
-                self.y -= settings.gridsize/2
-                self.hitbox.y = self.y
-                self.hitbox.height += settings.gridsize/2
-                
+            #uncrouch
+            #als je op wil staan
+            elif self.crouching and not globale_variablen.keys[pygame.K_s]:
+                #check collision voor hoofdruimte
+                headroom = True
+                vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize/2, self.hitbox.width, self.hitbox.height)
+                for each in collisionrange:
+                    if each.hitbox.colliderect(vierkant):
+                        headroom = False
+                #als er ruimte is 
+                if headroom:
+                    #sta op
+                    self.crouching = False                
+                    self.y -= settings.gridsize/2
+                    self.hitbox.y = self.y
+                    self.hitbox.height += settings.gridsize/2
+                #zo niet
+                else:
+                #move naar voren
+                    self.xspd = 3
+                    
 
 
 
     def horizontalmovement(self):    
-        #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
-        # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
-        #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
-        self.direction = globale_variablen.keys[pygame.K_d] - globale_variablen.keys[pygame.K_a]
-        self.xspd += self.direction * settings.acceleration
+        if globale_variablen.levend and not self.crouching:
+            
+            #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
+            # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
+            #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
+            left = globale_variablen.keys[pygame.K_a]
+            right = globale_variablen.keys[pygame.K_d]
+            
+            if right:
+                self.movdir = 1
+            elif left:
+                self.movdir = -1
+            
+            
+            self.direction = right - left
+            self.xspd += self.direction * settings.acceleration
+            
+            
+            
+    def friction(self):
+        if ijs:
+            pass        
+        elif modder:
+            pass        
+        elif sneeuw:
+            pass      
+        elif booster:
+            pass
+        elif crouch:
+            pass
+        
+        
+        
+        
+        
+        
         
         if not self.xspd == 0:
             #friction
@@ -161,19 +211,23 @@ class hero():
             if abs(lostspeed) > abs(self.xspd):
                 lostspeed = self.xspd
             self.xspd -= lostspeed
-        
-        if abs(self.xspd) > settings.maxspeed:
-            self.xspd = self.direction*settings.maxspeed
+    
+    
+            if abs(self.xspd) > settings.maxspeed:
+                self.xspd = self.direction*settings.maxspeed
             
      
     def verticalmovement(self):
-        #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
-        #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
-        if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
-            self.yspd = -self.jmpspd   
+        if globale_variablen.levend:
+            #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
+            #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
+            if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
+                self.yspd = -self.jmpspd   
+        if abs(self.yspd) > settings.speedlimit:
+                self.yspd = self.direction*settings.speedlimit
 
     def get_inrange(self):
-        #als eerste bepalen we welke objecten dichtbij zijn.
+    #als eerste bepalen we welke objecten dichtbij zijn.
         #dit doen we om het gebruik van rect.collide te minimaliseren zodat het programma efficienter wordt        
         inrangelist = list()
         for each in globale_variablen.allCollisionObjects:
@@ -194,13 +248,16 @@ class hero():
         #horizontale collision
         self.x += self.xspd
         self.hitbox.x = self.x
+        
         #muur is een tijdelijke naam voor het object waar we horizontaal tegenaankomen
         muur = False
         for each in collisionlist:
             if self.hitbox.colliderect(each.hitbox):
                 muur = each
+        
         #als we niks raken met colliderect blijft muur dus False
         if muur:
+
             #we verplaatsen ons naar de linker of rechterkant van het object afhankelijk van de bewegingsrichting
             direction = funcs.sign(self.xspd)
             if direction == 1:
@@ -228,9 +285,20 @@ class hero():
                 self.hitbox.bottom = grond.hitbox.top
             if direction == -1:
                 self.hitbox.top = grond.hitbox.bottom
+            #als er collision is en snelheid > 60
+            if self.yspd > 50:
+                #creeer een aantal particles die naar links gaan
+                for i in range(randint(10,20)):
+                    objects.dirt(self.hitbox.centerx, self.hitbox.bottom, 1)
+                #en een paar die naar rechts gaan
+                for i in range(randint(10,20)):
+                    objects.dirt(self.hitbox.centerx, self.hitbox.bottom, -1)
             #hitbox meenemen en tot stilstand komen
             self.y = self.hitbox.y
             self.yspd = 0
+            
+            
+            
         
         
     def gravity(self, collisionlist):
@@ -269,23 +337,40 @@ class hero():
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
     
     def animation(self):
-        if not self.crouching:
+        #als we dood zijn
+        if not globale_variablen.levend:
+            #check richting en doe bijbehorendesprite
+            if self.movdir == 1:
+                self.sprite = self.doodrechts
+            else: 
+                self.sprite = self.doodlinks
+        #als we leven en als we crouchen
+        elif self.crouching:
+            #crouchsprite
+            self.sprite = self.crouchingsprite
+        #als we staan en stilstaan
+        elif self.direction == 0:
+            #check richting en doe bijbehorende sprite
+            if self.movdir == 1:
+                self.sprite = self.stillright
+            else: 
+                self.sprite = self.stillleft
+        #als geen van deze speciale gevallen waar is
+        #dan lopen we en treed het oude systeem in werking
+        else:
+        
             self.animationcounter += 1
-            if self.direction == 0:
-                self.sprite = self.still
-            else:
-                if self.animationcounter >= self.animationspeed:
-                    self.animationcounter = 0
-                    self.currentframe += 1
-                    if self.currentframe >= self.animationsize:
-                        self.currentframe = 0
-                    
-                    if self.direction == 1:
-                        self.sprite = self.right[self.currentframe]
-                    else: 
-                        self.sprite = self.left[self.currentframe]
+            if self.animationcounter >= self.animationspeed:
+                self.animationcounter = 0
+                self.currentframe += 1
+                if self.currentframe >= self.animationsize:
+                    self.currentframe = 0
+                
+                if self.movdir == 1:
+                    self.sprite = self.right[self.currentframe]
+                else: 
+                    self.sprite = self.left[self.currentframe]
 
-    
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   
         
@@ -293,9 +378,11 @@ class hero():
         
 def allupdates():
     inrange = globale_variablen.ragnar.get_inrange()
+    globale_variablen.ragnar.grondcheckupdate()
     globale_variablen.ragnar.bijlgooi()
     globale_variablen.ragnar.crouch(inrange)
     globale_variablen.ragnar.horizontalmovement()
+    globale_variablen.ragnar.friction()
     globale_variablen.ragnar.verticalmovement()
     globale_variablen.ragnar.collision(inrange)
     globale_variablen.ragnar.gravity(inrange)

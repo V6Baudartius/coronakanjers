@@ -22,46 +22,21 @@ class achtervolgend_monster(objects.genericobject):
         
     def update(self):
         self.yspd = int( (glob.ragnar.y - self.hitbox.y)/8)
-        print(self.yspd)
-        self.hitbox.y += self.yspd
-        self.hitbox.x += set.monster_speed
-        if self.hitbox.colliderect(glob.ragnar.hitbox):
-            glob.levend = False
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if glob.ragnar.x - self.hitbox.x > (set.camera_xoffset + self.hitbox.width):
+            self.hitbox.x = glob.ragnar.x - (set.camera_xoffset + self.hitbox.width)
+        
+        
+        self.hitbox.y += self.yspd
+        
+        
+        if glob.levend:
+            self.hitbox.x += set.monster_speed
+            if self.hitbox.colliderect(glob.ragnar.hitbox):
+                glob.levend = False
+        
+        
+        
 
 
 #deze enemy is een work in progress en haalt waarschijnlijk de release niet
@@ -80,7 +55,6 @@ class enemy_lopend():
         gfx.drawrect(settings.background_color,self.x,self.y)
     
     def movementupdate(self):
-
         self.hitbox.x = self.x                   
         self.hitbox.y = self.y
 
@@ -92,12 +66,12 @@ class enemy_lopend():
         
         test_pos = (test_x, self.y-50)
         global allCollisionObjects
-        print(test_pos)
+        
         for each in allCollisionObjects:
         
             if each.hitbox.collidepoint(test_pos):
                 self.direction *= -1
-                print('collision')
+                
 
         self.x += self.speed*self.direction
         
