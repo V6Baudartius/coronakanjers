@@ -18,9 +18,12 @@ class achtervolgend_monster(objects.genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('budgetbeer.png')
         super().__init__(x,y,sprite)
+        self.yspd = 0
         
     def update(self):
-        self.hitbox.y = glob.ragnar.y
+        self.yspd = int( (glob.ragnar.y - self.hitbox.y)/8)
+        print(self.yspd)
+        self.hitbox.y += self.yspd
         self.hitbox.x += set.monster_speed
         if self.hitbox.colliderect(glob.ragnar.hitbox):
             glob.levend = False

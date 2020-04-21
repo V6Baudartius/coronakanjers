@@ -27,9 +27,7 @@ import pygame
 class hero():
     def __init__(self, x, y):
 		#draw variablen
-        self.grote_ragnar = gfx.imgload('grote_ragnar.png')
-        self.ragnar = gfx.imgload('ragnar.png')
-        self.sprite = self.grote_ragnar
+        self.sprite = gfx.imgload('vikingsrechts0004.png')
         
         #axe
         self.oncooldown = False
@@ -45,8 +43,8 @@ class hero():
         
 
         #data
-        self.still = gfx.imgload('vikingsrechts0004.png')
-
+        self.still = self.sprite
+        self.crouchingsprite = gfx.imgload('vikingcrouch.png')
         
         self.right = list()
         self.right.append(gfx.imgload('vikingsrechts0004.png'))
@@ -126,17 +124,15 @@ class hero():
             
     def crouch(self, collisionrange):
         #crouch
-        if globale_variablen.keys[pygame.K_s] and self.crouching == False:
+        if globale_variablen.keys[pygame.K_s] and not self.crouching:
             self.crouching = True
-            self.y += settings.gridsize
-            self.hitbox.height -= settings.gridsize
-            #self.wy = self.wy + self.height
-            if self.hitbox.height <= settings.gridsize:
-                self.hitbox.height = settings.gridsize
-            self.sprite = self.ragnar
+            self.y += settings.gridsize/2
+            self.hitbox.height -= settings.gridsize/2
+            
+            self.sprite = self.crouchingsprite
         
         #uncrouch
-        elif self.crouching == True and not globale_variablen.keys[pygame.K_s]:
+        elif self.crouching and not globale_variablen.keys[pygame.K_s]:
             headroom = True
             vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
             for each in collisionrange:
@@ -144,11 +140,11 @@ class hero():
                     headroom = False
             if headroom:
                 self.crouching = False                
-                self.sprite = self.grote_ragnar
-                self.y -= settings.gridsize
-                width = self.sprite.get_width()
-                height = self.sprite.get_height()
-                self.hitbox = pygame.Rect(self.x, self.y, width, height)
+                self.sprite = self.still
+                self.y -= settings.gridsize/2
+                self.hitbox.y = self.y
+                self.hitbox.height += settings.gridsize/2
+                
 
 
 
@@ -273,21 +269,21 @@ class hero():
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
     
     def animation(self):
-        self.animationcounter += 1
-        
-        if self.direction == 0:
-            self.sprite = self.still
-        else:
-            if self.animationcounter >= self.animationspeed:
-                self.animationcounter = 0
-                self.currentframe += 1
-                if self.currentframe >= self.animationsize:
-                    self.currentframe = 0
-                
-                if self.direction == 1:
-                    self.sprite = self.right[self.currentframe]
-                else: 
-                    self.sprite = self.left[self.currentframe]
+        if not self.crouching:
+            self.animationcounter += 1
+            if self.direction == 0:
+                self.sprite = self.still
+            else:
+                if self.animationcounter >= self.animationspeed:
+                    self.animationcounter = 0
+                    self.currentframe += 1
+                    if self.currentframe >= self.animationsize:
+                        self.currentframe = 0
+                    
+                    if self.direction == 1:
+                        self.sprite = self.right[self.currentframe]
+                    else: 
+                        self.sprite = self.left[self.currentframe]
 
     
     def postdraw(self):
