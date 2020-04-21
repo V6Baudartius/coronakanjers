@@ -139,7 +139,6 @@ class hakbijl(animationobject):
         self.xspd = xspd
         self.yspd = yspd
         
-        
         self.frame.append(sprite)
         self.frame.append(gfx.imgload('bijl2.png'))
         self.frame.append(gfx.imgload('bijl3.png'))
@@ -186,13 +185,15 @@ class transition(genericobject):
 class spike(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('spike.png')
-        width = sprite.get_width()
-        height = sprite.get_height()
         super().__init__(x, y, sprite)
         
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
+            if globale_variablen.levend:
+                globale_variablen.ragnar.yspd = -30
             globale_variablen.levend = False
+            
+        
             
 
 
@@ -262,11 +263,29 @@ class particle(genericobject):
 #-------------------------------Particles------------------------------------------
 
 class smoke(particle):
-        def __init__(self, x, y):
-            sprite = gfx.imgload('smoke.png')
-            super().__init__(x,y,sprite)
-            self.yspd = randint(-3,-1)
-            self.duration = randint(110,200)
+    def __init__(self, x, y):
+        sprite = gfx.imgload('smoke.png')
+        super().__init__(x,y,sprite)
+        self.yspd = randint(-3,-1)
+        self.duration = randint(110,200)
+            
+class dirt(particle):
+    def __init__(self, x, y, direction=1):
+        sprite = gfx.imgload('dirt.png')
+        super().__init__(x,y,sprite)
+        
+        
+        
+        self.xspd = randint(0,10)*direction
+        self.yspd = randint(-5,-3) + int(abs(self.xspd)/2)
+        
+        self.duration = randint(5,15)
+        
+        
+    def update(self):
+        super().update()
+        self.xspd -= randint(-1,1)
+        
             
         
         

@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
 from .. import settings, globale_variablen, gfx, funcs
 from . import objects
+from random import randint
 import pygame
 
 #-----loopfuncties-------
@@ -28,7 +29,7 @@ class hero():
     def __init__(self, x, y):
 		#draw variablen
         self.sprite = gfx.imgload('vikingsrechts0004.png')
-        self.movdir
+        self.movdir = 1
         
         
         #axe
@@ -45,8 +46,10 @@ class hero():
         
 
         #data
-        self.still = self.sprite
-        self.dood = gfx.imgload('viking_dood.png')
+        self.stillleft = gfx.imgload('vikinglinksstil.png')
+        self.stillright = gfx.imgload('vikingrechtsstil.png')
+        self.doodlinks = gfx.imgload('doodlinks0000.png')
+        self.doodrechts = gfx.imgload('doodrechts0000.png')
         self.crouchingsprite = gfx.imgload('vikingcrouch.png')
         
         self.right = list()
@@ -116,7 +119,7 @@ class hero():
     def bijlgooi(self):
         if globale_variablen.levend:
             if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
-                objects.hakbijl(self.x, self.y, self.xspd + self.direction*settings.xgooisnelheid, self.yspd + settings.ygooisnelheid)
+                objects.hakbijl(self.hitbox.centerx, self.y, self.xspd + self.movdir*settings.xgooisnelheid, self.yspd + settings.ygooisnelheid)
                 self.oncooldown = True
                 self.timer = 0
                 
@@ -133,8 +136,6 @@ class hero():
                 self.crouching = True
                 self.y += settings.gridsize/2
                 self.hitbox.height -= settings.gridsize/2
-                
-                self.sprite = self.crouchingsprite
             
             #uncrouch
             #als je op wil staan
@@ -149,7 +150,6 @@ class hero():
                 if headroom:
                     #sta op
                     self.crouching = False                
-                    self.sprite = self.still
                     self.y -= settings.gridsize/2
                     self.hitbox.y = self.y
                     self.hitbox.height += settings.gridsize/2
@@ -167,8 +167,8 @@ class hero():
             #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
             # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
             #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
-            left = globale_variablen.keys[pygame.K_d]
-            right = globale_variablen.keys[pygame.K_a]
+            left = globale_variablen.keys[pygame.K_a]
+            right = globale_variablen.keys[pygame.K_d]
             
             if right:
                 self.movdir = 1
@@ -176,8 +176,8 @@ class hero():
                 self.movdir = -1
             
             
-            direction = left - right
-            self.xspd += direction * settings.acceleration
+            self.direction = right - left
+            self.xspd += self.direction * settings.acceleration
             
             
             
@@ -200,6 +200,8 @@ class hero():
             #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
             if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
                 self.yspd = -self.jmpspd   
+        if abs(self.yspd) > settings.speedlimit:
+                self.yspd = self.direction*settings.speedlimit
 
     def get_inrange(self):
     #als eerste bepalen we welke objecten dichtbij zijn.
@@ -229,8 +231,10 @@ class hero():
         for each in collisionlist:
             if self.hitbox.colliderect(each.hitbox):
                 muur = each
+        
         #als we niks raken met colliderect blijft muur dus False
         if muur:
+
             #we verplaatsen ons naar de linker of rechterkant van het object afhankelijk van de bewegingsrichting
             direction = funcs.sign(self.xspd)
             if direction == 1:
@@ -258,9 +262,20 @@ class hero():
                 self.hitbox.bottom = grond.hitbox.top
             if direction == -1:
                 self.hitbox.top = grond.hitbox.bottom
+            #als er collision is en snelheid > 60
+            if self.yspd > 50:
+                #creeer een aantal particles die naar links gaan
+                for i in range(randint(10,20)):
+                    objects.dirt(self.hitbox.centerx, self.hitbox.bottom, 1)
+                #en een paar die naar rechts gaan
+                for i in range(randint(10,20)):
+                    objects.dirt(self.hitbox.centerx, self.hitbox.bottom, -1)
             #hitbox meenemen en tot stilstand komen
             self.y = self.hitbox.y
             self.yspd = 0
+            
+            
+            
         
         
     def gravity(self, collisionlist):
@@ -299,26 +314,40 @@ class hero():
         #het is een soort rubberbandjes systeem om platformen makkelijker te maken met een 'grace period'    
     
     def animation(self):
-        if globale_variablen.levend:
-            if not self.crouching:
-                self.animationcounter += 1
-                if self.direction == 0:
-                    self.sprite = self.still
-                else:
-                    if self.animationcounter >= self.animationspeed:
-                        self.animationcounter = 0
-                        self.currentframe += 1
-                        if self.currentframe >= self.animationsize:
-                            self.currentframe = 0
-                        
-                        if self.direction == 1:
-                            self.sprite = self.right[self.currentframe]
-                        else: 
-                            self.sprite = self.left[self.currentframe]
+        #als we dood zijn
+        if not globale_variablen.levend:
+            #check richting en doe bijbehorendesprite
+            if self.movdir == 1:
+                self.sprite = self.doodrechts
+            else: 
+                self.sprite = self.doodlinks
+        #als we leven en als we crouchen
+        elif self.crouching:
+            #crouchsprite
+            self.sprite = self.crouchingsprite
+        #als we staan en stilstaan
+        elif self.direction == 0:
+            #check richting en doe bijbehorende sprite
+            if self.movdir == 1:
+                self.sprite = self.stillright
+            else: 
+                self.sprite = self.stillleft
+        #als geen van deze speciale gevallen waar is
+        #dan lopen we en treed het oude systeem in werking
         else:
-            self.sprite = self.dood
+        
+            self.animationcounter += 1
+            if self.animationcounter >= self.animationspeed:
+                self.animationcounter = 0
+                self.currentframe += 1
+                if self.currentframe >= self.animationsize:
+                    self.currentframe = 0
+                
+                if self.movdir == 1:
+                    self.sprite = self.right[self.currentframe]
+                else: 
+                    self.sprite = self.left[self.currentframe]
 
-    
     def postdraw(self):
         gfx.draw(self.sprite, self.x, self.y)   
         

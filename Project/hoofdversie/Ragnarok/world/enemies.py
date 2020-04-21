@@ -23,14 +23,20 @@ class achtervolgend_monster(objects.genericobject):
     def update(self):
         self.yspd = int( (glob.ragnar.y - self.hitbox.y)/8)
         
-        if glob.ragnar.x - self.hitbox.x > 500:
-            self.hitbox.x = glob.ragnar.x - 500
+        if glob.ragnar.x - self.hitbox.x > (set.camera_xoffset + self.hitbox.width):
+            self.hitbox.x = glob.ragnar.x - (set.camera_xoffset + self.hitbox.width)
         
         
         self.hitbox.y += self.yspd
-        self.hitbox.x += set.monster_speed
-        if self.hitbox.colliderect(glob.ragnar.hitbox):
-            glob.levend = False
+        
+        
+        if glob.levend:
+            self.hitbox.x += set.monster_speed
+            if self.hitbox.colliderect(glob.ragnar.hitbox):
+                glob.levend = False
+        
+        
+        
 
 
 #deze enemy is een work in progress en haalt waarschijnlijk de release niet

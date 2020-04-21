@@ -34,7 +34,8 @@ def start(level):
     #creation
     levelcreator.createlevel(level)
     
-    #enemies.achtervolgend_monster(-500,glob.ragnar.y)
+    if settings.budgetbeer:
+        enemies.achtervolgend_monster(-500,glob.ragnar.y)
     
     #firstdraw
     glob.screen.fill(settings.background_color)
