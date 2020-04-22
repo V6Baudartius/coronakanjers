@@ -13,8 +13,10 @@ if __name__ == '__main__':
 import pygame
 
 #beer
+
 budgetbeer = False
 beerfollowdistance = 5000
+
 
 
 #scherm
