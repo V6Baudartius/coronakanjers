@@ -58,10 +58,18 @@ def nextlevel():
     currentlevel += 1
     
     #estethische dingen
-    laadscherm = gfx.imgload('laadscherm.png')
-    gfx.draw(laadscherm)
-    pygame.display.update()
+    
+    
+    
+    
+    
     sleep(1)
+    glob.teksten.clear()
+    
+    
+    
+    pygame.display.flip()
+    
         
 
     
