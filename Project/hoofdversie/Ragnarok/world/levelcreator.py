@@ -19,7 +19,7 @@ toorts =                (255,255,0,255)     #geel
 transition =            (255,0,255,255)     #roze
 #---------------------------------------------------
 steen =                 (0,255,255,255)     #cyaan
-grond =                 (255,128,0,255)     #oranje
+grond =                 (255,131,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
@@ -79,11 +79,12 @@ def createlevel(levelname):
                     fooy = y* settings.gridsize
                     
 #--------------------------------------------------------------------------------------- 
- 
+
                     if current == grasblok:
                         objects.grasblok(foox, fooy)
                     
                     elif current == ragnar:
+                        print('ragnar')
                         globale_variablen.ragnar = player.hero(foox , fooy)
                     
                     elif current == steen:
@@ -170,6 +171,7 @@ def createlevel(levelname):
         objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
         
     elif levelname == 'level_2.png':
+        #globale_variablen.ragnar = player.hero(500,500)
         enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)                         
                         
                         
