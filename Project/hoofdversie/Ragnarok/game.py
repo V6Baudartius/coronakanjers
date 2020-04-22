@@ -22,8 +22,13 @@ import pygame
 
 #this wil initialize the game loop
 def start(level):
-    #pygame
+
+    #death shit
+    global deathcounter
+    deathcounter = 0
+    glob.restart = False
     
+    #pygame
     global clock
     clock = pygame.time.Clock() 
     
@@ -37,20 +42,17 @@ def start(level):
     if settings.budgetbeer:
         enemies.achtervolgend_monster(-500,glob.ragnar.y)
         
-    #standaard regelafstand = 50
-    objects.text(100,500,(0,0,0), 'hallo dit is tekst is het niet heel erg mooi test test test teste teste test test test test')
-    objects.text(100,550,(0,0,0), 'regel2')
-    
-    
-    
-    
-    
+
     
     #firstdraw
     glob.screen.fill(settings.background_color)
     pygame.display.update()
     
-counter = 0
+    #fpscounter
+    global counter
+    counter = 0
+    
+
    
 
 #this is what is executed every tick
@@ -60,7 +62,7 @@ def loop():
         #for object in glob.allObjects:
         #    object.predraw()
         #glob.ragnar.predraw()
-    glob.screen.fill(settings.background_color)
+    
     
     #camera
     camera.cameramovement()
@@ -76,21 +78,31 @@ def loop():
     for object in glob.allObjects:
         object.animation()
     
+    
+        
     #player    
     player.allupdates()    
         
     #draw fase
+        #draw volgorde is nu:
+        #scherm leegmaken
+        #objecten
+        #tekst
+        #ragnar
+        #voorgrond
+        #stopwatch
+    glob.screen.fill(settings.background_color)   
+    
     for object in glob.allObjects:
         object.postdraw()
-
+    
+    for tekst in glob.teksten:
+        tekst.draw()
+        
     glob.ragnar.postdraw()
     
     for object in glob.voorgrond:
         object.postdraw()
-        
-    for tekst in glob.teksten:
-        tekst.draw()
-        
     
     stopwatch.update()
     
@@ -119,7 +131,15 @@ def loop():
         pygame.quit()                  #dan sluit pygame af 
         exit()
         
-        
+    if not glob.levend:
+        global deathcounter
+        deathcounter +=1
+        if deathcounter > settings.deathtimer:
+            print('restart')
+            glob.restart = True
+            glob.running = False
+            glob.levend = True
+    
             
     
     #clock -- deze gaat als laatste omdat deze wacht als t script sneller gaat dan gamespeed
@@ -138,6 +158,9 @@ def end():
     
     glob.allObjects.clear()
     glob.allCollisionObjects.clear()
+    glob.voorgrond.clear()
+    glob.teksten.clear()
+    
     glob.ragnar = None
     global clock
     clock = None
