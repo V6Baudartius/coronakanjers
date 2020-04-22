@@ -12,24 +12,24 @@ if __name__ == '__main__':
     #rgb waarden: (rood, groen, blauw, alpha)
 
 ragnar =    (255,0,0,255)       #rood
-grasblok =  (0,255,0,255)       #groen
+grasblok =  (0,255,0,255)       #limegroen
 doos =      (0,0,255,255)       #blauw
 toorts =    (255,255,0,255)     #geel
 transition =(255,0,255,255)     #paars
 steen =     (0,255,255,255)     #cyaan
-grond =     (255,128,0,255)     #bruin
-ijs =       (128,255,0,255)     #groenig
-spike =     (0,0,0,255)         #negro kleur
-bloem1 =    (218,83,2,255)      #oranje
+gronddoorzichtig =(255,128,0,255)#oranje
+grond = (150,70,70,255)         # bruin
+spike =     (0,0,0,255)         #zwart
+gras =    (0,100,0,255)         #donkergroen
 wolk =      (230,240,240,255)   #blauwwit
 ijs =       (111,94,236,255)    #ijsblauw
-
 
 #-----------------------
 
 
 from .. import globale_variablen, settings, gfx
 from . import objects, player
+from random import randint
 
 def createlevel(levelname):
     levelimage = gfx.imgload(levelname, 'levels')
@@ -86,15 +86,29 @@ def createlevel(levelname):
                     elif current == spike:
                         objects.normalspike(foox, fooy)
                             
-
+                    elif current == gras:
+                        random = randint(0,6)
+                        if random == 0:
+                            objects.bloem1(foox, fooy)
+                        elif random == 1:
+                            objects.bloem2(foox, fooy)
+                        elif random == 2:
+                            objects.bloem3(foox, fooy)
+                        elif random == 3:
+                            objects.bloem4(foox, fooy)
+                        elif random == 4:
+                            objects.gras1(foox, fooy)
+                        elif random == 5:
+                            objects.gras2(foox, fooy)
+                        elif random == 6:
+                            objects.gras3(foox, fooy)
+                            
                         
                     elif current == wolk:
                         objects.wolk(foox, fooy)
                         
                     elif current == ijs:
                         objects.ijs(foox, fooy)
-                        
-
                     
                         
 #-------------------------------------------------------------------------------                        
