@@ -89,18 +89,6 @@ class ijs(genericobject):
         sprite = gfx.imgload('ijs.png')
         super().__init__(x, y, sprite)
 
-class text():
-    def __init__(self, x, y, text, kleur):
-        self.x = x
-        self.y = y
-        self.text = text
-        self.kleur = kleur
-        grootte = 25
-        default_font = pygame.font.Font(settings.font, grootte)
-
-    def drawtext(self, x, y, text, kleur):
-        screentext = default_font.render(text, True, kleur)
-        screen.blit(screentext, (x, y))
 
 
 
@@ -215,7 +203,23 @@ class tutorialtrigger():
         pass
         #hier code van wat ie moet doen
             
-            
+
+class text():
+    def __init__(self, x, y, kleur, text):
+        globale_variablen.teksten.append(self)
+        self.x = x
+        self.y = y
+
+        self.kleur = kleur
+        grootte = 25
+        default_font = pygame.font.Font(set.font, grootte)
+        self.screentext = default_font.render(text, True, kleur)
+    
+    def draw(self):
+        drawx = self.x - globale_variablen.camera_x
+        drawy = self.y - globale_variablen.camera_y
+        
+        globale_variablen.screen.blit(self.screentext, (drawx, drawy))            
       
 class normalspike(genericobject):
     def __init__(self, x, y):

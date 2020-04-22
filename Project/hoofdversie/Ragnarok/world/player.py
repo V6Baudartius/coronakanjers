@@ -48,9 +48,12 @@ class hero():
         #data
         self.stillleft = gfx.imgload('vikinglinksstil.png')
         self.stillright = gfx.imgload('vikingrechtsstil.png')
+        
         self.doodlinks = gfx.imgload('doodlinks0000.png')
         self.doodrechts = gfx.imgload('doodrechts0000.png')
-        self.crouchingsprite = gfx.imgload('vikingcrouch.png')
+        
+        self.crouchrechts = gfx.imgload('vikingcrouch.png')
+        self.crouchlinks = gfx.imgload('vikingcrouch.png')
         
         self.right = list()
         self.right.append(gfx.imgload('vikingsrechts0004.png'))
@@ -156,9 +159,9 @@ class hero():
                 if headroom:
                     #sta op
                     self.crouching = False                
-                    self.y -= settings.gridsize/2
+                    self.y -= settings.gridsize
                     self.hitbox.y = self.y
-                    self.hitbox.height += settings.gridsize/2
+                    self.hitbox.height += settings.gridsize
                 #zo niet
                 else:
                 #move naar voren
@@ -207,6 +210,12 @@ class hero():
                 acceleration = settings.normalacceleration
                 friction = settings.normalfriction
                 maxspeed = settings.normalmaxspeed
+                
+                
+        #buikglij assist
+        if self.crouching and not friction == 0:
+            friction = 1
+        print(self.y)
         
         #accelaration + limiter
         if globale_variablen.levend and not self.crouching :

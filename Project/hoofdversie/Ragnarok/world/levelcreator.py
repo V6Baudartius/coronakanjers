@@ -86,8 +86,7 @@ def createlevel(levelname):
                     elif current == spike:
                         objects.normalspike(foox, fooy)
                             
-                    elif current == bloem1:
-                        objects.bloem1(foox, fooy)
+
                         
                     elif current == wolk:
                         objects.wolk(foox, fooy)
