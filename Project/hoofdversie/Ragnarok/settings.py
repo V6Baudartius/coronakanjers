@@ -61,7 +61,7 @@ luchtexceedfriction = 0.04
 #speciale ondergronden
 ijsacceleration = 1
 ijsfriction = 0
-ijsmaxspeed = 30
+ijsmaxspeed = 28
 ijsexceedfriction = 0.01
 
 modderacceleration = 5
