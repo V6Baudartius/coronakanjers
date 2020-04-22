@@ -174,8 +174,11 @@ class hero():
         self.ondergrond = None
         for each in collisionrange:
             if self.grondbox.colliderect(each.hitbox):
-                self.ondergrond = type(each)
-
+                if not self.ondergrond == type(objects.ijs) and not self.ondergrond == type(objects.modder): 
+                    if not self.ondergrond == type(objects.booster): #and not self.ondergrond == type(objects.sneeuw): 
+                        self.ondergrond = type(each)
+                
+                
 
     def horizontalmovement(self):    
         #ondergrond check
