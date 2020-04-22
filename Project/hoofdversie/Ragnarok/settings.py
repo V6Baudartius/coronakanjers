@@ -22,7 +22,7 @@ beerfollowdistance = 5000
 #scherm
 scherm_hoogte = 800
 scherm_wijdte = 1500
-fullscreen = False  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
+fullscreen = True  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw
@@ -62,18 +62,17 @@ ijsfriction = 0
 ijsmaxspeed = 28
 icedduration = 300
 
-sneeuwacceleration =  5
-sneeuwfriction = 0
-sneeuwmaxspeed = 28
+sneeuwacceleration =  6
+sneeuwfriction = 3
+sneeuwmaxspeed = 16
 
 modderacceleration = 5
 modderfriction = 2
 moddermaxspeed = 8
 
-
 boosteracceleration = 8
-boosterfriction = 0
-boostermaxspeed = 8
+boosterfriction = 1
+boostermaxspeed = 40
 
 
 

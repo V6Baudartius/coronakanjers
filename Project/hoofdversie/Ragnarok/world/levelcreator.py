@@ -34,6 +34,9 @@ sneeuwblokondersolid =  (63,12,12,255)      #donkerbruin
 sneeuwblok =            (166,253,77,255)    #lichtgroen
 brickwall =             (75,75,75,255)      #grijs
 brick =                 (200,255,255)       #zeer licht grijs
+
+
+
 #-----------------------
 
 
@@ -48,7 +51,8 @@ def createlevel(levelname):
     
     #tekst
     if levelname == 'level_1.png':
-        print('tekst')
+        
+        objects.tutorialtrigger()   
         objects.text(500,500,(0,0,0), 'dit is level1')
         objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
     

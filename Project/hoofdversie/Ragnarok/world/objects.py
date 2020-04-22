@@ -11,6 +11,7 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 from .. import settings as set, globale_variablen, gfx, funcs
+from . import enemies
 import pygame
 from random import randint
 
@@ -125,6 +126,11 @@ class wolk(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('wolk.png')
         super().__init__(x, y, sprite) 
+
+class wolkcover(voorgrondobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('wolk.png')
+        super().__init__(x, y, sprite) 
         
 class ijsblokonder(genericobject):
     def __init__(self, x, y):
@@ -235,8 +241,9 @@ class hakbijl(animationobject):
         
 class transition(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('deur.png')
+        sprite = gfx.imgload('hitboxdeur.png')
         super().__init__(x, y, sprite)
+        deur(x-64,y-64)
 
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
@@ -248,8 +255,9 @@ class tutorialtrigger():
     def postdraw(self):
         pass
     def update(self):
-        pass
-        #hier code van wat ie moet doen
+        if globale_variablen.ragnar.x > settings.budgetbeerspawn:
+            enemies.enemy_achtervolgend(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)
+        
             
       
 
@@ -361,6 +369,12 @@ class brick(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('brick.png')
         super().__init__(x, y, sprite)
+        
+class solidwolk(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('wolkmidden.png')
+        super().__init__(x, y, sprite)
+        wolkcover(x-47, y-52)
 
 class brickwall(collisionobject):   
     def __init__(self, x, y):
