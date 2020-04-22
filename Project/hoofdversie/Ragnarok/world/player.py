@@ -52,8 +52,8 @@ class hero():
         self.doodlinks = gfx.imgload('doodlinks0000.png')
         self.doodrechts = gfx.imgload('doodrechts0000.png')
         
-        self.crouchrechts = gfx.imgload('vikingcrouch.png')
-        self.crouchlinks = gfx.imgload('vikingcrouch.png')
+        self.crouchrechts = gfx.imgload('vikingscrouchrechts.png')
+        self.crouchlinks = gfx.imgload('vikingscrouchlinks.png')
         
         self.right = list()
         self.right.append(gfx.imgload('vikingsrechts0004.png'))
@@ -403,9 +403,9 @@ class hero():
         #als we leven en als we crouchen
         elif self.crouching:
             if self.movdir == 1:
-                self.sprite = self.crouchlinks
-            else: 
                 self.sprite = self.crouchrechts
+            else: 
+                self.sprite = self.crouchlinks
         #als we staan en stilstaan
         elif self.direction == 0:
             #check richting en doe bijbehorende sprite
