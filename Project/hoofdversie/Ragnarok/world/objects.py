@@ -78,13 +78,7 @@ class grond(genericobject):
         sprite = gfx.imgload('grond.png')
         super().__init__(x, y, sprite)    
         
-class bloem1(genericobject):
-    def __init__(self, x, y):
-        sprite = gfx.imgload('bloemen1.png')
-        super().__init__(x, y, sprite) 
-        
 
-        
 class wolk(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('wolk.png')
@@ -94,8 +88,7 @@ class ijs(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('ijs.png')
         super().__init__(x, y, sprite)
-        
-        
+
 
 
 
@@ -202,6 +195,33 @@ class transition(genericobject):
             
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
             globale_variablen.running = False
+            
+class tutorialtrigger():
+    def __init__(self):
+        globale_variablen.allObjects.append(self)
+    def postdraw(self):
+        pass
+    def update(self):
+        pass
+        #hier code van wat ie moet doen
+            
+
+class text():
+    def __init__(self, x, y, kleur, text):
+        globale_variablen.teksten.append(self)
+        self.x = x
+        self.y = y
+
+        self.kleur = kleur
+        grootte = 25
+        default_font = pygame.font.Font(set.font, grootte)
+        self.screentext = default_font.render(text, True, kleur)
+    
+    def draw(self):
+        drawx = self.x - globale_variablen.camera_x
+        drawy = self.y - globale_variablen.camera_y
+        
+        globale_variablen.screen.blit(self.screentext, (drawx, drawy))            
       
 class normalspike(genericobject):
     def __init__(self, x, y):
@@ -276,7 +296,7 @@ class modder(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('modder.png')
         super().__init__(x, y, sprite)
-        
+
 
 
         

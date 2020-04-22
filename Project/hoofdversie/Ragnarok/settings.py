@@ -28,8 +28,8 @@ caption = 'RAGNAROK'
 #draw
 gridsize = 64
 scale = 1
-enablecolorkey = False
-colorkey = (255,255,255)
+enablecolorkey = True
+colorkey = (255,0,255)
 
 
 
@@ -51,32 +51,32 @@ hardspeedcap = 120
 normalacceleration = 6
 normalfriction = 3         #dit is de standaard vertraging
 normalmaxspeed = 20
-normalexceedfriction = 0.50 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
+
 
 luchtacceleration = 3
 luchtfriction = 0
-luchtmaxspeed = 10
-luchtexceedfriction = 0.04
+luchtmaxspeed = 20
+
 
 #speciale ondergronden
 ijsacceleration = 1
 ijsfriction = 0
-ijsmaxspeed = 30
-ijsexceedfriction = 0.01
+ijsmaxspeed = 28
+icedduration = 300
 
 modderacceleration = 5
 modderfriction = 2
 moddermaxspeed = 8
-modderexceedfriction = 0.60  
+
 
 boosteracceleration = 8
 boosterfriction = 0
 boostermaxspeed = 8
-boosterexceedfriction = 0.30  
 
 
 
-flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
+
+flyframeslimit = 4  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker
 
 #afstand waarin gezocht wordt als collision gedaan wordt

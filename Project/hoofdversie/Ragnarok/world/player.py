@@ -48,9 +48,12 @@ class hero():
         #data
         self.stillleft = gfx.imgload('vikinglinksstil.png')
         self.stillright = gfx.imgload('vikingrechtsstil.png')
+        
         self.doodlinks = gfx.imgload('doodlinks0000.png')
         self.doodrechts = gfx.imgload('doodrechts0000.png')
-        self.crouchingsprite = gfx.imgload('vikingcrouch.png')
+        
+        self.crouchrechts = gfx.imgload('vikingcrouch.png')
+        self.crouchlinks = gfx.imgload('vikingcrouch.png')
         
         self.right = list()
         self.right.append(gfx.imgload('vikingsrechts0004.png'))
@@ -92,10 +95,11 @@ class hero():
         
         #crouch
         self.crouching = False
-        self.ijs_friction = False
+        
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
+        self.iced = False
         
         self.noymove = 0
         self.flyframes = 0
@@ -139,15 +143,15 @@ class hero():
             #crouch
             if globale_variablen.keys[pygame.K_s] and not self.crouching:
                 self.crouching = True
-                self.y += settings.gridsize/2
-                self.hitbox.height -= settings.gridsize/2
+                self.y += settings.gridsize
+                self.hitbox.height -= settings.gridsize
             
             #uncrouch
             #als je op wil staan
             elif self.crouching and not globale_variablen.keys[pygame.K_s]:
                 #check collision voor hoofdruimte
                 headroom = True
-                vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize/2, self.hitbox.width, self.hitbox.height)
+                vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
                 for each in collisionrange:
                     if each.hitbox.colliderect(vierkant):
                         headroom = False
@@ -155,9 +159,9 @@ class hero():
                 if headroom:
                     #sta op
                     self.crouching = False                
-                    self.y -= settings.gridsize/2
+                    self.y -= settings.gridsize
                     self.hitbox.y = self.y
-                    self.hitbox.height += settings.gridsize/2
+                    self.hitbox.height += settings.gridsize
                 #zo niet
                 else:
                 #move naar voren
@@ -177,32 +181,41 @@ class hero():
         #ondergrond check
         #air
         if self.ondergrond == None:   
-            acceleration = settings.luchtacceleration
-            friction = settings.luchtfriction
+            if not self.iced:
+                acceleration = settings.normalacceleration
+                friction = settings.normalfriction
+            else:
+                acceleration = settings.ijsacceleration
+                friction = settings.ijsfriction
             maxspeed = settings.luchtmaxspeed
-            exceedfriction = settings.luchtexceedfriction
+            
 
         #ijs
         elif self.ondergrond == objects.ijs:   
             acceleration = settings.ijsacceleration
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
-            exceedfriction = settings.ijsexceedfriction
+            self.iced = True
         
         #modder
-        elif self.ondergrond == objects.modder:   
-            acceleration = settings.ijsacceleration
-            friction = settings.ijsfriction
-            maxspeed = settings.ijsmaxspeed
-            exceedfriction = settings.ijexceedfriction    
-        
-        #normaal
-        else:
-            acceleration = settings.normalacceleration
-            friction = settings.normalfriction
-            maxspeed = settings.normalmaxspeed
-            exceedfriction = settings.normalexceedfriction 
-
+        else: 
+            self.iced = False
+            if self.ondergrond == objects.modder:   
+                acceleration = settings.ijsacceleration
+                friction = settings.ijsfriction
+                maxspeed = settings.ijsmaxspeed
+            
+            #normaal
+            else:
+                acceleration = settings.normalacceleration
+                friction = settings.normalfriction
+                maxspeed = settings.normalmaxspeed
+                
+                
+        #buikglij assist
+        if self.crouching and not friction == 0:
+            friction = 1
+        print(self.y)
         
         #accelaration + limiter
         if globale_variablen.levend and not self.crouching :
@@ -212,11 +225,14 @@ class hero():
             left = globale_variablen.keys[pygame.K_a]
             right = globale_variablen.keys[pygame.K_d]
             self.direction = right - left
-            speedincrease = self.direction * acceleration
             
-            if abs(self.xspd+speedincrease) < maxspeed:
-                self.xspd += speedincrease
+            #als we niet op ijs staan doe dan normale acceleratie
+            if not self.iced:
+                self.xspd += self.direction * acceleration
             
+            #als we net ijs hebben aangeraakt versnel dan alleen als we langzaam gaan
+            elif abs(self.xspd) < maxspeed:
+                self.xspd += self.direction * acceleration
             
             #dit is om te weten welke animatie moet
             if right:       #rechts heeft voorrang over links omdat men naar rechs behoort te bewegen
@@ -227,19 +243,25 @@ class hero():
         #friction       
         #als de snelheid kleiner is dan de maxspeed
         lostspeed = friction
-        if abs(self.xspd) > maxspeed:
 
-            lostspeed += int(((abs(self.xspd)-maxspeed)-2)*exceedfriction)
-            
         #code om te voorkomen dat friction door nul heen gaat
         if abs(lostspeed) > abs(self.xspd):
             lostspeed = abs(self.xspd)
-        
-        #en we verliezen de snelheid
 
+        #en we verliezen de snelheid
         self.xspd -= lostspeed*funcs.sign(self.xspd)
 
-    
+        #dit is de soft cap
+        #normaal houden we ons aan de maxspeed
+        if not self.iced and abs(self.xspd) > maxspeed:
+            self.xspd = funcs.sign(self.xspd)*maxspeed
+
+        #als we ijs hebben aangeraakt deon we dat niet
+        else:
+            pass
+        
+        
+        #hard cap
         #code om te voorkomen dat we harder gaan dan de game aankan
         if abs(self.xspd) > settings.hardspeedcap:
             self.xspd = self.direction*settings.hardspeedcap
@@ -380,8 +402,10 @@ class hero():
                 self.sprite = self.doodlinks
         #als we leven en als we crouchen
         elif self.crouching:
-            #crouchsprite
-            self.sprite = self.crouchingsprite
+            if self.movdir == 1:
+                self.sprite = self.crouchlinks
+            else: 
+                self.sprite = self.crouchrechts
         #als we staan en stilstaan
         elif self.direction == 0:
             #check richting en doe bijbehorende sprite
@@ -406,6 +430,7 @@ class hero():
                     self.sprite = self.left[self.currentframe]
 
     def postdraw(self):
+        
         gfx.draw(self.sprite, self.x, self.y)   
         
         
