@@ -51,15 +51,15 @@ normalfriction = 3         #dit is de standaard vertraging
 normalmaxspeed = 20
 normalexceedfriction = 0.50 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
 
-luchtacceleration = 2
+luchtacceleration = 3
 luchtfriction = 0
-luchtmaxspeed = 5
-luchtexceedfriction = 0.10
+luchtmaxspeed = 10
+luchtexceedfriction = 0.04
 
 #speciale ondergronden
 ijsacceleration = 1
 ijsfriction = 0
-ijsmaxspeed = 40
+ijsmaxspeed = 30
 ijsexceedfriction = 0.01
 
 modderacceleration = 5
