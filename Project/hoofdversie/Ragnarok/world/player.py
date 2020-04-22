@@ -175,7 +175,7 @@ class hero():
         for each in collisionrange:
             if self.grondbox.colliderect(each.hitbox):
                 if not self.ondergrond == type(objects.ijs) and not self.ondergrond == type(objects.modderblok): 
-                    if not self.ondergrond == type(objects.booster) and not self.ondergrond == type(objects.sneeuw): 
+                    if not self.ondergrond == type(objects.booster) and not self.ondergrond == type(objects.sneeuwblok): 
                         self.ondergrond = type(each)
                 
                 
@@ -198,21 +198,22 @@ class hero():
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
             self.iced = True
+        elif self.ondergrond == objects.booster:
+            acceleration = settings.boosteracceleration
+            friction = settings.boosterfriction
+            maxspeed = settings.boostermaxspeed
+            self.iced = True
         
         #alles wat niet ijs is 
         else: 
             self.iced = False
-            if self.ondergrond == objects.booster:
-                acceleration = settings.boosteracceleration
-                friction = settings.boosterfriction
-                maxspeed = settings.boostermaxspeed
             
-            elif self.ondergrond == objects.modderblok:   
+            if self.ondergrond == objects.modderblok:   
                 acceleration = settings.modderacceleration
                 friction = settings.modderblokfriction
                 maxspeed = settings.modderblokmaxspeed
                 
-            elif self.ondergrond == objects.sneeuw:   
+            elif self.ondergrond == objects.sneeuwblok:   
                 acceleration = settings.sneeuwacceleration
                 friction = settings.sneeuwfriction
                 maxspeed = settings.sneeuwmaxspeed

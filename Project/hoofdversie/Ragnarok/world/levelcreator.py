@@ -28,10 +28,10 @@ ijsblokonder =          (33,77,76,255)      #kotskleur
 ijsblokondersolid =     (255,186,221,255)   #huidskleur
 ijsblokonder2 =         (163,77,253,255)    #dof paars
 ijsblokonder2solid =    (188,2,218,255)     #paars
-modderblok =
-sneeuwblokonder
-sneeuwblokondersolid
-sneeuwblok
+#modderblok =
+#sneeuwblokonder
+#sneeuwblokondersolid
+#sneeuwblok
 
 #-----------------------
 
@@ -47,7 +47,8 @@ def createlevel(levelname):
     
     #tekst
     if levelname == 'level_1.png':
-        print('tekst')
+        
+        objects.tutorialtrigger()   
         objects.text(500,500,(0,0,0), 'dit is level1')
         objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
     
