@@ -20,6 +20,8 @@ from time import sleep
 #andere shit die geimporteerd moet worden
 import pygame
 
+#refresh
+
 #this wil initialize the game loop
 def start(level):
 
