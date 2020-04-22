@@ -229,8 +229,8 @@ class hero():
         #als de snelheid kleiner is dan de maxspeed
         lostspeed = friction
         if abs(self.xspd) > maxspeed:
-
-            lostspeed += funcs.sign(self.xspd)*exceedfriction
+            self.xspd = funcs.sign(self.xspd)*maxspeed
+            
             
         #code om te voorkomen dat friction door nul heen gaat
         if abs(lostspeed) > abs(self.xspd):
