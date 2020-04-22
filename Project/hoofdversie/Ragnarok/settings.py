@@ -52,17 +52,19 @@ normalacceleration = 6
 normalfriction = 3         #dit is de standaard vertraging
 normalmaxspeed = 20
 
-
 luchtacceleration = 3
 luchtfriction = 0
 luchtmaxspeed = 20
-
 
 #speciale ondergronden
 ijsacceleration = 1
 ijsfriction = 0
 ijsmaxspeed = 28
 icedduration = 300
+
+sneeuwacceleration =  5
+sneeuwfriction = 0
+sneeuwmaxspeed = 28
 
 modderacceleration = 5
 modderfriction = 2

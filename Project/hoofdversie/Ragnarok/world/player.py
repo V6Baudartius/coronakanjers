@@ -174,8 +174,8 @@ class hero():
         self.ondergrond = None
         for each in collisionrange:
             if self.grondbox.colliderect(each.hitbox):
-                if not self.ondergrond == type(objects.ijs) and not self.ondergrond == type(objects.modder): 
-                    if not self.ondergrond == type(objects.booster): #and not self.ondergrond == type(objects.sneeuw): 
+                if not self.ondergrond == type(objects.ijs) and not self.ondergrond == type(objects.modderblok): 
+                    if not self.ondergrond == type(objects.booster) and not self.ondergrond == type(objects.sneeuw): 
                         self.ondergrond = type(each)
                 
                 
@@ -191,7 +191,6 @@ class hero():
                 acceleration = settings.ijsacceleration
                 friction = settings.ijsfriction
             maxspeed = settings.luchtmaxspeed
-            
 
         #ijs
         elif self.ondergrond == objects.ijs:   
@@ -200,13 +199,23 @@ class hero():
             maxspeed = settings.ijsmaxspeed
             self.iced = True
         
-        #modder
+        #alles wat niet ijs is 
         else: 
             self.iced = False
-            if self.ondergrond == objects.modder:   
-                acceleration = settings.ijsacceleration
-                friction = settings.ijsfriction
-                maxspeed = settings.ijsmaxspeed
+            if self.ondergrond == objects.booster:
+                acceleration = settings.boosteracceleration
+                friction = settings.boosterfriction
+                maxspeed = settings.boostermaxspeed
+            
+            elif self.ondergrond == objects.modderblok:   
+                acceleration = settings.modderacceleration
+                friction = settings.modderblokfriction
+                maxspeed = settings.modderblokmaxspeed
+                
+            elif self.ondergrond == objects.sneeuw:   
+                acceleration = settings.sneeuwacceleration
+                friction = settings.sneeuwfriction
+                maxspeed = settings.sneeuwmaxspeed
             
             #normaal
             else:
