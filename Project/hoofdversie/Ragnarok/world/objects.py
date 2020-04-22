@@ -11,7 +11,7 @@ if __name__ == '__main__':
 #------------------------------------------------
 
 from .. import settings as set, globale_variablen, gfx, funcs
-from . import enemies
+
 import pygame
 from random import randint
 
@@ -249,14 +249,7 @@ class transition(genericobject):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
             globale_variablen.running = False
             
-class tutorialtrigger():
-    def __init__(self):
-        globale_variablen.allObjects.append(self)
-    def postdraw(self):
-        pass
-    def update(self):
-        if globale_variablen.ragnar.x > settings.budgetbeerspawn:
-            enemies.enemy_achtervolgend(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)
+
         
             
       

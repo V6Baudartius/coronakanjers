@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
 #------------------------------------------------
 
-from .. import settings as set, globale_variablen as glob, gfx
+from .. import settings as set, globale_variablen as glob, gfx, funcs
 from . import objects
 import pygame
 
@@ -35,7 +35,17 @@ class achtervolgend_monster(objects.voorgrondobject):
             if self.hitbox.colliderect(glob.ragnar.hitbox):
                 glob.levend = False
         
-        
+class tutorialtrigger():
+    def __init__(self):
+        glob.allObjects.append(self)
+    def postdraw(self):
+        pass
+    def animation(self):
+        pass
+    def update(self):
+        if glob.ragnar.x > set.budgetbeerspawn:
+            achtervolgend_monster(glob.ragnar.x - 1000, glob.ragnar.y)   
+            funcs.destroyObject(self)
         
 
 
