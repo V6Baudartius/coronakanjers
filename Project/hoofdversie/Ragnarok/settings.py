@@ -13,7 +13,9 @@ if __name__ == '__main__':
 import pygame
 
 #beer
-budgetbeer = True
+
+budgetbeer = False
+beerfollowdistance = 5000
 
 
 
@@ -24,9 +26,9 @@ fullscreen = False  #-- fullscreen overschrijft scherm_hoogte en scherm_wijdte
 caption = 'RAGNAROK'
 
 #draw
-gridsize = 128
+gridsize = 64
 scale = 1
-enablecolorkey = True
+enablecolorkey = False
 colorkey = (255,255,255)
 
 
@@ -40,23 +42,27 @@ camera_yoffset = 400
 
 #movement
 gravity = 2
-jumpspeed = 40
+jumpspeed = 30
 speedlimit = 100
 
-hardspeedcap = 30
+hardspeedcap = 120
 
 #normale h variablen
-normalacceleration = 3
-normalfriction = 1          #dit is de standaard vertraging
+normalacceleration = 6
+normalfriction = 3         #dit is de standaard vertraging
 normalmaxspeed = 20
 normalexceedfriction = 0.50 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
 
+luchtacceleration = 2
+luchtfriction = 0
+luchtmaxspeed = 5
+luchtexceedfriction = 0.10
 
 #speciale ondergronden
-ijsacceleration = 2
+ijsacceleration = 1
 ijsfriction = 0
-ijsmaxspeed = 10
-ijsexceedfriction = 0.30  
+ijsmaxspeed = 40
+ijsexceedfriction = 0.01
 
 modderacceleration = 5
 modderfriction = 2
@@ -74,8 +80,8 @@ flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van e
                     #hogere waardes maken platformen aanzienlijk makkelijker
 
 #afstand waarin gezocht wordt als collision gedaan wordt
-xrange = gridsize + 10
-yrange = 2*gridsize + 10
+xrange = 3*gridsize + 10
+yrange = 3*gridsize + 10
 
 #framerate
 printfps = True

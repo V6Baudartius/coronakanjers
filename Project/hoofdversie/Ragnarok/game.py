@@ -53,28 +53,32 @@ def loop():
         #glob.ragnar.predraw()
     glob.screen.fill(settings.background_color)
     
-    
     #camera
     camera.cameramovement()
     
     #input
     glob.keys = pygame.key.get_pressed()
     
-    #update
-    player.allupdates() #hier zit ook de draw fase bij
-    
+    #----important stuf--------
     for object in glob.allObjects:
         object.update()
-        
+    
     #animation
     for object in glob.allObjects:
         object.animation()
-
     
-    #postdraw -- voor uitleg zie objects.py
+    #player    
+    player.allupdates()    
+        
+    #draw fase
     for object in glob.allObjects:
         object.postdraw()
+
     glob.ragnar.postdraw()
+    
+    for object in glob.voorgrond:
+        object.postdraw()
+    
     stopwatch.update()
     
     #push the changed surface to screen
