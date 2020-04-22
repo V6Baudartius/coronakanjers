@@ -19,7 +19,7 @@ toorts =                (255,255,0,255)     #geel
 transition =            (255,0,255,255)     #roze
 #---------------------------------------------------
 steen =                 (0,255,255,255)     #cyaan
-grond =                 (255,128,0,255)     #oranje
+grond =                 (255,131,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
@@ -160,12 +160,13 @@ def createlevel(levelname):
 
                     elif current == brick:
                         objects.brick(foox, fooy)
+
 #-------------------------------------------------------------------------------                        
                         
     #extra creatie code
     if levelname == 'level_1.png':
-        
-        enemies.tutorialtrigger()   
+        if setting.budgetbeer:
+            settings.enemies.tutorialtrigger()   
         objects.text(500,500,(0,0,0), 'dit is level1')
         objects.text(500,550,(0,0,0), 'dit is regel2 van level1')  
         objects.text(500,300,(0,0,0), 'Welkom bij onze Platformer')
@@ -176,7 +177,8 @@ def createlevel(levelname):
         
     elif levelname == 'level_2.png':
         #globale_variablen.ragnar = player.hero(500,500)
-        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)                         
+        if settings.budgetbeer:
+            enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)                         
                         
                         
                         
