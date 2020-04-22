@@ -33,6 +33,7 @@ CollisionRange = list()
 allObjects = list()
 displayupdatelist = list()
 voorgrond = list()
+teksten = list()
 
 #achtergrond surface om mee te gummen
 backgroundsurface = pygame.Surface((settings.gridsize,settings.gridsize))

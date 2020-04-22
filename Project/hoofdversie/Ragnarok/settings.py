@@ -76,7 +76,7 @@ boostermaxspeed = 8
 
 
 
-flyframeslimit = 7  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
+flyframeslimit = 4  #dit is het aantal frames dat player niet valt als hij van een blok afstapt
                     #hogere waardes maken platformen aanzienlijk makkelijker
 
 #afstand waarin gezocht wordt als collision gedaan wordt
