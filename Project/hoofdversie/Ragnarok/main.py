@@ -63,7 +63,7 @@ def nextlevel():
     
     if currentlevel == 1:
         screentext(500,450, (255,255,255), 'de story van level 2 is dat ragnar honger had.')
-        screentext(500,500, (255,255,255), 'Heel erge honge...')
+        screentext(500,500, (255,255,255), 'Heel erge honger...')
     elif currentlevel == 2:
         pass
     
