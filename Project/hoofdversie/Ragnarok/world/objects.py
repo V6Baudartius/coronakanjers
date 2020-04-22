@@ -94,8 +94,19 @@ class ijs(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('ijs.png')
         super().__init__(x, y, sprite)
-        
-        
+
+class text():
+    def __init__(self, x, y, text, kleur):
+        self.x = x
+        self.y = y
+        self.text = text
+        self.kleur = kleur
+        grootte = 25
+        default_font = pygame.font.Font(settings.font, grootte)
+
+    def drawtext(self, x, y, text, kleur):
+        screentext = default_font.render(text, True, kleur)
+        screen.blit(screentext, (x, y))
 
 
 
