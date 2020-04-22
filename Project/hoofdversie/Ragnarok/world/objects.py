@@ -78,13 +78,7 @@ class grond(genericobject):
         sprite = gfx.imgload('grond.png')
         super().__init__(x, y, sprite)    
         
-class bloem1(genericobject):
-    def __init__(self, x, y):
-        sprite = gfx.imgload('bloemen1.png')
-        super().__init__(x, y, sprite) 
-        
 
-        
 class wolk(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('wolk.png')
@@ -296,7 +290,7 @@ class modder(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('modder.png')
         super().__init__(x, y, sprite)
-        
+
 
 
         

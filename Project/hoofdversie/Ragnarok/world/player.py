@@ -140,15 +140,15 @@ class hero():
             #crouch
             if globale_variablen.keys[pygame.K_s] and not self.crouching:
                 self.crouching = True
-                self.y += settings.gridsize/2
-                self.hitbox.height -= settings.gridsize/2
+                self.y += settings.gridsize
+                self.hitbox.height -= settings.gridsize
             
             #uncrouch
             #als je op wil staan
             elif self.crouching and not globale_variablen.keys[pygame.K_s]:
                 #check collision voor hoofdruimte
                 headroom = True
-                vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize/2, self.hitbox.width, self.hitbox.height)
+                vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
                 for each in collisionrange:
                     if each.hitbox.colliderect(vierkant):
                         headroom = False
@@ -238,16 +238,15 @@ class hero():
         #code om te voorkomen dat friction door nul heen gaat
         if abs(lostspeed) > abs(self.xspd):
             lostspeed = abs(self.xspd)
-        print('presnelheid', self.xspd)
-        print('friction', lostspeed)
+
         #en we verliezen de snelheid
         self.xspd -= lostspeed*funcs.sign(self.xspd)
-        print('midsnelheid', self.xspd)
+
         #dit is de soft cap
         #normaal houden we ons aan de maxspeed
         if not self.iced and abs(self.xspd) > maxspeed:
             self.xspd = funcs.sign(self.xspd)*maxspeed
-            print('softcap')
+
         #als we ijs hebben aangeraakt deon we dat niet
         else:
             pass
@@ -394,8 +393,10 @@ class hero():
                 self.sprite = self.doodlinks
         #als we leven en als we crouchen
         elif self.crouching:
-            #crouchsprite
-            self.sprite = self.crouchingsprite
+            if self.movdir == 1:
+                self.sprite = self.crouchlinks
+            else: 
+                self.sprite = self.crouchrechts
         #als we staan en stilstaan
         elif self.direction == 0:
             #check richting en doe bijbehorende sprite
