@@ -211,6 +211,17 @@ class transition(genericobject):
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
             globale_variablen.running = False
+            
+class tutorialtrigger():
+    def __init__(self):
+        globale_variablen.allObjects.append(self)
+    def postdraw(self):
+        pass
+    def update(self):
+        pass
+        #hier code van wat ie moet doen
+            
+            
       
 class normalspike(genericobject):
     def __init__(self, x, y):

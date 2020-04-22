@@ -180,28 +180,28 @@ class hero():
             acceleration = settings.luchtacceleration
             friction = settings.luchtfriction
             maxspeed = settings.luchtmaxspeed
-            exceedfriction = settings.luchtexceedfriction
+
 
         #ijs
         elif self.ondergrond == objects.ijs:   
             acceleration = settings.ijsacceleration
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
-            exceedfriction = settings.ijsexceedfriction
+
         
         #modder
         elif self.ondergrond == objects.modder:   
             acceleration = settings.ijsacceleration
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
-            exceedfriction = settings.ijexceedfriction    
+  
         
         #normaal
         else:
             acceleration = settings.normalacceleration
             friction = settings.normalfriction
             maxspeed = settings.normalmaxspeed
-            exceedfriction = settings.normalexceedfriction 
+
 
         
         #accelaration + limiter
@@ -213,10 +213,8 @@ class hero():
             left = globale_variablen.keys[pygame.K_a]
             right = globale_variablen.keys[pygame.K_d]
             self.direction = right - left
-            speedincrease = self.direction * acceleration
-            
-            if abs(self.xspd) < maxspeed:
-                self.xspd += speedincrease
+            self.xspd += self.direction * acceleration
+           
 
                 
             
@@ -232,7 +230,7 @@ class hero():
         lostspeed = friction
         if abs(self.xspd) > maxspeed:
 
-            lostspeed += int(((abs(self.xspd)-maxspeed)+2)*exceedfriction)
+            lostspeed += funcs.sign(self.xspd)*exceedfriction
             
         #code om te voorkomen dat friction door nul heen gaat
         if abs(lostspeed) > abs(self.xspd):
