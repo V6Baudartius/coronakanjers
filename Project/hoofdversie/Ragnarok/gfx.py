@@ -33,7 +33,7 @@ def drawrect(color, x, y, width=set.gridsize, height=set.gridsize):
     globale_variablen.screen.fill(set.background_color, drawrectangle)
     globale_variablen.displayupdatelist.append(drawrectangle)
     
-def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
+def imgload(bestandsnaam, mapnaam='data', ckey = set.enablecolorkey):   #de standaard map is 'data'
 #__file__ is een unieke variable die de map waarin een script staat geeft
     currentpath = os.path.dirname(__file__) #./game_versies/
    
@@ -41,7 +41,7 @@ def imgload(bestandsnaam, mapnaam='data'):   #de standaard map is 'data'
     stap2 = os.path.join(stap1, bestandsnaam) #./game_versies/mapnaam/bestandsnaam
 
     image = pygame.image.load(stap2)
-    if set.enablecolorkey:
+    if ckey:
         image.set_colorkey(set.colorkey)
     image = image.convert()
     

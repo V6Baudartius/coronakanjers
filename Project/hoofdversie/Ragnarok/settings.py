@@ -46,7 +46,6 @@ camera_yoffset = 400
 gravity = 2
 jumpspeed = 30
 speedlimit = 100
-
 hardspeedcap = 120
 
 #normale h variablen
