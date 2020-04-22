@@ -178,9 +178,14 @@ class hero():
         #ondergrond check
         #air
         if self.ondergrond == None:   
-            acceleration = settings.luchtacceleration
-            friction = settings.luchtfriction
+            if not self.iced:
+                acceleration = settings.normalacceleration
+                friction = settings.normalfriction
+            else:
+                acceleration = settings.ijsacceleration
+                friction = settings.ijsfriction
             maxspeed = settings.luchtmaxspeed
+            
 
         #ijs
         elif self.ondergrond == objects.ijs:   
@@ -212,7 +217,12 @@ class hero():
             right = globale_variablen.keys[pygame.K_d]
             self.direction = right - left
             
-            if abs(self.xspd+self.direction*acceleration) < maxspeed:
+            #als we niet op ijs staan doe dan normale acceleratie
+            if not self.iced:
+                self.xspd += self.direction * acceleration
+            
+            #als we net ijs hebben aangeraakt versnel dan alleen als we langzaam gaan
+            elif abs(self.xspd) < maxspeed:
                 self.xspd += self.direction * acceleration
             
             #dit is om te weten welke animatie moet
@@ -224,19 +234,26 @@ class hero():
         #friction       
         #als de snelheid kleiner is dan de maxspeed
         lostspeed = friction
-        if abs(self.xspd) > maxspeed and not self.iced:
-            self.xspd = funcs.sign(self.xspd)*maxspeed
-            
-            
+
         #code om te voorkomen dat friction door nul heen gaat
         if abs(lostspeed) > abs(self.xspd):
             lostspeed = abs(self.xspd)
-        
+        print('presnelheid', self.xspd)
+        print('friction', lostspeed)
         #en we verliezen de snelheid
-
         self.xspd -= lostspeed*funcs.sign(self.xspd)
-
-    
+        print('midsnelheid', self.xspd)
+        #dit is de soft cap
+        #normaal houden we ons aan de maxspeed
+        if not self.iced and abs(self.xspd) > maxspeed:
+            self.xspd = funcs.sign(self.xspd)*maxspeed
+            print('softcap')
+        #als we ijs hebben aangeraakt deon we dat niet
+        else:
+            pass
+        
+        
+        #hard cap
         #code om te voorkomen dat we harder gaan dan de game aankan
         if abs(self.xspd) > settings.hardspeedcap:
             self.xspd = self.direction*settings.hardspeedcap
