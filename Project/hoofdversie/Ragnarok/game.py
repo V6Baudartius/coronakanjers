@@ -37,7 +37,14 @@ def start(level):
     if settings.budgetbeer:
         enemies.achtervolgend_monster(-500,glob.ragnar.y)
         
+    #standaard regelafstand = 50
     objects.text(100,500,(0,0,0), 'hallo dit is tekst is het niet heel erg mooi test test test teste teste test test test test')
+    objects.text(100,550,(0,0,0), 'regel2')
+    
+    
+    
+    
+    
     
     #firstdraw
     glob.screen.fill(settings.background_color)
