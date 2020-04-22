@@ -71,7 +71,15 @@ class voorgrondobject():
         gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)
 
 #------------------------------------normale/decoratieve objecten -----------------------------------------------------
-
+class sneeuwblokonder(genericobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('sneeuwblokonder.png')
+        super().__init__(x, y, sprite)
+        
+class deur(genericobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('deur.png')
+        super().__init__(x, y, sprite) 
         
 class grond(genericobject):
     def __init__(self, x, y):
@@ -330,9 +338,9 @@ class ijs(collisionobject):
         sprite = gfx.imgload('ijsblokframe.png')
         super().__init__(x, y, sprite)
         
-class modder(collisionobject):   
+class modderblok(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('modder.png')
+        sprite = gfx.imgload('modderblok.png')
         super().__init__(x, y, sprite)
         
 class grondsolid(collisionobject):
@@ -349,7 +357,26 @@ class ijsblokonder2solid(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('ijsblokonder2.png')
         super().__init__(x, y, sprite)
-        
+
+class sneeuwblok(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('sneeuwblok.png')
+        super().__init__(x, y, sprite)
+
+class sneeuwblokondersolid(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('sneeuwblokonder.png')
+        super().__init__(x, y, sprite)
+
+class brick(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('brick.png')
+        super().__init__(x, y, sprite)
+
+class brickwall(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('brickwall.png')
+        super().__init__(x, y, sprite)
 #---------------Particles Parent-----------------------------------------------
 
 class particle(genericobject):

@@ -28,6 +28,10 @@ ijsblokonder =          (33,77,76,255)      #kotskleur
 ijsblokondersolid =     (255,186,221,255)   #huidskleur
 ijsblokonder2 =         (163,77,253,255)    #dof paars
 ijsblokonder2solid =    (188,2,218,255)     #paars
+modderblok =
+sneeuwblokonder
+sneeuwblokondersolid
+sneeuwblok
 
 #-----------------------
 
