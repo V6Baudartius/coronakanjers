@@ -114,6 +114,18 @@ def createlevel(levelname):
                     
                     elif current == spike:
                         objects.normalspike(foox, fooy)
+                        
+                    elif current == ijsblokonder:
+                        objects.ijsblokonder(foox, fooy)
+
+                    elif current == ijsblokondersolid:
+                        objects.ijsblokondersolid(foox, fooy)
+
+                    elif current == ijsblokonder2:
+                        objects.ijsblokonder2(foox, fooy)
+
+                    elif current == ijsblokonder2solid:
+                        objects.ijsblokonder2solid(foox, fooy)
                             
                     elif current == gras:
                         random = randint(0,6)
