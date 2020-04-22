@@ -20,7 +20,7 @@ from time import sleep
 #andere shit die geimporteerd moet worden
 import pygame
 
-#refresh
+background = gfx.imgload('background.png')
 
 #this wil initialize the game loop
 def start(level):
@@ -46,8 +46,7 @@ def start(level):
 
     
     #firstdraw
-    glob.screen.fill(settings.background_color)
-    pygame.display.update()
+
     
     #fpscounter
     global counter
@@ -92,7 +91,7 @@ def loop():
         #ragnar
         #voorgrond
         #stopwatch
-    glob.screen.fill(settings.background_color)   
+    gfx.draw(background, glob.camera_x,glob.camera_y)   
     
     for object in glob.allObjects:
         object.postdraw()

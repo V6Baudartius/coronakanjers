@@ -106,7 +106,7 @@ cooldown = 30
 monster_speed = 4
 
 #restart
-deathtimer = 90 #de tijd dat je jezelf doodziet, voordat ie restart
+deathtimer = 30 #de tijd dat je jezelf doodziet, voordat ie restart
 
 
 
