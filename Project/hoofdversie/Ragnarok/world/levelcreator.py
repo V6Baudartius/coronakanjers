@@ -17,21 +17,25 @@ grasblok =              (0,255,0,255)       #limegroen
 doos =                  (0,0,255,255)       #blauw
 toorts =                (255,255,0,255)     #geel
 transition =            (255,0,255,255)     #roze
+#---------------------------------------------------
 steen =                 (0,255,255,255)     #cyaan
 grond =                 (255,128,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
+#----------------------------------------------------
 wolk =                  (230,240,240,255)   #blauwwit
 ijs =                   (111,94,236,255)    #ijsblauw
 ijsblokonder =          (33,77,76,255)      #kotskleur
 ijsblokondersolid =     (255,186,221,255)   #huidskleur
 ijsblokonder2 =         (163,77,253,255)    #dof paars
+#----------------------------------------------------
 ijsblokonder2solid =    (188,2,218,255)     #paars
 modderblok =            (2,218,136,255)     #groenblauw
 sneeuwblokonder =       (79,23,87,255)      #donkerpaars
 sneeuwblokondersolid =  (63,12,12,255)      #donkerbruin
 sneeuwblok =            (166,253,77,255)    #lichtgroen
+#-------------------------------------------------------
 brickwall =             (75,75,75,255)      #grijs
 brick =                 (200,255,255)       #zeer licht grijs
 
