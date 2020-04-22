@@ -105,7 +105,7 @@ class hero():
         width = self.sprite.get_width()
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x, y, width, height)
-        self.grondbox = pygame.Rect(x, self.hitbox.bottom , self.hitbox.width, 3)
+        self.grondbox = pygame.Rect(x-20, self.hitbox.bottom , self.hitbox.width+40, 3)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -196,9 +196,6 @@ class hero():
             maxspeed = settings.ijsmaxspeed
             exceedfriction = settings.ijexceedfriction    
         
-        
-        
-        
         #normaal
         else:
             acceleration = settings.normalacceleration
@@ -208,14 +205,18 @@ class hero():
 
         
         #accelaration + limiter
-        if globale_variablen.levend and not self.crouching:
+        if globale_variablen.levend and not self.crouching :
             #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
             # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
             #dan krijgen we -1 als we links indrukken, 0 als we beide indrukken en 1 als we recht indrukken
             left = globale_variablen.keys[pygame.K_a]
             right = globale_variablen.keys[pygame.K_d]
             self.direction = right - left
-            self.xspd += self.direction * acceleration
+            speedincrease = self.direction * acceleration
+            
+            if abs(self.xspd+speedincrease) < maxspeed:
+                self.xspd += speedincrease
+            
             
             #dit is om te weten welke animatie moet
             if right:       #rechts heeft voorrang over links omdat men naar rechs behoort te bewegen
@@ -223,22 +224,21 @@ class hero():
             elif left:
                 self.movdir = -1
         
-        #friction
-        if not self.xspd == 0:        
-            #als de snelheid kleiner is dan de maxspeed
+        #friction       
+        #als de snelheid kleiner is dan de maxspeed
+        lostspeed = friction
+        if abs(self.xspd) > maxspeed:
+
+            lostspeed += int(((abs(self.xspd)-maxspeed)-2)*exceedfriction)
             
-            
-            lostspeed = funcs.sign(self.xspd) * friction
-            if abs(self.xspd) > maxspeed:
-                lostspeed += (int(abs(self.xspd)-maxspeed+2)*exceedfriction)
-            
-            #code om te voorkomen dat friction door nul heen gaat
-            if abs(lostspeed) > abs(self.xspd):
-                lostspeed = self.xspd
-            
-            #en we verliezen de snelheid
-            self.xspd -= lostspeed*funcs.sign(self.xspd)
-            
+        #code om te voorkomen dat friction door nul heen gaat
+        if abs(lostspeed) > abs(self.xspd):
+            lostspeed = abs(self.xspd)
+        
+        #en we verliezen de snelheid
+
+        self.xspd -= lostspeed*funcs.sign(self.xspd)
+
     
         #code om te voorkomen dat we harder gaan dan de game aankan
         if abs(self.xspd) > settings.hardspeedcap:
@@ -250,7 +250,7 @@ class hero():
             #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
             #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
             if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
-                 print ('jump')
+
                  self.yspd = -self.jmpspd
                       
         
@@ -281,6 +281,7 @@ class hero():
         #horizontale collision
         self.x += self.xspd
         self.hitbox.x = self.x
+        self.hitbox.y = self.y
         
         #muur is een tijdelijke naam voor het object waar we horizontaal tegenaankomen
         muur = False

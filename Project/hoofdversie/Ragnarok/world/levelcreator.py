@@ -83,7 +83,7 @@ def createlevel(levelname):
                         objects.grond(foox, fooy)
                         
                     elif current == spike:
-                        objects.spike(foox, fooy)
+                        objects.normalspike(foox, fooy)
                             
                     elif current == bloem1:
                         objects.bloem1(foox, fooy)

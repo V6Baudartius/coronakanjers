@@ -27,12 +27,12 @@ ragnar = None
 #de check of we doodzijn gegaan of niet
 levend = True
 
-#de lijsten met objecten voor collision
+#de lijsten met objecten
 allCollisionObjects = list()
 CollisionRange = list()
 allObjects = list()
 displayupdatelist = list()
-
+voorgrond = list()
 
 #achtergrond surface om mee te gummen
 backgroundsurface = pygame.Surface((settings.gridsize,settings.gridsize))
