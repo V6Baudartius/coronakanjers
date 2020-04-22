@@ -41,7 +41,7 @@ brick =                 (200,255,255)       #zeer licht grijs
 
 
 from .. import globale_variablen, settings, gfx
-from . import objects, player
+from . import objects, player, enemies
 from random import randint
 
 def createlevel(levelname):
@@ -52,7 +52,7 @@ def createlevel(levelname):
     #tekst
     if levelname == 'level_1.png':
         
-        objects.tutorialtrigger()   
+        enemies.tutorialtrigger()   
         objects.text(500,500,(0,0,0), 'dit is level1')
         objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
     

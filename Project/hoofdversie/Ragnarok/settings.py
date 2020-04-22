@@ -16,6 +16,7 @@ import pygame
 
 budgetbeer = True
 beerfollowdistance = 5000
+budgetbeerspawn = 2000
 
 
 
