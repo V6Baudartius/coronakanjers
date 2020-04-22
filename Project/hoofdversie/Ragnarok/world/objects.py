@@ -198,6 +198,8 @@ class transition(genericobject):
         super().__init__(x, y, sprite)
 
     def update(self):
+        if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
+            
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
             globale_variablen.running = False
       
