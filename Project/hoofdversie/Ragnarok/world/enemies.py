@@ -14,7 +14,7 @@ from .. import settings as set, globale_variablen as glob, gfx
 from . import objects
 import pygame
 
-class achtervolgend_monster(objects.genericobject):
+class achtervolgend_monster(objects.voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('budgetbeer.png')
         super().__init__(x,y,sprite)

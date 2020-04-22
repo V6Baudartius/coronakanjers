@@ -215,7 +215,7 @@ class hero():
         #buikglij assist
         if self.crouching and not friction == 0:
             friction = 1
-        print(self.y)
+
         
         #accelaration + limiter
         if globale_variablen.levend and not self.crouching :
