@@ -109,7 +109,7 @@ class hero():
         width = self.sprite.get_width()
         height = self.sprite.get_height()
         self.hitbox = pygame.Rect(x, y, width, height)
-        self.grondbox = pygame.Rect(x-20, self.hitbox.bottom , self.hitbox.width+40, 3)
+        self.grondbox = pygame.Rect(x-20, self.hitbox.bottom , self.hitbox.width+40, 5)
 
         #dit is de zoekrange voor objecten om collision mee te doen
         #de Inrange is de lijst van objecten die zich binnen 200 pixels van de hero bevinden
@@ -167,16 +167,21 @@ class hero():
                 #move naar voren
                     self.xspd = 3
                     
+        if self.crouching:
+            self.iced = True
+                    
     def grondcheck(self, collisionrange):
         self.grondbox.x = self.x
         self.grondbox.y = self.hitbox.bottom
-       
+
         self.ondergrond = None
         for each in collisionrange:
             if self.grondbox.colliderect(each.hitbox):
-                if not self.ondergrond == type(objects.ijs) and not self.ondergrond == type(objects.modderblok): 
-                    if not self.ondergrond == type(objects.booster) and not self.ondergrond == type(objects.sneeuwblok): 
+                if self.ondergrond == objects.ijs or self.ondergrond == objects.modderblok or self.ondergrond == objects.booster or self.ondergrond == objects.sneeuwblok or self.ondergrond == None:
                         self.ondergrond = type(each)
+                        
+                        
+      
                 
                 
 
@@ -209,7 +214,7 @@ class hero():
             self.iced = False
             
             if self.ondergrond == objects.modderblok:   
-                acceleration = settings.modderacceleration
+                acceleration = settings.modderblokacceleration
                 friction = settings.modderblokfriction
                 maxspeed = settings.modderblokmaxspeed
                 
@@ -281,14 +286,11 @@ class hero():
             
      
     def verticalmovement(self):
-        if globale_variablen.levend:
+        if globale_variablen.levend and not self.crouching:
             #noymove is gelijk aan het aantal frames dat we niet verticaal bewegen
             #twee frames niet verticaal bewegen is een betrouwbare manier om te checken of we de grond hebben aangeraakt
             if globale_variablen.keys[pygame.K_w] and self.noymove >= 2:
-
                  self.yspd = -self.jmpspd
-                      
-        
         
         #code om de game te beschermen
         if abs(self.yspd) > settings.hardspeedcap:

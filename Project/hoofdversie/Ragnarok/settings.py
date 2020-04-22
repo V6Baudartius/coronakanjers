@@ -17,6 +17,7 @@ import pygame
 budgetbeer = True
 beerfollowdistance = 5000
 budgetbeerspawn = 2000
+budgetbeer_speed = 2
 
 
 
@@ -67,9 +68,9 @@ sneeuwacceleration =  6
 sneeuwfriction = 3
 sneeuwmaxspeed = 16
 
-modderacceleration = 5
-modderfriction = 2
-moddermaxspeed = 8
+modderblokacceleration = 5
+modderblokfriction = 2
+modderblokmaxspeed = 8
 
 boosteracceleration = 8
 boosterfriction = 1

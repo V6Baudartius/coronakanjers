@@ -20,6 +20,8 @@ from time import sleep
 #andere shit die geimporteerd moet worden
 import pygame
 
+#background = gfx.imgload('
+
 #this wil initialize the game loop
 def start(level):
 
@@ -39,8 +41,7 @@ def start(level):
     #creation
     levelcreator.createlevel(level)
     
-    if settings.budgetbeer:
-        enemies.achtervolgend_monster(-500,glob.ragnar.y)
+
         
 
     

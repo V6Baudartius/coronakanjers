@@ -19,7 +19,7 @@ toorts =                (255,255,0,255)     #geel
 transition =            (255,0,255,255)     #roze
 #---------------------------------------------------
 steen =                 (0,255,255,255)     #cyaan
-grond =                 (255,131,0,255)     #oranje
+grond =                 (255,128,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
@@ -52,33 +52,7 @@ def createlevel(levelname):
     levelimage = gfx.imgload(levelname, 'levels')
     width = levelimage.get_width()
     height = levelimage.get_height()
-    
-    #tekst
-    if levelname == 'level_1.png':
-        
-        enemies.tutorialtrigger()   
-        objects.text(500,300,(0,0,0), 'Welkom bij onze Platformer')
-        objects.text(500,350,(0,0,0), 'Ik ben Ragnar! Hallo!')
-        objects.text(550,400,(0,0,0), 'Je kunt mij laten bewegen met de toetsen A en D')
-        objects.text(1550,300,(0,0,0), 'Er is een blokkade! Gelukkig kun je bijlen gooien!')
-        objects.text(1575,350,(0,0,0), 'Press F')
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     #dit zet automatisch de camera boundaries naar de grote van het level. 
     #tenzij in de settings staat dat dat niet mag
@@ -104,11 +78,12 @@ def createlevel(levelname):
                     fooy = y* settings.gridsize
                     
 #--------------------------------------------------------------------------------------- 
- 
+
                     if current == grasblok:
                         objects.grasblok(foox, fooy)
                     
                     elif current == ragnar:
+                        print('ragnar')
                         globale_variablen.ragnar = player.hero(foox , fooy)
                     
                     elif current == steen:
@@ -187,7 +162,21 @@ def createlevel(levelname):
                         objects.brick(foox, fooy)
 #-------------------------------------------------------------------------------                        
                         
-                        
+    #extra creatie code
+    if levelname == 'level_1.png':
+        
+        enemies.tutorialtrigger()   
+        objects.text(500,500,(0,0,0), 'dit is level1')
+        objects.text(500,550,(0,0,0), 'dit is regel2 van level1')  
+        objects.text(500,300,(0,0,0), 'Welkom bij onze Platformer')
+        objects.text(500,350,(0,0,0), 'Ik ben Ragnar! Hallo!')
+        objects.text(550,400,(0,0,0), 'Je kunt mij laten bewegen met de toetsen A en D')
+        objects.text(1550,300,(0,0,0), 'Er is een blokkade! Gelukkig kun je bijlen gooien!')
+        objects.text(1575,350,(0,0,0), 'Press F')
+        
+    elif levelname == 'level_2.png':
+        #globale_variablen.ragnar = player.hero(500,500)
+        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)                         
                         
                         
                         
