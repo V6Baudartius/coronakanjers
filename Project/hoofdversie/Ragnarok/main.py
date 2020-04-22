@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
 
 
-
+from time import sleep
 from . import game, menu, globale_variablen, gfx
 
 import pygame
@@ -44,15 +44,26 @@ def execute():
         while globale_variablen.running:
             game.loop()
         game.end()
+        
+        if globale_variablen.restart == False:
+            nextlevel()
+            
+            
 
-        currentlevel += 1
         
-        gfx.draw(laadscherm)
-        pygame.display.update()
-        sleep(1)
-        
-        
+
+def nextlevel():
+    global currentlevel
+    #technische shit
+    currentlevel += 1
     
+    #estethische dingen
+    laadscherm = gfx.imgload('laadscherm.png')
+    gfx.draw(laadscherm)
+    pygame.display.update()
+    sleep(1)
+        
+
     
     
     

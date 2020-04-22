@@ -11,18 +11,18 @@ if __name__ == '__main__':
 #--------------COLORCODES----------------------------------
     #rgb waarden: (rood, groen, blauw, alpha)
 
-ragnar =    (255,0,0,255)       #rood
-grasblok =  (0,255,0,255)       #limegroen
-doos =      (0,0,255,255)       #blauw
-toorts =    (255,255,0,255)     #geel
-transition =(255,0,255,255)     #paars
-steen =     (0,255,255,255)     #cyaan
-gronddoorzichtig =(255,128,0,255)#oranje
-grond = (150,70,70,255)         # bruin
-spike =     (0,0,0,255)         #zwart
-gras =    (0,100,0,255)         #donkergroen
-wolk =      (230,240,240,255)   #blauwwit
-ijs =       (111,94,236,255)    #ijsblauw
+ragnar =            (255,0,0,255)       #rood
+grasblok =          (0,255,0,255)       #limegroen
+doos =              (0,0,255,255)       #blauw
+toorts =            (255,255,0,255)     #geel
+transition =        (255,0,255,255)     #paars
+steen =             (0,255,255,255)     #cyaan
+gronddoorzichtig =  (255,128,0,255 )    #oranje
+grond =             (150,70,70,255)     #bruin
+spike =             (0,0,0,255)         #zwart
+gras =              (0,100,0,255)       #donkergroen
+wolk =              (230,240,240,255)   #blauwwit
+ijs =               (111,94,236,255)    #ijsblauw
 
 #-----------------------
 
@@ -35,6 +35,27 @@ def createlevel(levelname):
     levelimage = gfx.imgload(levelname, 'levels')
     width = levelimage.get_width()
     height = levelimage.get_height()
+    
+    #tekst
+    if levelname == 'level_1.png':
+        print('tekst')
+        objects.text(500,500,(0,0,0), 'dit is level1')
+        objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     #dit zet automatisch de camera boundaries naar de grote van het level. 

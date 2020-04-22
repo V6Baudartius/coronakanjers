@@ -16,6 +16,8 @@ import pygame
 
 #als True dan is er iets runnend
 running = False
+#als we restarten dan is dit True als False gaan we naar volgend level
+restart = False
 
 
 #het scherm waarop getekend wordt
