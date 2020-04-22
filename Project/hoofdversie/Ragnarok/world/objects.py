@@ -73,36 +73,36 @@ class voorgrondobject():
 #------------------------------------normale/decoratieve objecten -----------------------------------------------------
 
         
-class gronddoorzichtig(genericobject):
+class grond(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('grond.png')
         super().__init__(x, y, sprite)    
         
-class bloem1(genericobject):
+class bloem1(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('bloem1.png')
         super().__init__(x, y, sprite) 
-class bloem2(genericobject):
+class bloem2(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('bloem2.png')
         super().__init__(x, y, sprite)
-class bloem3(genericobject):
+class bloem3(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('bloem3.png')
         super().__init__(x, y, sprite)
-class bloem4(genericobject):
+class bloem4(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('bloem4.png')
         super().__init__(x, y, sprite)
-class gras1(genericobject):
+class gras1(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('gras1.png')
         super().__init__(x, y, sprite)
-class gras2(genericobject):
+class gras2(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('gras2.png')
         super().__init__(x, y, sprite)
-class gras3(genericobject):
+class gras3(voorgrondobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('gras3.png')
         super().__init__(x, y, sprite) 
@@ -113,11 +113,16 @@ class wolk(genericobject):
         sprite = gfx.imgload('wolk.png')
         super().__init__(x, y, sprite) 
         
-class ijs(genericobject):
+class ijsblokonder(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijs.png')
+        sprite = gfx.imgload('ijsblokonder.png')
         super().__init__(x, y, sprite)
 
+class ijsblokonder2(genericobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('ijsblokonder2.png')
+        super().__init__(x, y, sprite)
+        
 class text():
     def __init__(self, x, y, text, kleur):
         self.x = x
@@ -312,7 +317,7 @@ class doos(collisionobject):
              
 class ijs(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijsblok.png')
+        sprite = gfx.imgload('ijsblokframe.png')
         super().__init__(x, y, sprite)
         
 class modder(collisionobject):   
@@ -320,11 +325,20 @@ class modder(collisionobject):
         sprite = gfx.imgload('modder.png')
         super().__init__(x, y, sprite)
         
-class grond(collisionobject):
+class grondsolid(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('grond.png')
-        super().__init__(x, y, sprite) 
+        super().__init__(x, y, sprite)
 
+class ijsblokondersolid(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('ijsblokonder.png')
+        super().__init__(x, y, sprite)
+
+class ijsblokondersolid(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('ijsblokonder2.png')
+        super().__init__(x, y, sprite)
         
 #---------------Particles Parent-----------------------------------------------
 
