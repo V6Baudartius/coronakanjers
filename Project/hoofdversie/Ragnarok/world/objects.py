@@ -252,21 +252,7 @@ class tutorialtrigger():
         #hier code van wat ie moet doen
             
       
-class normalspike(genericobject):
-    def __init__(self, x, y):
-        sprite = gfx.imgload('spike.png')
-        super().__init__(x, y, sprite)
-        
-    def update(self):
-        if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
-            if globale_variablen.levend:
-                globale_variablen.ragnar.yspd = -30
-            globale_variablen.levend = False
-            
-class downspike(normalspike):
-    def __init__(self, x, y):
-        super().__init__(x, y, sprite)
-        self.sprite = gfx.imgload('downspike.png')
+
         
 class text():
     def __init__(self, x, y,kleur, text):
@@ -284,21 +270,18 @@ class text():
         drawy = self.y - globale_variablen.camera_y
         globale_variablen.screen.blit(self.screentext, (drawx,drawy))
 
+class screentext(text):
+    def __init__(self, x, y,kleur, text):
+        super().__init__(x, y,kleur, text)
+
+    def draw(self):
+        globale_variablen.screen.blit(self.screentext, (self.x,self.y))
+
 
             
         
             
 
-
-
-        
-        
-        
-        
-        
-        
-        
-        
         
         
 #--------------------------------COLLISOIN PARENT-----------------------------------------------        
@@ -336,6 +319,12 @@ class doos(collisionobject):
 class ijs(collisionobject):   
     def __init__(self, x, y):
         sprite = gfx.imgload('ijsblokframe.png')
+        super().__init__(x, y, sprite)
+        
+  
+class booster(collisionobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('speed.png')
         super().__init__(x, y, sprite)
         
 class modderblok(collisionobject):   
@@ -376,7 +365,25 @@ class brick(collisionobject):
 class brickwall(collisionobject):   
     def __init__(self, x, y):
         sprite = gfx.imgload('brickwall.png')
+        super().__init__(x, y, sprite)      
+        
+class normalspike(collisionobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('spike.png')
         super().__init__(x, y, sprite)
+        
+    def update(self):
+        if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
+            if globale_variablen.levend:
+                globale_variablen.ragnar.yspd = -30
+            globale_variablen.levend = False
+            
+class downspike(normalspike):
+    def __init__(self, x, y):
+        super().__init__(x, y, sprite)
+        self.sprite = gfx.imgload('downspike.png')
+        
+
 #---------------Particles Parent-----------------------------------------------
 
 class particle(genericobject):
