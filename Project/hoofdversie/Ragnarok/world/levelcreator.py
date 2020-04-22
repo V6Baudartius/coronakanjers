@@ -165,8 +165,8 @@ def createlevel(levelname):
                         
     #extra creatie code
     if levelname == 'level_1.png':
-        if setting.budgetbeer:
-            settings.enemies.tutorialtrigger()   
+        if settings.budgetbeer:
+           enemies.tutorialtrigger()   
         objects.text(500,500,(0,0,0), 'dit is level1')
         objects.text(500,550,(0,0,0), 'dit is regel2 van level1')  
         objects.text(500,300,(0,0,0), 'Welkom bij onze Platformer')
