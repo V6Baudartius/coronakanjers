@@ -19,7 +19,7 @@ toorts =                (255,255,0,255)     #geel
 transition =            (255,0,255,255)     #roze
 #---------------------------------------------------
 steen =                 (0,255,255,255)     #cyaan
-grond =                 (255,131,0,255)     #oranje
+grond =                 (255,128,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
