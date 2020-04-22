@@ -28,8 +28,8 @@ caption = 'RAGNAROK'
 #draw
 gridsize = 64
 scale = 1
-enablecolorkey = False
-colorkey = (255,255,255)
+enablecolorkey = True
+colorkey = (255,0,255)
 
 
 
@@ -51,28 +51,28 @@ hardspeedcap = 120
 normalacceleration = 6
 normalfriction = 3         #dit is de standaard vertraging
 normalmaxspeed = 20
-normalexceedfriction = 0.50 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
+normalexceedfriction = 3 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
 
 luchtacceleration = 3
 luchtfriction = 0
 luchtmaxspeed = 10
-luchtexceedfriction = 0.04
+luchtexceedfriction = 2
 
 #speciale ondergronden
 ijsacceleration = 1
 ijsfriction = 0
 ijsmaxspeed = 28
-ijsexceedfriction = 0.01
+ijsexceedfriction = 1
 
 modderacceleration = 5
 modderfriction = 2
 moddermaxspeed = 8
-modderexceedfriction = 0.60  
+modderexceedfriction = 5  
 
 boosteracceleration = 8
 boosterfriction = 0
 boostermaxspeed = 8
-boosterexceedfriction = 0.30  
+boosterexceedfriction = 2 
 
 
 
