@@ -13,7 +13,8 @@ if __name__ == '__main__':
 
 
 from time import sleep
-from . import game, menu, globale_variablen, gfx
+from . import game, menu, globale_variablen, gfx, settings
+from .world.objects import screentext
 
 import pygame
 
@@ -58,17 +59,27 @@ def nextlevel():
     currentlevel += 1
     
     #estethische dingen
+    globale_variablen.screen.fill((0,0,0))
+    
+    if currentlevel == 1:
+        screentext(500,450, (255,255,255), 'de story van level 2 is dat ragnar honger had.')
+        screentext(500,500, (255,255,255), 'Heel erge honge...')
+    elif currentlevel == 2:
+        pass
     
     
     
     
-    
-    sleep(1)
-    glob.teksten.clear()
-    
-    
+    for tekst in globale_variablen.teksten:
+        tekst.draw()
     
     pygame.display.flip()
+    sleep(2)
+    globale_variablen.teksten.clear()
+    
+    
+    
+    
     
         
 
