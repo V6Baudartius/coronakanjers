@@ -19,7 +19,7 @@ toorts =                (255,255,0,255)     #geel
 transition =            (255,0,255,255)     #roze
 #---------------------------------------------------
 steen =                 (0,255,255,255)     #cyaan
-grond =                 (255,128,0,255)     #oranje
+grond =                 (255,131,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
@@ -57,8 +57,12 @@ def createlevel(levelname):
     if levelname == 'level_1.png':
         
         enemies.tutorialtrigger()   
-        objects.text(500,500,(0,0,0), 'dit is level1')
-        objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
+        objects.text(500,300,(0,0,0), 'Welkom bij onze Platformer')
+        objects.text(500,350,(0,0,0), 'Ik ben Ragnar! Hallo!')
+        objects.text(550,400,(0,0,0), 'Je kunt mij laten bewegen met de toetsen A en D')
+        objects.text(1550,300,(0,0,0), 'Er is een blokkade! Gelukkig kun je bijlen gooien!')
+        objects.text(1575,350,(0,0,0), 'Press F')
+        
     
     
     
