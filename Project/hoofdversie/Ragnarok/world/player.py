@@ -205,6 +205,7 @@ class hero():
 
         
         #accelaration + limiter
+
         if globale_variablen.levend and not self.crouching :
             #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
             # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
@@ -214,8 +215,10 @@ class hero():
             self.direction = right - left
             speedincrease = self.direction * acceleration
             
-            if abs(self.xspd+speedincrease) < maxspeed:
+            if abs(self.xspd) < maxspeed:
                 self.xspd += speedincrease
+
+                
             
             
             #dit is om te weten welke animatie moet
@@ -229,7 +232,7 @@ class hero():
         lostspeed = friction
         if abs(self.xspd) > maxspeed:
 
-            lostspeed += int(((abs(self.xspd)-maxspeed)-2)*exceedfriction)
+            lostspeed += int(((abs(self.xspd)-maxspeed)+2)*exceedfriction)
             
         #code om te voorkomen dat friction door nul heen gaat
         if abs(lostspeed) > abs(self.xspd):
@@ -406,6 +409,7 @@ class hero():
                     self.sprite = self.left[self.currentframe]
 
     def postdraw(self):
+        
         gfx.draw(self.sprite, self.x, self.y)   
         
         
