@@ -39,8 +39,7 @@ def start(level):
     #creation
     levelcreator.createlevel(level)
     
-    if settings.budgetbeer:
-        enemies.achtervolgend_monster(-500,glob.ragnar.y)
+
         
 
     

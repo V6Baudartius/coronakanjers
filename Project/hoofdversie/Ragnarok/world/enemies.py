@@ -27,6 +27,8 @@ class achtervolgend_monster(objects.voorgrondobject):
             self.hitbox.x = glob.ragnar.x - set.beerfollowdistance
         
         
+        self.hitbox.x += set.budgetbeer_speed
+        
         self.hitbox.y += self.yspd
         
         
@@ -43,7 +45,7 @@ class tutorialtrigger():
     def animation(self):
         pass
     def update(self):
-        if glob.ragnar.x > set.budgetbeerspawn:
+        if glob.ragnar.x > set.budgetbeerspawn and set.budgetbeer:
             achtervolgend_monster(glob.ragnar.x - 1000, glob.ragnar.y)   
             funcs.destroyObject(self)
         

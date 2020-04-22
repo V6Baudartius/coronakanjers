@@ -48,26 +48,11 @@ class genericobject():
         
 #----------------Dit object wordt over de player heengetekend, is verder hetzelfde als genericobject
 
-class voorgrondobject():
+class voorgrondobject(genericobject):
     def __init__(self, x, y, sprite):
         globale_variablen.voorgrond.append(self)
+        super().__init__(x,y,sprite)
         
-        wijdte = sprite.get_width()
-        hoogte = sprite.get_height()
-        
-        self.sprite = sprite
-        self.hitbox = pygame.Rect(x,y,wijdte,hoogte) #we gebruiken een rectangle omdat het een makkelijke manier is om positiewaarden op te slaan in een variabele
-        
-    def predraw(self):
-        #gfx.drawrect(set.background_color,self.hitbox.x,self.hitbox.y, self.hitbox.x + self.hitbox.width, self.hitbox.y + self.hitbox.height)
-        pass
-        
-    def update(self):
-        pass    #de update kan bij elk object apart worden gedefineerd
-        
-    def animation(self):
-        pass
-    
     def postdraw(self):
         gfx.draw(self.sprite, self.hitbox.x, self.hitbox.y)
 
@@ -378,9 +363,12 @@ class normalspike(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('spike.png')
         super().__init__(x, y, sprite)
-        
+        self.deathbox = pygame.Rect(self.hitbox.x, self.hitbox.y, self.hitbox.width, 5)
+        self.hitbox.y += 5
+        self.hitbox.height -= 5
+
     def update(self):
-        if self.hitbox.colliderect(globale_variablen.ragnar.hitbox):
+        if self.deathbox.colliderect(globale_variablen.ragnar.hitbox):
             if globale_variablen.levend:
                 globale_variablen.ragnar.yspd = -30
             globale_variablen.levend = False

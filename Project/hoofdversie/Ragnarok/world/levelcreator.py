@@ -49,28 +49,7 @@ def createlevel(levelname):
     width = levelimage.get_width()
     height = levelimage.get_height()
     
-    #tekst
-    if levelname == 'level_1.png':
-        
-        enemies.tutorialtrigger()   
-        objects.text(500,500,(0,0,0), 'dit is level1')
-        objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     #dit zet automatisch de camera boundaries naar de grote van het level. 
     #tenzij in de settings staat dat dat niet mag
@@ -179,7 +158,15 @@ def createlevel(levelname):
                         objects.brick(foox, fooy)
 #-------------------------------------------------------------------------------                        
                         
-                        
+    #extra creatie code
+    if levelname == 'level_1.png':
+        
+        enemies.tutorialtrigger()   
+        objects.text(500,500,(0,0,0), 'dit is level1')
+        objects.text(500,550,(0,0,0), 'dit is regel2 van level1')
+        
+    elif levelname == 'level_2.png':
+        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)                         
                         
                         
                         
