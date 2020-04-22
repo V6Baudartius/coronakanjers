@@ -127,7 +127,7 @@ class hero():
         
     def bijlgooi(self):
         if globale_variablen.levend:
-            if globale_variablen.keys[pygame.K_x] and not self.oncooldown:
+            if globale_variablen.keys[pygame.K_f] and not self.oncooldown:
                 objects.hakbijl(self.hitbox.centerx, self.y, self.xspd + self.movdir*settings.xgooisnelheid, self.yspd + settings.ygooisnelheid)
                 self.oncooldown = True
                 self.timer = 0
@@ -141,14 +141,14 @@ class hero():
     def crouch(self, collisionrange):
         if globale_variablen.levend:
             #crouch
-            if globale_variablen.keys[pygame.K_s] and not self.crouching:
+            if globale_variablen.keys[pygame.K_LCTRL] and not self.crouching:
                 self.crouching = True
                 self.y += settings.gridsize
                 self.hitbox.height -= settings.gridsize
             
             #uncrouch
             #als je op wil staan
-            elif self.crouching and not globale_variablen.keys[pygame.K_s]:
+            elif self.crouching and not globale_variablen.keys[pygame.K_LCTRL]:
                 #check collision voor hoofdruimte
                 headroom = True
                 vierkant = pygame.Rect(self.hitbox.x, self.hitbox.y - settings.gridsize, self.hitbox.width, self.hitbox.height)
