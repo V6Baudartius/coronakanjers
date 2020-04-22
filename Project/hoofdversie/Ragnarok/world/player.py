@@ -92,10 +92,11 @@ class hero():
         
         #crouch
         self.crouching = False
-        self.ijs_friction = False
+        
         
         #movement eigenschappen
         self.jmpspd = settings.jumpspeed
+        self.iced = False
         
         self.noymove = 0
         self.flyframes = 0
@@ -181,31 +182,28 @@ class hero():
             friction = settings.luchtfriction
             maxspeed = settings.luchtmaxspeed
 
-
         #ijs
         elif self.ondergrond == objects.ijs:   
             acceleration = settings.ijsacceleration
             friction = settings.ijsfriction
             maxspeed = settings.ijsmaxspeed
-
+            self.iced = True
         
         #modder
-        elif self.ondergrond == objects.modder:   
-            acceleration = settings.ijsacceleration
-            friction = settings.ijsfriction
-            maxspeed = settings.ijsmaxspeed
-  
-        
-        #normaal
-        else:
-            acceleration = settings.normalacceleration
-            friction = settings.normalfriction
-            maxspeed = settings.normalmaxspeed
-
-
+        else: 
+            self.iced = False
+            if self.ondergrond == objects.modder:   
+                acceleration = settings.ijsacceleration
+                friction = settings.ijsfriction
+                maxspeed = settings.ijsmaxspeed
+            
+            #normaal
+            else:
+                acceleration = settings.normalacceleration
+                friction = settings.normalfriction
+                maxspeed = settings.normalmaxspeed
         
         #accelaration + limiter
-
         if globale_variablen.levend and not self.crouching :
             #keys[pygame.K_] geeft 0 of 1 als het is ingedrukt of niet
             # als we dus beide waarden bij elkaar optellen met de waarde van a negatief
@@ -213,11 +211,9 @@ class hero():
             left = globale_variablen.keys[pygame.K_a]
             right = globale_variablen.keys[pygame.K_d]
             self.direction = right - left
-            self.xspd += self.direction * acceleration
-           
-
-                
             
+            if abs(self.xspd+self.direction*acceleration) < maxspeed:
+                self.xspd += self.direction * acceleration
             
             #dit is om te weten welke animatie moet
             if right:       #rechts heeft voorrang over links omdat men naar rechs behoort te bewegen
@@ -228,7 +224,7 @@ class hero():
         #friction       
         #als de snelheid kleiner is dan de maxspeed
         lostspeed = friction
-        if abs(self.xspd) > maxspeed:
+        if abs(self.xspd) > maxspeed and not self.iced:
             self.xspd = funcs.sign(self.xspd)*maxspeed
             
             

@@ -51,28 +51,28 @@ hardspeedcap = 120
 normalacceleration = 6
 normalfriction = 3         #dit is de standaard vertraging
 normalmaxspeed = 20
-normalexceedfriction = 3 #de procentuele vertraging die je ondervind als je boven de maxspeed uitkomt
+
 
 luchtacceleration = 3
 luchtfriction = 0
-luchtmaxspeed = 10
-luchtexceedfriction = 2
+luchtmaxspeed = 20
+
 
 #speciale ondergronden
 ijsacceleration = 1
 ijsfriction = 0
 ijsmaxspeed = 28
-ijsexceedfriction = 1
+icedduration = 300
 
 modderacceleration = 5
 modderfriction = 2
 moddermaxspeed = 8
-modderexceedfriction = 5  
+
 
 boosteracceleration = 8
 boosterfriction = 0
 boostermaxspeed = 8
-boosterexceedfriction = 2 
+
 
 
 
