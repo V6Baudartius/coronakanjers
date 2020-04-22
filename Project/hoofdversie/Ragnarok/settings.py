@@ -13,7 +13,7 @@ if __name__ == '__main__':
 import pygame
 
 #beer
-budgetbeer = False
+budgetbeer = True
 
 
 
