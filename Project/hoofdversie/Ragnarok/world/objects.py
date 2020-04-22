@@ -335,7 +335,7 @@ class ijsblokondersolid(collisionobject):
         sprite = gfx.imgload('ijsblokonder.png')
         super().__init__(x, y, sprite)
 
-class ijsblokondersolid(collisionobject):   
+class ijsblokonder2solid(collisionobject):   
     def __init__(self, x, y):
         sprite = gfx.imgload('ijsblokonder2.png')
         super().__init__(x, y, sprite)
