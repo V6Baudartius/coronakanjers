@@ -23,7 +23,7 @@ currentlevel = 0
 
 
 
-level = ['level_2.png','level_3.png','level_4.png']
+level = ['level_3.png','level_4.png']
 
 
 
