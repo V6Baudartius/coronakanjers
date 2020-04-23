@@ -187,7 +187,7 @@ def createlevel(levelname):
     #extra creatie code
 
     if levelname == 'level_1.png':  
-        globale_variablen.background = gfx.imgload('background2.png','data',False)
+        
         objects.text(2500,1100,(255,255,255), 'waar ben ik?')
         objects.text(3081,776,(255,255,255), 'het laatste wat ik me herinner is engeland')  
         objects.text(4141,1000,(255,255,255), 'ik en olaf waren afscheiden van de rest')
@@ -201,32 +201,10 @@ def createlevel(levelname):
         objects.text(12766,476,(255,255,255), 'wat een arrogante kwal is hij toch')
         objects.text(13721,366,(255,255,255), 'Wat is dit voor een gebouw?')
         
-        if False:
-            objects.text(500,500,(0,0,0), 'dit is level1')
-            objects.text(500,550,(0,0,0), 'dit is regel2 van level1')  
-            objects.text(500,200,(0,0,0), 'Welkom bij onze Platformer')
-            objects.text(500,250,(0,0,0), 'Ik ben Ragnar! Hallo!')
-            objects.text(550,300,(0,0,0), 'Je kunt mij laten bewegen met de toetsen A en D')
-            objects.text(650,350, (0,0,0), 'Met CTRL kan je kruipen')
-            objects.text(1550,300,(0,0,0), 'Er is een blokkade! Gelukkig kun je bijlen gooien!')
-            objects.text(1575,350,(0,0,0), 'Press F')
-            objects.text(3000,350,(0,0,0), 'Dit is modder,')
-            objects.text(3000,400,(0,0,0), 'daardoor kan je niet zo snel lopen.')
-            objects.text(4200,350,(0,0,0), 'Dit is ijs,')
-            objects.text(4200,400,(0,0,0), 'daar glijdt je makkelijk op uit!')
-            objects.text(5400,350,(0,0,0), 'En kijk uit,')
-            objects.text(5400,400,(0,0,0), 'hier vindt je ook nog een sneeuw!')
-            objects.text(6500,350,(0,0,0), 'PAS OP,')
-            objects.text(6500,400,(0,0,0), 'hier kan je voor het voor eerst dood gaan!')
-            objects.text(6500,450,(0,0,0), 'Spring voorzichtig over de spikes heen')
-            objects.text(8000,350,(0,0,0), 'Nu wordt het pas echt gevaarlijk,')
-            objects.text(8000,400,(0,0,0), 'zie je die enge draak daar achterin het scherm?')
-            objects.text(8000,450,(0,0,0), 'Zorg ervoor dat hij je niet op eet!')
-            objects.text(10000,100,(0,0,0), 'Oh gelukkig!')
-            objects.text(10000,150,(0,0,0), 'Het einde is in zicht!')
-            objects.text(10000,200,(0,0,0), 'Ga voor de deur staan en druk op SPACE')
-            objects.text(10000,250,(0,0,0), 'om naar het volgende level te gaan!')
-
+    elif levelname == 'level_4.png':
+        globale_variablen.background = gfx.imgload('background3.png','data',False)
+    elif levelname == 'level_5.png':
+        globale_variablen.background = gfx.imgload('background3.png','data',False)
         
         
         

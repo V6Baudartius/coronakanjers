@@ -15,7 +15,7 @@ from . import objects
 import pygame
 
 class achtervolgend_monster(objects.voorgrondobject):
-    def __init__(self, x, y):
+    def __init__(self, x, y, xspd):
         sprite = gfx.imgload('budgetbeer.png')
         super().__init__(x,y,sprite)
         self.yspd = 0
@@ -27,7 +27,7 @@ class achtervolgend_monster(objects.voorgrondobject):
             self.hitbox.x = glob.ragnar.x - set.beerfollowdistance
         
         
-        self.hitbox.x += set.budgetbeer_speed
+        self.hitbox.x += self.xspd
         
         self.hitbox.y += self.yspd
         

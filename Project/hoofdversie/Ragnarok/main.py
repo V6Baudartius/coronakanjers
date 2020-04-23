@@ -19,13 +19,41 @@ from .UI import klok
 
 import pygame
 
-currentlevel = 0
+currentlevel = -1
 
 level = ['level_1.png','level_2.png','level_3.png','level_4.png']
     
 
 
 
+
+            
+            
+
+        
+
+def nextlevel():
+    global currentlevel
+    #technische shit
+    
+    
+    #estethische dingen
+    globale_variablen.screen.fill((0,0,0))
+    
+    if currentlevel == 0:
+        screentext(500,450, (255,255,255), 'Welkom bij SPOLAS een zelfgeprogrammeerde en getekende game')
+        screentext(500,500, (255,255,255), 'Je controleert je karakter met: W, A, D, F, spatie en Ctrl')
+    
+    if currentlevel == 1:
+        screentext(500,450, (255,255,255), 'de mysterieuse poort verplaatste me naar een nieuwe locatie')
+        screentext(500,500, (255,255,255), 'deze plek was alleen veel vijandiger')
+        screentext(500,550, (255,255,255), 'maar ik ga bewijzen dat ik dit aan kan')
+        screentext(500,600, (255,255,255), 'deze plek was alleen veel vijandiger')
+    elif currentlevel == 2:
+        pass
+    
+    currentlevel += 1
+    
 def execute():
 
     #sytze's stopwatch
@@ -46,6 +74,7 @@ def execute():
     pygame.init()
     
     while True:    
+        nextlevel()
         #start of game
         global currentlevel
         
@@ -56,28 +85,7 @@ def execute():
         game.end()
         
         if globale_variablen.restart == False:
-            nextlevel()
-            
-            
-
-        
-
-def nextlevel():
-    global currentlevel
-    #technische shit
-    currentlevel += 1
-    
-    #estethische dingen
-    globale_variablen.screen.fill((0,0,0))
-    
-    if currentlevel == 1:
-        screentext(500,450, (255,255,255), 'de story van level 2 is dat ragnar honger had.')
-        screentext(500,500, (255,255,255), 'Heel erge honger...')
-    elif currentlevel == 2:
-        pass
-    
-    
-    
+            nextlevel()    
     
     for tekst in globale_variablen.teksten:
         tekst.draw()
