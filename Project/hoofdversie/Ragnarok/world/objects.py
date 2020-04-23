@@ -247,11 +247,6 @@ class transition(genericobject):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
             globale_variablen.running = False
             
-
-        
-            
-      
-
         
 class text():
     def __init__(self, x, y,kleur, text):
@@ -263,7 +258,7 @@ class text():
         grootte = 25
         default_font = pygame.font.Font(set.font, grootte)
         self.screentext = default_font.render(text, True, kleur)
-        self.screentext = self.screentext.convert()
+        #self.screentext = self.screentext.convert()
 
     def draw(self):
         drawx = self.x - globale_variablen.camera_x
