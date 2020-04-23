@@ -187,6 +187,7 @@ def createlevel(levelname):
     #extra creatie code
 
     if levelname == 'level_1.png':  
+        globale_variablen.background = gfx.imgload('background2.png','data',False)
         objects.text(2500,1100,(255,255,255), 'waar ben ik?')
         objects.text(3081,776,(255,255,255), 'het laatste wat ik me herinner is engeland')  
         objects.text(4141,1000,(255,255,255), 'ik en olaf waren afscheiden van de rest')

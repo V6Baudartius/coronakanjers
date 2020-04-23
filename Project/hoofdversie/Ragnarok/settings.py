@@ -40,7 +40,7 @@ customsize = False
 level_w = 0
 level_h = 0
 camera_xoffset = 500
-camera_yoffset = 400
+camera_yoffset = 550
 
 #movement
 gravity = 2
