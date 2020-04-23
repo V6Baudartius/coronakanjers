@@ -187,7 +187,6 @@ def createlevel(levelname):
     #extra creatie code
 
     if levelname == 'level_1.png':  
-
         globale_variablen.background = gfx.imgload('background2.png','data',False)
         objects.text(2500,1100,(255,255,255), 'Waar ben ik?')
         objects.text(3081,776,(255,255,255), 'Het laatste wat ik me herinner is Engeland')  
@@ -205,20 +204,24 @@ def createlevel(levelname):
         objects.text(11609,632,(255,255,255), 'maar toch kreeg hij alle aandacht')
         objects.text(12766,476,(255,255,255), 'Wat een arrogante kwal is hij toch!')
         objects.text(13721,366,(255,255,255), 'Wat is dit voor een gebouw?')
-        objects.text(13721,416,(255,255,255), 'Press Space om de deur te openen')       
+        objects.text(13721,416,(255,255,255), 'Press Space om de deur te openen')
         
+    elif levelname == 'level_2.png':
+        #globale_variablen.ragnar = player.hero(500,500)
+        if settings.budgetbeer:
+            enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 5) 
+    elif levelname == 'level_4.png':           
+        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 4)
     elif levelname == 'level_4.png':
         globale_variablen.background = gfx.imgload('background3.png','data',False)
+        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 4)
     elif levelname == 'level_5.png':
         globale_variablen.background = gfx.imgload('background3.png','data',False)
         
         
         
         
-    elif levelname == 'level_2.png':
-        #globale_variablen.ragnar = player.hero(500,500)
-        if settings.budgetbeer:
-            enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y)                         
+                            
                         
                         
                         

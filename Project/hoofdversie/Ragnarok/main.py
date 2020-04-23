@@ -51,7 +51,7 @@ def nextlevel():
         screentext(500,450, (255,255,255), 'de mysterieuse poort verplaatste me naar een nieuwe locatie')
         screentext(500,500, (255,255,255), 'deze plek was alleen veel vijandiger')
         screentext(500,550, (255,255,255), 'maar ik ga bewijzen dat ik dit aan kan')
-        screentext(500,600, (255,255,255), 'deze plek was alleen veel vijandiger')
+        screentext(500,600, (255,255,255), 'Maar ik ben beter dan mijn broer')
     elif currentlevel == 2:
         screentext(500,450, (255,255,255), 'deze uitdagingen zijn zeker door odin zelf gemaakt')
         screentext(500,500, (255,255,255), 'maar ik zal bewijzen dat ik beter ben dan mijn broer Erak')
@@ -86,15 +86,17 @@ def execute():
     pygame.init()
     
     while True:    
-        globale_variablen.teksten.clear()
-        nextlevel()
+        if globale_variablen.restart == False:
+
+            globale_variablen.teksten.clear()
+            nextlevel()
         
-        for tekst in globale_variablen.teksten:
-            tekst.draw()
+            for tekst in globale_variablen.teksten:
+                tekst.draw()
     
-        pygame.display.flip()
-        sleep(5)
-        globale_variablen.teksten.clear()
+            pygame.display.flip()
+            sleep(4)
+            globale_variablen.teksten.clear()
     
         
         #start of game
@@ -106,8 +108,7 @@ def execute():
             game.loop()
         game.end()
         
-        if globale_variablen.restart == False:
-            nextlevel()    
+            
     
 
     

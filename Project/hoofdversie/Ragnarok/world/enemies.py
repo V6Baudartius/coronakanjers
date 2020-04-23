@@ -19,6 +19,7 @@ class achtervolgend_monster(objects.voorgrondobject):
         sprite = gfx.imgload('budgetbeer.png')
         super().__init__(x,y,sprite)
         self.yspd = 0
+        self.xspd = xspd
         
     def update(self):
         self.yspd = int( (glob.ragnar.hitbox.centery - self.hitbox.bottom)/8)

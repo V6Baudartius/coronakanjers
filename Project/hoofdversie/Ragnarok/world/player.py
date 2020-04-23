@@ -459,6 +459,7 @@ class hero():
         
 def allupdates():
     inrange = globale_variablen.ragnar.get_inrange()
+    globale_variablen.ragnar.death()
     globale_variablen.ragnar.crouch(inrange)
     globale_variablen.ragnar.bijlgooi()
     globale_variablen.ragnar.grondcheck(inrange)
