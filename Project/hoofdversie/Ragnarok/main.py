@@ -19,7 +19,7 @@ from .UI import klok
 
 import pygame
 
-currentlevel = 3
+currentlevel = 2
 
 
 level = ['level_1.png','level_2.png','level_3.png','level_4.png','level_5.png']
@@ -44,7 +44,7 @@ def nextlevel():
     globale_variablen.screen.fill((0,0,0))
     
     if currentlevel == 0:
-        screentext(500,450, (255,255,255), 'Welkom bij SPOLAS een zelfgeprogrammeerde en getekende game')
+        screentext(500,450, (255,255,255), 'Welkom bij SPOLAS een zelfgeprogrammeerde en zelfgetekende game')
         screentext(500,500, (255,255,255), 'Je controleert je karakter met: W, A, D, F, spatie en Ctrl')
     
     if currentlevel == 1:
@@ -54,7 +54,7 @@ def nextlevel():
         screentext(500,600, (255,255,255), 'Want ik ben beter dan mijn broer')
     elif currentlevel == 2:
         screentext(500,450, (255,255,255), 'Deze uitdagingen zijn zeker door odin zelf gemaakt')
-        screentext(500,500, (255,255,255), 'Daar ik zal bewijzen dat ik beter ben dan mijn broer Erak')
+        screentext(500,500, (255,255,255), 'Ik zal bewijzen dat ik beter ben dan mijn broer Erak')
         
     elif currentlevel == 3:
         screentext(500,450, (255,255,255), 'Ik herinner me nog de tijd dat we jong waren ')
@@ -62,9 +62,9 @@ def nextlevel():
         screentext(500,550, (255,255,255), 'Maar eigenlijk hielden we wel van elkaar ')
         
     elif currentlevel == 4:
-        screentext(500,450, (255,255,255), 'Ja ik en Erak waren echte broeders ')
+        screentext(500,450, (255,255,255), 'Ja Erak en ik waren echte broeders ')
         screentext(500,500, (255,255,255), 'en daarom heb ik zoveel spijt')
-        screentext(500,550, (255,255,255), 'In Engeland liet ik hem achter in handen van de vijand')
+        screentext(500,550, (255,255,255), 'In Engeland liet ik hem achter in de handen van de vijand')
         screentext(500,600, (255,255,255), 'Freya, vergeef me')
         
     elif currentlevel == 5:
@@ -75,7 +75,7 @@ def nextlevel():
         counter = 0
         while True:
             counter += 1
-            if globale_variablen.keys[pygame.K_ESCAPE]:
+            if glob.keys[pygame.K_ESCAPE]:
                 pygame.quit()    
                 exit()#dan sluit pygame af 
 
