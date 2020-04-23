@@ -68,6 +68,7 @@ def nextlevel():
         screentext(500,600, (255,255,255), 'Freya, vergeef me')
         
     elif currentlevel == 5:
+        pass
         
     
     
