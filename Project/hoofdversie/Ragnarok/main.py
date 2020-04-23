@@ -48,21 +48,27 @@ def nextlevel():
         screentext(500,500, (255,255,255), 'Je controleert je karakter met: W, A, D, F, spatie en Ctrl')
     
     if currentlevel == 1:
-        screentext(500,450, (255,255,255), 'de mysterieuse poort verplaatste me naar een nieuwe locatie')
-        screentext(500,500, (255,255,255), 'deze plek was alleen veel vijandiger')
-        screentext(500,550, (255,255,255), 'maar ik ga bewijzen dat ik dit aan kan')
+        screentext(500,450, (255,255,255), 'De mysterieuse poort verplaatste me naar een nieuwe locatie')
+        screentext(500,500, (255,255,255), 'Deze plek was alleen veel vijandiger')
+        screentext(500,550, (255,255,255), 'Maar ik ga bewijzen dat ik dit aan kan')
         screentext(500,600, (255,255,255), 'Maar ik ben beter dan mijn broer')
     elif currentlevel == 2:
-        screentext(500,450, (255,255,255), 'deze uitdagingen zijn zeker door odin zelf gemaakt')
-        screentext(500,500, (255,255,255), 'maar ik zal bewijzen dat ik beter ben dan mijn broer Erak')
+        screentext(500,450, (255,255,255), 'Deze uitdagingen zijn zeker door odin zelf gemaakt')
+        screentext(500,500, (255,255,255), 'Daar ik zal bewijzen dat ik beter ben dan mijn broer Erak')
         
     elif currentlevel == 3:
         screentext(500,450, (255,255,255), 'Ik herinner me nog de tijd dat we jong waren ')
         screentext(500,500, (255,255,255), 'Erak en ik ruzieden altijd ')
-        screentext(500,550, (255,255,255), 'maar eigenlijk hielden we wel van elkaar ')
+        screentext(500,550, (255,255,255), 'Maar eigenlijk hielden we wel van elkaar ')
         
     elif currentlevel == 4:
-        pass
+        screentext(500,450, (255,255,255), 'Ja ik en Erak waren echte broeders ')
+        screentext(500,500, (255,255,255), 'en daarom heb ik zoveel spijt')
+        screentext(500,550, (255,255,255), 'In Engeland liet ik hem achter in handen van de vijand')
+        screentext(500,600, (255,255,255), 'Freya, vergeef me')
+        
+    elif currentlevel == 5:
+        
     
     
     
