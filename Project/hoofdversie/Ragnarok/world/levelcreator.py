@@ -37,8 +37,10 @@ sneeuwblokondersolid =  (63,12,12,255)      #donkerbruin
 sneeuwblok =            (166,253,77,255)    #lichtgroen
 #-------------------------------------------------------
 brickwall =             (75,75,75,255)      #grijs
-brick =                 (200,255,255)       #zeer licht grijs
-
+stone =                 (200,255,255)       #zeer licht grijs
+stonesolid
+darkstone
+darkstonesolid
 
 
 #-----------------------
