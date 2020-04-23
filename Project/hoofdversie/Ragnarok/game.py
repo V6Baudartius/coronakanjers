@@ -161,9 +161,6 @@ def end():
     
     glob.ragnar = None
     global clock
-    clock = None
-    global stopwatch
-    stopwatch = None
-    
+    clock = None    
 
     

@@ -37,6 +37,8 @@ class achtervolgend_monster(objects.voorgrondobject):
             self.hitbox.x += set.monster_speed
             if self.hitbox.colliderect(glob.ragnar.hitbox):
                 glob.levend = False
+        else:
+            self.hitbox.x += set.monster_speed/2
         
 class tutorialtrigger():
     def __init__(self):

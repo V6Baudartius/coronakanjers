@@ -19,7 +19,7 @@ from .UI import klok
 
 import pygame
 
-currentlevel = 3
+currentlevel = -1
 
 
 level = ['level_1.png','level_2.png','level_3.png','level_4.png','level_5.png']
@@ -68,16 +68,20 @@ def nextlevel():
         screentext(500,600, (255,255,255), 'Freya, vergeef me')
         
     elif currentlevel == 5:
-        victory = gfx.imgload('victory.png')
+
+        victory = gfx.imgload('victory.png','data',False)
+        victory = pygame.transform.scale(victory, (settings.scherm_wijdte, settings.scherm_hoogte))
         
+        gfx.draw(victory,globale_variablen.camera_x,globale_variablen.camera_y)
         globale_variablen.stopwatch.update()
+
         pygame.display.flip()
-        counter = 0
-        while True:
-            counter += 1
-            if globale_variablen.keys[pygame.K_ESCAPE]:
-                pygame.quit()    
-                exit()#dan sluit pygame af 
+        sleep(20)
+        
+        pygame.quit()
+        exit()        
+                    
+
 
     
     
