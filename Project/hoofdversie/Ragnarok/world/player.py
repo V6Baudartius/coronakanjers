@@ -123,11 +123,12 @@ class hero():
         pass
         
 
-
-        
+    def death(self):
+        if self.hitbox.x <0 or self.hitbox.y <0 or self.hitbox.x > settings.level_w or self.hitbox.y > settings.level_h:
+            globale_variablen.levend = False
+            
     def bijlgooi(self):
-        print(self.x)
-        print(self.y)
+
     
     
     

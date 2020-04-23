@@ -49,3 +49,6 @@ camera_y = 0
 
 #keysarray, voor globale acces van het keyboard
 keys = None
+
+
+background = None

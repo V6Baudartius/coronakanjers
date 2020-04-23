@@ -22,8 +22,8 @@ import pygame
 currentlevel = 0
 
 
-
-level = ['level_3.png','level_4.png']
+level = ['level_1.png','level_2.png','level_3.png','level_4.png']
+    
 
 
 
@@ -37,6 +37,7 @@ def execute():
     laadscherm = gfx.imgload('laadscherm.png')
     gfx.draw(laadscherm)
     pygame.display.update()
+    
     
     
     #artificial delay zodat we naar het laadscherm kunnen kijken

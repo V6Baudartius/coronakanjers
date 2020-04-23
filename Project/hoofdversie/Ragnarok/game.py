@@ -20,7 +20,7 @@ from time import sleep
 #andere shit die geimporteerd moet worden
 import pygame
 
-background = gfx.imgload('background.png', 'data', False)
+glob.background = gfx.imgload('background.png', 'data', False)
 
 #this wil initialize the game loop
 def start(level):
@@ -89,7 +89,7 @@ def loop():
         #ragnar
         #voorgrond
         #stopwatch
-    gfx.draw(background, glob.camera_x,glob.camera_y)   
+    gfx.draw(glob.background, glob.camera_x,glob.camera_y)   
     
     for object in glob.allObjects:
         object.postdraw()
