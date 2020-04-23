@@ -90,6 +90,8 @@ def execute():
     
     #loading screen script
     laadscherm = gfx.imgload('laadscherm.png')
+    
+    laadscherm = pygame.transform.scale(laadscherm, (settings.scherm_wijdte, settings.scherm_hoogte))
     gfx.draw(laadscherm)
     pygame.display.update()
     
