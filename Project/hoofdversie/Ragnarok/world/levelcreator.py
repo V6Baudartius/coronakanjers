@@ -210,7 +210,7 @@ def createlevel(levelname):
         #globale_variablen.ragnar = player.hero(500,500)
         if settings.budgetbeer:
             enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 5) 
-    elif levelname == 'level_4.png':           
+    elif levelname == 'level_3.png':           
         enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 4)
     elif levelname == 'level_4.png':
         globale_variablen.background = gfx.imgload('background3.png','data',False)

@@ -66,6 +66,9 @@ def nextlevel():
         screentext(500,500, (255,255,255), 'en daarom heb ik zoveel spijt')
         screentext(500,550, (255,255,255), 'In Engeland liet ik hem achter in handen van de vijand')
         screentext(500,600, (255,255,255), 'Freya, vergeef me')
+        
+    elif currentlevel == 5:
+        
     
     
     
