@@ -125,9 +125,9 @@ class hero():
 
     def death(self):
         if self.hitbox.x <0 or self.hitbox.y <0 or self.hitbox.x > settings.level_w or self.hitbox.y > settings.level_h - 400:
-            glob.restart = True
-            glob.running = False
-            glob.levend = True
+            globale_variablen.restart = True
+            globale_variablen.running = False
+            globale_variablen.levend = True
             
     def bijlgooi(self):
 
