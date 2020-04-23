@@ -19,6 +19,8 @@ running = False
 #als we restarten dan is dit True als False gaan we naar volgend level
 restart = False
 
+#klok
+stopwatch = None
 
 #het scherm waarop getekend wordt
 screen = funcs.scherminitialisatie(settings.scherm_hoogte, settings.scherm_wijdte, settings.caption)

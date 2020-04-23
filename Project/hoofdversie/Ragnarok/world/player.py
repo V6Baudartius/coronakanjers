@@ -126,6 +126,11 @@ class hero():
 
         
     def bijlgooi(self):
+        print(self.x)
+        print(self.y)
+    
+    
+    
         if globale_variablen.levend:
             if globale_variablen.keys[pygame.K_f] and not self.oncooldown:
                 objects.hakbijl(self.hitbox.centerx, self.y, self.xspd + self.movdir*settings.xgooisnelheid, self.yspd + settings.ygooisnelheid)

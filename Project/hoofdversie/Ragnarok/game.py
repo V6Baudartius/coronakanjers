@@ -34,9 +34,7 @@ def start(level):
     global clock
     clock = pygame.time.Clock() 
     
-    #sytze's stopwatch
-    global stopwatch
-    stopwatch = klok.stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0))
+    
     
     #creation
     levelcreator.createlevel(level)
@@ -104,7 +102,7 @@ def loop():
     for object in glob.voorgrond:
         object.postdraw()
     
-    stopwatch.update()
+    glob.stopwatch.update()
     
     #push the changed surface to screen
     pygame.display.flip()

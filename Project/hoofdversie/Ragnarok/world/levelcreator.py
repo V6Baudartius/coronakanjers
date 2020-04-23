@@ -24,7 +24,7 @@ grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
 #----------------------------------------------------
-wolk =                  (230,240,240,255)   #lichtgrijs
+wolk =                  (230,240,240,255)   #zeerlichtgrijs
 ijs =                   (111,94,236,255)    #ijsblauw
 ijsblokonder =          (33,77,76,255)      #kotskleur
 ijsblokondersolid =     (255,186,221,255)   #huidskleur
@@ -37,10 +37,16 @@ sneeuwblokondersolid =  (63,12,12,255)      #donkerbruin
 sneeuwblok =            (166,253,77,255)    #lichtgroen
 #-------------------------------------------------------
 brickwall =             (75,75,75,255)      #grijs
+brickwallsolid =        (112,112,112,255)   #lichtgrijs
 stone =                 (200,255,255)       #zeer licht blauw
 stonesolid =            (179,200,103,255)   #mosgroen / kotsgroen
 darkstone =             (163,0,0,255)       #donkerrood
- 
+
+
+
+
+
+
 
 
 #-----------------------
@@ -159,6 +165,9 @@ def createlevel(levelname):
 
                     elif current == brickwall:
                         objects.brickwall(foox, fooy)
+
+                    elif current == brickwallsolid:
+                        objects.brickwallsolid(foox, fooy)
 
                     elif current == stone:
                         objects.stone(foox, fooy)

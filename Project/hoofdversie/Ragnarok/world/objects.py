@@ -67,9 +67,9 @@ class deur(genericobject):
         sprite = gfx.imgload('deur_donker.png','data', False)
         super().__init__(x, y, sprite) 
   
-class brickwall_achtergrond(genericobject):
+class brickwall(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('brickwall_achtergrond.png','data', False)
+        sprite = gfx.imgload('brickwall.png','data', False)
         super().__init__(x, y, sprite)   
 
 class grond(genericobject):
@@ -240,8 +240,8 @@ class hakbijl(animationobject):
 class transition(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('hitboxdeur.png','data', False)
-        super().__init__(x, y, sprite)
-        deur(x-64,y-64)
+        super().__init__(x+64, y+64, sprite)
+        deur(x,y)
 
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:
@@ -374,9 +374,9 @@ class solidwolk(collisionobject):
         super().__init__(x, y, sprite)
         wolkcover(x-47, y-52)
 
-class brickwall(collisionobject):   
+class brickwallsolid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('brickwall.png','data', False)
+        sprite = gfx.imgload('brickwallsolid.png','data', False)
         super().__init__(x, y, sprite)      
         
 class normalspike(collisionobject):
