@@ -132,7 +132,15 @@ class ijsblokonder2(genericobject):
         sprite = gfx.imgload('ijsblokonder2.png','data', False)
         super().__init__(x, y, sprite)
 
+class stone(genericobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('stone.png','data', False)
+        super().__init__(x, y, sprite)
 
+class darkstone(genericobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('darkstone.png','data', False)
+        super().__init__(x, y, sprite)
 
 
 
@@ -355,9 +363,9 @@ class sneeuwblokondersolid(collisionobject):
         sprite = gfx.imgload('sneeuwblokonder.png','data', False)
         super().__init__(x, y, sprite)
 
-class brick(collisionobject):   
+class stonesolid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('brick.png','data', False)
+        sprite = gfx.imgload('stone.png','data', False)
         super().__init__(x, y, sprite)
         
 class solidwolk(collisionobject):   
