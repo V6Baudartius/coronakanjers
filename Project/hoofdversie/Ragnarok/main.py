@@ -19,7 +19,7 @@ from .UI import klok
 
 import pygame
 
-currentlevel = -1
+currentlevel = 3
 
 
 level = ['level_1.png','level_2.png','level_3.png','level_4.png','level_5.png']
