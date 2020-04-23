@@ -254,8 +254,9 @@ class hero():
                 self.xspd += self.direction * acceleration
             
             #als we net ijs hebben aangeraakt versnel dan alleen als we langzaam gaan
-            elif abs(self.xspd) < maxspeed:
+            elif abs(self.xspd+self.direction * acceleration) < maxspeed:
                 self.xspd += self.direction * acceleration
+            
             
             #dit is om te weten welke animatie moet
             if right:       #rechts heeft voorrang over links omdat men naar rechs behoort te bewegen
