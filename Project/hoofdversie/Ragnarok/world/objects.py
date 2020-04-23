@@ -67,9 +67,9 @@ class deur(genericobject):
         sprite = gfx.imgload('deur_donker.png','data', False)
         super().__init__(x, y, sprite) 
   
-class brickwall_achtergrond(genericobject):
+class brickwall(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('brickwall_achtergrond.png','data', False)
+        sprite = gfx.imgload('brickwall.png','data', False)
         super().__init__(x, y, sprite)   
 
 class grond(genericobject):
@@ -132,7 +132,15 @@ class ijsblokonder2(genericobject):
         sprite = gfx.imgload('ijsblokonder2.png','data', False)
         super().__init__(x, y, sprite)
 
+class stone(genericobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('stone.png','data', False)
+        super().__init__(x, y, sprite)
 
+class darkstone(genericobject):   
+    def __init__(self, x, y):
+        sprite = gfx.imgload('darkstone.png','data', False)
+        super().__init__(x, y, sprite)
 
 
 
@@ -350,9 +358,9 @@ class sneeuwblokondersolid(collisionobject):
         sprite = gfx.imgload('sneeuwblokonder.png','data', False)
         super().__init__(x, y, sprite)
 
-class brick(collisionobject):   
+class stonesolid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('brick.png','data', False)
+        sprite = gfx.imgload('stone.png','data', False)
         super().__init__(x, y, sprite)
         
 class solidwolk(collisionobject):   
@@ -361,9 +369,9 @@ class solidwolk(collisionobject):
         super().__init__(x, y, sprite)
         wolkcover(x-47, y-52)
 
-class brickwall(collisionobject):   
+class brickwallsolid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('brickwall.png','data', False)
+        sprite = gfx.imgload('brickwallsolid.png','data', False)
         super().__init__(x, y, sprite)      
         
 class normalspike(collisionobject):

@@ -23,9 +23,8 @@ grond =                 (255,128,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
-boomstronk =            (153,99,67)         #bruin
 #----------------------------------------------------
-wolk =                  (230,240,240,255)   #blauwwit
+wolk =                  (230,240,240,255)   #zeerlichtgrijs
 ijs =                   (111,94,236,255)    #ijsblauw
 ijsblokonder =          (33,77,76,255)      #kotskleur
 ijsblokondersolid =     (255,186,221,255)   #huidskleur
@@ -38,16 +37,15 @@ sneeuwblokondersolid =  (63,12,12,255)      #donkerbruin
 sneeuwblok =            (166,253,77,255)    #lichtgroen
 #-------------------------------------------------------
 brickwall =             (75,75,75,255)      #grijs
+brickwallsolid =        (112,112,112,255)   #lichtgrijs
+stone =                 (200,255,255)       #zeer licht blauw
+stonesolid =            (179,200,103,255)   #mosgroen / kotsgroen
+darkstone =             (163,0,0,255)       #donkerrood
 
-brickwall_achtergrond = (78,78,78,255)      #grijs alleen dan anders
-brick=                  (200,255,255)       #zeer licht grijs
 
 
 
-#stone =                 (200,255,255)       #zeer licht grijs
-#stonesolid
-#darkstone
-#darkstonesolid
+
 
 
 
@@ -168,18 +166,21 @@ def createlevel(levelname):
                     elif current == brickwall:
                         objects.brickwall(foox, fooy)
 
-                    elif current == brick:
-                        objects.brick(foox, fooy)
-                    
-                    elif current == boomstronk:
-                        objects.boomstronk(foox,fooy)
+                    elif current == brickwallsolid:
+                        objects.brickwallsolid(foox, fooy)
 
-                    elif current == brickwall_achtergrond:
-                        objects.brickwall_achtergrond(foox,fooy)    
-                        
+                    elif current == stone:
+                        objects.stone(foox, fooy)
+
+                    elif current == stonesolid:
+                        objects.stonesolid(foox, fooy)
+
+                    elif current == darkstone:
+                        objects.darkstone(foox, fooy)
 #-------------------------------------------------------------------------------                        
                         
     #extra creatie code
+
     if levelname == 'level_1.png':  
         objects.text(2500,1100,(255,255,255), 'waar ben ik?')
         objects.text(3081,776,(255,255,255), 'het laatste wat ik me herinner is engeland')  
@@ -193,13 +194,6 @@ def createlevel(levelname):
         objects.text(11609,632,(255,255,255), 'maar toch kreeg hij alle aandacht')
         objects.text(12766,476,(255,255,255), 'wat een arrogante kwal is hij toch')
         objects.text(13721,366,(255,255,255), 'Wat is dit voor een gebouw?')
-       
-
-
-
-       
-        
-        
         
         if False:
             objects.text(500,500,(0,0,0), 'dit is level1')
@@ -226,6 +220,7 @@ def createlevel(levelname):
             objects.text(10000,150,(0,0,0), 'Het einde is in zicht!')
             objects.text(10000,200,(0,0,0), 'Ga voor de deur staan en druk op SPACE')
             objects.text(10000,250,(0,0,0), 'om naar het volgende level te gaan!')
+
         
         
         
