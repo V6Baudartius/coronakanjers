@@ -23,6 +23,7 @@ grond =                 (255,128,0,255)     #oranje
 grondsolid =            (150,70,70,255)     #bruin
 spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
+boomstronk =            (153,99,67)         #bruin
 #----------------------------------------------------
 wolk =                  (230,240,240,255)   #blauwwit
 ijs =                   (111,94,236,255)    #ijsblauw
@@ -37,7 +38,9 @@ sneeuwblokondersolid =  (63,12,12,255)      #donkerbruin
 sneeuwblok =            (166,253,77,255)    #lichtgroen
 #-------------------------------------------------------
 brickwall =             (75,75,75,255)      #grijs
-brick =                 (200,255,255)       #zeer licht grijs
+brickwall_achtergrond = (78,78,78,255)      #grijs alleen dan anders
+brick=                  (200,255,255)       #zeer licht grijs
+
 
 
 
@@ -160,20 +163,26 @@ def createlevel(levelname):
 
                     elif current == brick:
                         objects.brick(foox, fooy)
+                    
+                    elif current == boomstronk:
+                        objects.boomstronk(foox,fooy)
 
+                    elif current == brickwall_achtergrond:
+                        objects.brickwall_achtergrond(foox,fooy)    
+                        
 #-------------------------------------------------------------------------------                        
                         
     #extra creatie code
     if levelname == 'level_1.png':
         if settings.budgetbeer:
            enemies.tutorialtrigger()   
-        objects.text(500,500,(0,0,0), 'dit is level1')
-        objects.text(500,550,(0,0,0), 'dit is regel2 van level1')  
-        objects.text(500,300,(0,0,0), 'Welkom bij onze Platformer')
-        objects.text(500,350,(0,0,0), 'Ik ben Ragnar! Hallo!')
-        objects.text(550,400,(0,0,0), 'Je kunt mij laten bewegen met de toetsen A en D')
-        objects.text(1550,300,(0,0,0), 'Er is een blokkade! Gelukkig kun je bijlen gooien!')
-        objects.text(1575,350,(0,0,0), 'Press F')
+        objects.text(500,500,(255,255,255), 'dit is level1')
+        objects.text(500,550,(255,255,255), 'dit is regel2 van level1')  
+        objects.text(500,300,(255,255,255), 'Welkom bij onze Platformer')
+        objects.text(500,350,(255,255,255), 'Ik ben Ragnar! Hallo!')
+        objects.text(550,400,(255,255,255), 'Je kunt mij laten bewegen met de toetsen A en D')
+        objects.text(1550,300,(255,255,255), 'Er is een blokkade! Gelukkig kun je bijlen gooien!')
+        objects.text(1575,350,(255,255,255), 'Press F')
         
     elif levelname == 'level_2.png':
         #globale_variablen.ragnar = player.hero(500,500)

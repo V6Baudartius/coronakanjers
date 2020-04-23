@@ -59,17 +59,22 @@ class voorgrondobject(genericobject):
 #------------------------------------normale/decoratieve objecten -----------------------------------------------------
 class sneeuwblokonder(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('sneeuwblokonder.png')
+        sprite = gfx.imgload('sneeuwblokonder.png','data', False)
         super().__init__(x, y, sprite)
         
 class deur(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('deur.png')
+        sprite = gfx.imgload('deur_donker.png','data', False)
         super().__init__(x, y, sprite) 
-        
+  
+class brickwall_achtergrond(genericobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('brickwall_achtergrond.png','data', False)
+        super().__init__(x, y, sprite)   
+
 class grond(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('grond.png')
+        sprite = gfx.imgload('grond.png','data', False)
         super().__init__(x, y, sprite)    
         
 class bloem1(voorgrondobject):
@@ -119,12 +124,12 @@ class wolkcover(voorgrondobject):
         
 class ijsblokonder(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijsblokonder.png')
+        sprite = gfx.imgload('ijsblokonder.png','data', False)
         super().__init__(x, y, sprite)
 
 class ijsblokonder2(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijsblokonder2.png')
+        sprite = gfx.imgload('ijsblokonder2.png','data', False)
         super().__init__(x, y, sprite)
 
 
@@ -216,7 +221,7 @@ class hakbijl(animationobject):
             if each.hitbox.colliderect(self.hitbox):
             
                 soort = type(each)
-                if soort == doos:
+                if soort == doos or soort == boomstronk:
                     funcs.destroyObject(each)
                     
                 funcs.destroyObject(self)
@@ -226,7 +231,7 @@ class hakbijl(animationobject):
         
 class transition(genericobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('hitboxdeur.png')
+        sprite = gfx.imgload('hitboxdeur.png','data', False)
         super().__init__(x, y, sprite)
         deur(x-64,y-64)
 
@@ -242,7 +247,7 @@ class transition(genericobject):
         
 class text():
     def __init__(self, x, y,kleur, text):
-        print('text gecreerd')
+
         globale_variablen.teksten.append(self)
         self.x = x
         self.y = y
@@ -250,6 +255,7 @@ class text():
         grootte = 25
         default_font = pygame.font.Font(set.font, grootte)
         self.screentext = default_font.render(text, True, kleur)
+        self.screentext = self.screentext.convert()
 
     def draw(self):
         drawx = self.x - globale_variablen.camera_x
@@ -284,7 +290,7 @@ class collisionobject(genericobject):
 
 class grasblok(collisionobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('grasblok.png')
+        sprite = gfx.imgload('grasblok.png','data', False)
         #de sprite = 500 bij 100
         #de wijdte en hoogte kan ook anders zijn dan de sprite
         #doe dit door een wijdte of hoogte te hardcoden
@@ -298,65 +304,71 @@ class steen(collisionobject):
 
 class doos(collisionobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('doos.png')
+        sprite = gfx.imgload('doos.png','data', False)
+        #sprite = 100 bij 100
+        super().__init__(x, y, sprite)
+        
+class boomstronk(collisionobject):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('boomstronk_bliksem.png')
         #sprite = 100 bij 100
         super().__init__(x, y, sprite)
              
 class ijs(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijsblokframe.png')
+        sprite = gfx.imgload('ijsblokframe.png','data', False)
         super().__init__(x, y, sprite)
         
   
 class booster(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('speed.png')
+        sprite = gfx.imgload('speed.png','data', False)
         super().__init__(x, y, sprite)
         
 class modderblok(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('modderblok.png')
+        sprite = gfx.imgload('modderblok.png','data', False)
         super().__init__(x, y, sprite)
         
 class grondsolid(collisionobject):
     def __init__(self, x, y):
-        sprite = gfx.imgload('grond.png')
+        sprite = gfx.imgload('grond.png','data', False)
         super().__init__(x, y, sprite)
 
 class ijsblokondersolid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijsblokonder.png')
+        sprite = gfx.imgload('ijsblokonder.png','data', False)
         super().__init__(x, y, sprite)
 
 class ijsblokonder2solid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('ijsblokonder2.png')
+        sprite = gfx.imgload('ijsblokonder2.png','data', False)
         super().__init__(x, y, sprite)
 
 class sneeuwblok(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('sneeuwblok.png')
+        sprite = gfx.imgload('sneeuwblok.png','data', False)
         super().__init__(x, y, sprite)
 
 class sneeuwblokondersolid(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('sneeuwblokonder.png')
+        sprite = gfx.imgload('sneeuwblokonder.png','data', False)
         super().__init__(x, y, sprite)
 
 class brick(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('brick.png')
+        sprite = gfx.imgload('brick.png','data', False)
         super().__init__(x, y, sprite)
         
 class solidwolk(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('wolkmidden.png')
+        sprite = gfx.imgload('wolkmidden.png','data', False)
         super().__init__(x, y, sprite)
         wolkcover(x-47, y-52)
 
 class brickwall(collisionobject):   
     def __init__(self, x, y):
-        sprite = gfx.imgload('brickwall.png')
+        sprite = gfx.imgload('brickwall.png','data', False)
         super().__init__(x, y, sprite)      
         
 class normalspike(collisionobject):
@@ -402,14 +414,14 @@ class particle(genericobject):
 
 class smoke(particle):
     def __init__(self, x, y):
-        sprite = gfx.imgload('smoke.png')
+        sprite = gfx.imgload('smoke.png','data', False)
         super().__init__(x,y,sprite)
         self.yspd = randint(-3,-1)
         self.duration = randint(110,200)
             
 class dirt(particle):
     def __init__(self, x, y, direction=1):
-        sprite = gfx.imgload('dirt.png')
+        sprite = gfx.imgload('dirt.png','data', False)
         super().__init__(x,y,sprite)
         
         
