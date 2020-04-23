@@ -75,7 +75,7 @@ def nextlevel():
         counter = 0
         while True:
             counter += 1
-            if glob.keys[pygame.K_ESCAPE]:
+            if globale_variablen.keys[pygame.K_ESCAPE]:
                 pygame.quit()    
                 exit()#dan sluit pygame af 
 
