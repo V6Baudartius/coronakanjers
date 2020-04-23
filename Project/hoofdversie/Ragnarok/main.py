@@ -68,8 +68,12 @@ def nextlevel():
         screentext(500,600, (255,255,255), 'Freya, vergeef me')
         
     elif currentlevel == 5:
-        pass
+        victory = gfx.imgload('victory.png')
         
+        glob.stopwatch.update()
+        pygame.display.flip()
+        sleep(20)
+        exit()
     
     
     
