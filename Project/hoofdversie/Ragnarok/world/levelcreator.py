@@ -220,7 +220,7 @@ def createlevel(levelname):
         objects.text(1536,1202,(0,0,0), 'ik draag toch een helm')
     elif levelname == 'level_4.png':
         globale_variablen.background = gfx.imgload('background3.png','data',False)
-        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 4)
+        enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 8)
     elif levelname == 'level_5.png':
         globale_variablen.background = gfx.imgload('background1.png','data',False)
         
