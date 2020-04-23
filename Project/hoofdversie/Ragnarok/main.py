@@ -21,7 +21,7 @@ import pygame
 
 currentlevel = -1
 
-level = ['level_1.png','level_2.png','level_3.png','level_4.png']
+level = ['level_1.png','level_2.png','level_3.png','level_4.png','level_5.png']
     
 
 
@@ -36,7 +36,7 @@ def nextlevel():
     global currentlevel
     #technische shit
     
-    
+    currentlevel += 1
     #estethische dingen
     globale_variablen.screen.fill((0,0,0))
     
@@ -50,9 +50,18 @@ def nextlevel():
         screentext(500,550, (255,255,255), 'maar ik ga bewijzen dat ik dit aan kan')
         screentext(500,600, (255,255,255), 'deze plek was alleen veel vijandiger')
     elif currentlevel == 2:
+        screentext(500,450, (255,255,255), 'deze uitdagingen zijn zeker door odin zelf gemaakt')
+        screentext(500,500, (255,255,255), 'maar ik zal bewijzen dat ik beter ben dan mijn broer Erak')
+        
+    elif currentlevel == 3:
+        screentext(500,450, (255,255,255), 'Ik herinner me nog de tijd dat we jong waren ')
+        screentext(500,500, (255,255,255), 'Erak en ik ruzieden altijd ')
+        screentext(500,550, (255,255,255), 'maar eigenlijk hielden we wel van elkaar ')
+        
+    elif currentlevel == 4:
         pass
     
-    currentlevel += 1
+    
     
 def execute():
 
@@ -74,7 +83,17 @@ def execute():
     pygame.init()
     
     while True:    
+        globale_variablen.teksten.clear()
         nextlevel()
+        
+        for tekst in globale_variablen.teksten:
+            tekst.draw()
+    
+        pygame.display.flip()
+        sleep(5)
+        globale_variablen.teksten.clear()
+    
+        
         #start of game
         global currentlevel
         
@@ -87,13 +106,7 @@ def execute():
         if globale_variablen.restart == False:
             nextlevel()    
     
-    for tekst in globale_variablen.teksten:
-        tekst.draw()
-    
-    pygame.display.flip()
-    sleep(2)
-    globale_variablen.teksten.clear()
-    
+
     
     
     
