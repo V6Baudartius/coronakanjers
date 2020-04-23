@@ -232,8 +232,8 @@ class hakbijl(animationobject):
 class transition(genericobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('hitboxdeur.png','data', False)
-        super().__init__(x, y, sprite)
-        deur(x-64,y-64)
+        super().__init__(x+64, y+64, sprite)
+        deur(x,y)
 
     def update(self):
         if self.hitbox.colliderect(globale_variablen.ragnar.hitbox)and globale_variablen.keys[pygame.K_SPACE]:

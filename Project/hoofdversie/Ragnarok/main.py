@@ -15,6 +15,7 @@ if __name__ == '__main__':
 from time import sleep
 from . import game, menu, globale_variablen, gfx, settings
 from .world.objects import screentext
+from .UI import klok
 
 import pygame
 
@@ -27,6 +28,10 @@ level = ['level_1.png', 'level_2.png','level_3.png','level_4.png']
 
 
 def execute():
+
+    #sytze's stopwatch
+    globale_variablen.stopwatch = klok.stopwatch((0,255,0),(255,255,255),820,5,True,True,5,(0,0,0))
+
     
     #loading screen script
     laadscherm = gfx.imgload('laadscherm.png')

@@ -44,10 +44,10 @@ brick=                  (200,255,255)       #zeer licht grijs
 
 
 
-stone =                 (200,255,255)       #zeer licht grijs
-stonesolid
-darkstone
-darkstonesolid
+#stone =                 (200,255,255)       #zeer licht grijs
+#stonesolid
+#darkstone
+#darkstonesolid
 
 
 
