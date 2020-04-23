@@ -48,10 +48,10 @@ def nextlevel():
         screentext(500,500, (255,255,255), 'Je controleert je karakter met: W, A, D, F, spatie en Ctrl')
     
     if currentlevel == 1:
-        screentext(500,450, (255,255,255), 'De mysterieuse poort verplaatste me naar een nieuwe locatie')
+        screentext(500,450, (255,255,255), 'De mysterieuze poort verplaatste me naar een nieuwe locatie')
         screentext(500,500, (255,255,255), 'Deze plek was alleen veel vijandiger')
         screentext(500,550, (255,255,255), 'Maar ik ga bewijzen dat ik dit aan kan')
-        screentext(500,600, (255,255,255), 'Maar ik ben beter dan mijn broer')
+        screentext(500,600, (255,255,255), 'Want ik ben beter dan mijn broer')
     elif currentlevel == 2:
         screentext(500,450, (255,255,255), 'Deze uitdagingen zijn zeker door odin zelf gemaakt')
         screentext(500,500, (255,255,255), 'Daar ik zal bewijzen dat ik beter ben dan mijn broer Erak')
@@ -92,7 +92,7 @@ def execute():
     
     #artificial delay zodat we naar het laadscherm kunnen kijken
     from time import sleep
-    sleep(1)
+    sleep(3)
     
     pygame.init()
     
