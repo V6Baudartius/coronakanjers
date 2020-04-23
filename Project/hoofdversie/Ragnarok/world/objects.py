@@ -363,7 +363,7 @@ class normalspike(collisionobject):
     def __init__(self, x, y):
         sprite = gfx.imgload('spike.png')
         super().__init__(x, y, sprite)
-        self.deathbox = pygame.Rect(self.hitbox.x+ 20, self.hitbox.y-2, self.hitbox.width - 40, 5)
+        self.deathbox = pygame.Rect(self.hitbox.x+ 10, self.hitbox.y-2, self.hitbox.width - 20, 5)
         self.hitbox.y += 5
         self.hitbox.height -= 5
 
