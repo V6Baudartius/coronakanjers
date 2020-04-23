@@ -19,7 +19,7 @@ from .UI import klok
 
 import pygame
 
-currentlevel = -1
+currentlevel = 3
 
 
 level = ['level_1.png','level_2.png','level_3.png','level_4.png','level_5.png']
@@ -70,10 +70,15 @@ def nextlevel():
     elif currentlevel == 5:
         victory = gfx.imgload('victory.png')
         
-        glob.stopwatch.update()
+        globale_variablen.stopwatch.update()
         pygame.display.flip()
-        sleep(20)
-        exit()
+        counter = 0
+        while True:
+            counter += 1
+            if glob.keys[pygame.K_ESCAPE]:
+                pygame.quit()    
+                exit()#dan sluit pygame af 
+
     
     
     
