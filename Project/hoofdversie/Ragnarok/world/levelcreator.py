@@ -216,7 +216,7 @@ def createlevel(levelname):
         globale_variablen.background = gfx.imgload('background3.png','data',False)
         enemies.achtervolgend_monster(globale_variablen.ragnar.x - 1000, globale_variablen.ragnar.y, 4)
     elif levelname == 'level_5.png':
-        globale_variablen.background = gfx.imgload('background3.png','data',False)
+        globale_variablen.background = gfx.imgload('background1.png','data',False)
         
         
         
