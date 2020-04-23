@@ -25,6 +25,7 @@ spike =                 (0,0,0,255)         #zwart
 gras =                  (0,100,0,255)       #donkergroen
 #----------------------------------------------------
 wolk =                  (230,240,240,255)   #zeerlichtgrijs
+solidwolk =             (112,139,182,255)   #grijsblauw
 ijs =                   (111,94,236,255)    #ijsblauw
 ijsblokonder =          (33,77,76,255)      #kotskleur
 ijsblokondersolid =     (255,186,221,255)   #huidskleur
@@ -177,6 +178,10 @@ def createlevel(levelname):
 
                     elif current == darkstone:
                         objects.darkstone(foox, fooy)
+
+                    elif current == solidwolk:
+                        objects.solidwolk(foox,fooy)
+                        
 #-------------------------------------------------------------------------------                        
                         
     #extra creatie code
