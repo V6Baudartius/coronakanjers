@@ -128,8 +128,7 @@ class hero():
             globale_variablen.levend = False
             
     def bijlgooi(self):
-        print(self.x)
-        print(self.y)
+
     
     
     
