@@ -486,6 +486,52 @@ class confetti3(particle):
                 funcs.destroyObject(self)
                 break
 
+class confetti4(particle):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('confetti4.png','data', False)
+        super().__init__(x,y,sprite)
+        self.yspd = randint(1,3)
+        self.duration = randint(110,200)
+    
+    def update(self):
+        self.hitbox.y += self.yspd
+
+        for each in globale_variablen.allCollisionObjects:
+            if self.hitbox.colliderect(each.hitbox):
+                funcs.destroyObject(self)
+                break
+
+
+class confetti5(particle):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('confetti5.png','data', False)
+        super().__init__(x,y,sprite)
+        self.yspd = randint(1,3)
+        self.duration = randint(110,200)
+    
+    def update(self):
+        self.hitbox.y += self.yspd
+
+        for each in globale_variablen.allCollisionObjects:
+            if self.hitbox.colliderect(each.hitbox):
+                funcs.destroyObject(self)
+                break
+class confetti6(particle):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('confetti6.png','data', False)
+        super().__init__(x,y,sprite)
+        self.yspd = randint(1,3)
+        self.duration = randint(110,200)
+    
+    def update(self):
+        self.hitbox.y += self.yspd
+
+        for each in globale_variablen.allCollisionObjects:
+            if self.hitbox.colliderect(each.hitbox):
+                funcs.destroyObject(self)
+                break
+
+
             
         
         

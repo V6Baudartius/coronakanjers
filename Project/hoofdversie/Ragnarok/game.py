@@ -75,13 +75,17 @@ def loop():
             switch = randint(1,4)
             if switch == 1:
                 objects.confetti1(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
-            if switch == 2:
+            elif switch == 2:
                 objects.confetti2(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
-            if switch == 3:
+            elif switch == 3:
                 objects.confetti3(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
-            if switch == 4:
-                pass
-   
+            elif switch == 4:
+                objects.confetti4(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
+            elif switch == 5:
+                objects.confetti5(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
+            elif switch == 6:
+                objects.confetti6(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
+
         
     
     
