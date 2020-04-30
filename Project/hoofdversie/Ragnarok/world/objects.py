@@ -439,6 +439,53 @@ class dirt(particle):
         super().update()
         self.xspd -= randint(-1,1)
         
+        
+        
+class confetti1(particle):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('confetti1.png','data', False)
+        super().__init__(x,y,sprite)
+        self.yspd = randint(1,3)
+        self.duration = randint(110,200)
+    
+    def update(self):
+        self.hitbox.y += self.yspd
+
+        for each in globale_variablen.allCollisionObjects:
+            if self.hitbox.colliderect(each.hitbox):
+                funcs.destroyObject(self)
+                break
+        
+class confetti2(particle):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('confetti2.png','data', False)
+        super().__init__(x,y,sprite)
+        self.yspd = randint(1,3)
+        self.duration = randint(110,200)
+    
+    def update(self):
+        self.hitbox.y += self.yspd
+
+        for each in globale_variablen.allCollisionObjects:
+            if self.hitbox.colliderect(each.hitbox):
+                funcs.destroyObject(self)
+                break
+
+class confetti3(particle):
+    def __init__(self, x, y):
+        sprite = gfx.imgload('confetti3.png','data', False)
+        super().__init__(x,y,sprite)
+        self.yspd = randint(1,3)
+        self.duration = randint(110,200)
+    
+    def update(self):
+        self.hitbox.y += self.yspd
+
+        for each in globale_variablen.allCollisionObjects:
+            if self.hitbox.colliderect(each.hitbox):
+                funcs.destroyObject(self)
+                break
+
             
         
         

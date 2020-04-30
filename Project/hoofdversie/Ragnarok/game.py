@@ -15,6 +15,7 @@ from .world import player, enemies, objects, camera, levelcreator
 from .UI import klok
 from . import settings, globale_variablen as glob, gfx
 
+from random import randint
 from time import sleep
 
 #andere shit die geimporteerd moet worden
@@ -69,6 +70,31 @@ def loop():
     glob.keys = pygame.key.get_pressed()
     
     #----important stuf--------
+    if clock.get_fps() > 50:
+        if randint(0,1):
+            switch = randint(1,4)
+            if switch == 1:
+                objects.confetti1(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
+            if switch == 2:
+                objects.confetti2(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
+            if switch == 3:
+                objects.confetti3(glob.camera_x+randint(0,settings.scherm_wijdte), glob.camera_y)
+            if switch == 4:
+                pass
+   
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     for object in glob.allObjects:
         object.update()
     
